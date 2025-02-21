@@ -1,5 +1,242 @@
 {
     "Pages": {
-        
+        "Citizen": {
+            "Info": {
+                "title": "Citizen Information",
+                "firstName": "First Name",
+                "secondName": "Second Name",
+                "surname": "Surname",
+                "age": "Age",
+                "birthday": "Birthday",
+                "sex": "Sex",
+                "ucn": "UCN",
+
+                "height": "Height",
+                "heightUnit": "cm",
+                "weight": "Weight",
+                "weightUnit": "kg",
+                "bloodType": "Blood Type",
+                "phone": "Phone",
+
+                "email": "Email",
+                "doctor": {
+                    "view": "View Doctor Information",
+                    "title": "Personal Doctor Information",
+                    "firstName": "Doctor's First Name",
+                    "secondName": "Doctor's Second Name",
+                    "surname": "Doctor's Surname",
+                    "uin": "Doctor's UIN",
+                    "phone": "Doctor's Phone",
+                    "email": "Doctor's Email"
+                }
+            },
+            "Prescriptions": {
+                "title": "Prescriptions",
+                "active": "Active",
+                "fulfilled": "Fulfilled",
+                "invalid": "Invalid",
+                "viewDetails": "View Details",
+                "prescriptionDetails": "Prescription Details",
+                "uin": "UIN:",
+                "status": "Status",
+                "issuedDate": "Issued Date",
+                "expirationDate": "Expiration Date",
+                "medicaments": "Medicaments",
+                "doctor": "Doctor"
+            }
+        },
+        "Doctor": {
+            "Info": {
+                "title": "Citizen Information",
+                "firstName": "First Name",
+                "secondName": "Second Name",
+                "surname": "Surname",
+                "age": "Age",
+                "birthday": "Birthday",
+                "sex": "Sex",
+                "ucn": "UCN",
+                "email": "Email"
+            },
+            "History": {
+                "title": "Prescription History",
+                "active": "Active",
+                "fulfilled": "Fulfilled",
+                "invalid": "Invalid",
+                "viewDetails": "View Details",
+                "prescriptionDetails": "Prescription Details",
+                "status": "Status",
+                "issuedDate": "Issued Date",
+                "expirationDate": "Expiration Date",
+                "medicaments": "Medicaments",
+                "patient": "Patient"
+            }
+        },
+        "Pharmacy": {
+            "Pharmacist": {
+                "prescriptions": {
+                    "title": "Prescription List",
+                    "ucnLabel": "UCN",
+                    "selectPatient": "Select patient",
+                    "searchPlaceholder": "Search UCN...",
+                    "noPatientFound": "No patient found.",
+                    "prescriptionsList": "Prescriptions",
+                    "quantity": "Quantity",
+                    "submitButton": "Submit"
+                },
+                "medicaments": {
+                    "title": "Medications",
+                    "medicamentPlaceholder": "Medication...",
+                    "quantityPlaceholder": "Quantity...",
+                    "removeMedicament": "Remove medication",
+                    "addMedicament": "Add medication",
+                    "submitButton": "Submit"
+                }
+            }
+        },
+        "Moderator": {
+            "Doctors": {
+                "list": {
+                    "title": "Doctors List",
+                    "firstName": "First Name",
+                    "secondName": "Second Name",
+                    "surname": "Surname",
+                    "UIN": "UIN",
+                    "actions": "Actions",
+                    "changePassword": "Change Password",
+                    "delete": "Delete"
+                },
+
+                "form": {
+                    "title": "Add New Doctor:",
+                    "firstName": {
+                        "label": "First Name",
+                        "placeholder": "Enter first name"
+                    },
+                    "middleName": {
+                        "label": "Middle Name",
+                        "placeholder": "Enter middle name"
+                    },
+                    "lastName": {
+                        "label": "Last Name",
+                        "placeholder": "Enter last name"
+                    },
+                    "uin": {
+                        "label": "UIN",
+                        "placeholder": "Enter UIN"
+                    },
+                    "submit": "Submit"
+                }
+            },
+            "Pharmacies": {
+                "list": {
+                    "title": "Pharmacies List",
+                    "name": "Name",
+                    "ownerName": "Owner Name",
+                    "actions": "Actions",
+                    "remove": "Remove"
+                },
+                "form": {
+                    "pharmacy": {
+                        "title": "Add new pharmacy:",
+                        "name": {
+                            "label": "Pharmacy Name",
+                            "placeholder": "Enter pharmacy name"
+                        },
+                        "submit": "Submit"
+                    },
+                    "pharmacist": {
+                        "title": "Add new pharmacist:",
+                        "firstName": {
+                            "label": "First Name",
+                            "placeholder": "Enter first name"
+                        },
+                        "middleName": {
+                            "label": "Middle Name",
+                            "placeholder": "Enter middle name"
+                        },
+                        "lastName": {
+                            "label": "Last Name",
+                            "placeholder": "Enter last name"
+                        },
+                        "pharmacy": {
+                            "label": "Pharmacy",
+                            "placeholder": "Select a pharmacy",
+                            "searchPlaceholder": "Search pharmacy...",
+                            "empty": "No pharmacy found"
+                        },
+                        "submit": "Submit"
+                    }
+                }
+            },
+            "Citizens": {
+                "list": {
+                    "title": "Citizens List",
+                    "firstName": "First Name",
+                    "secondName": "Second Name",
+                    "surname": "Surname",
+                    "UCN": "UCN"
+                },
+                "form": {
+                    "title": "Add New Citizen:",
+                    "firstName": {
+                        "label": "First Name",
+                        "placeholder": "Enter first name"
+                    },
+                    "middleName": {
+                        "label": "Middle Name",
+                        "placeholder": "Enter middle name"
+                    },
+                    "lastName": {
+                        "label": "Last Name",
+                        "placeholder": "Enter last name"
+                    },
+                    "ucn": {
+                        "label": "UCN",
+                        "placeholder": "Enter UCN"
+                    },
+                    "email": {
+                        "label": "Email",
+                        "placeholder": "Enter email"
+                    },
+                    "password": {
+                        "label": "Password",
+                        "placeholder": "Enter password"
+                    },
+                    "submit": "Submit"
+                }
+            },
+            "Medicaments": {
+                "list": {
+                    "title": "Medicaments List",
+                    "officialName": "Official Name",
+                    "activeIngredients": "Active Ingredients",
+                    "ATC": "ATC",
+                    "requiredPrescription": "Prescription Required",
+                    "actions": "Actions",
+                    "delete": "Delete",
+                    "yes": "Yes",
+                    "no": "No"
+                },
+                "form": {
+                    "title": "Add New Medicament:",
+                    "name": {
+                        "label": "Medicament Name",
+                        "placeholder": "Enter medicament name"
+                    },
+                    "atc": {
+                        "label": "ATC Code",
+                        "placeholder": "Enter ATC code"
+                    },
+                    "activeIngredients": {
+                        "label": "Active Ingredients",
+                        "placeholder": "Value"
+                    },
+                    "addIngredient": "Add Active Ingredient",
+                    "removeMedicament": "Remove Medicament",
+                    "addMedicament": "Add Medicament",
+                    "submit": "Submit"
+                }
+            }
+        }
     }
 }
