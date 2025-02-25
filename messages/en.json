@@ -69,11 +69,28 @@
                 "expirationDate": "Expiration Date",
                 "medicaments": "Medicaments",
                 "patient": "Patient"
+            },
+            "Prescriptions":{
+                "form":{
+                    "patient": "Patient",
+                    "selectPatient": "Select patient",
+                    "noPatientFound": "No patient found.",
+                    "ucn": "UCN",
+                    "selectUCN": "Select UCN",
+                    "medicaments": "Medicaments",
+                    "medicament": "Medicament",
+                    "selectMedicament": "Select medicament",
+                    "noMedicamentFound": "No medicament found.",
+                    "addMedicament": "Add Medicament",
+                    "removePrescription": "Remove Prescription",
+                    "addPrescription": "Add Prescription",
+                    "submit": "Submit"
+                }
             }
         },
         "Pharmacy": {
             "Pharmacist": {
-                "prescriptions": {
+                "Prescriptions": {
                     "title": "Prescription List",
                     "ucnLabel": "UCN",
                     "selectPatient": "Select patient",
@@ -83,7 +100,7 @@
                     "quantity": "Quantity",
                     "submitButton": "Submit"
                 },
-                "medicaments": {
+                "Medicaments": {
                     "title": "Medications",
                     "medicamentPlaceholder": "Medication...",
                     "quantityPlaceholder": "Quantity...",

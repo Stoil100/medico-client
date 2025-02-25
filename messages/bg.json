@@ -1,5 +1,46 @@
 {
-    "Pages":{
-        
+    "Pages": {
+        "Pharmacy": {
+            "Pharmacist": {
+                "Prescriptions": {
+                    "title": "Списък с рецепти",
+                    "ucnLabel": "ЕГН",
+                    "selectPatient": "Изберете пациент",
+                    "searchPlaceholder": "Търсене по ЕГН...",
+                    "noPatientFound": "Няма намерен пациент.",
+                    "prescriptionsList": "Рецепти",
+                    "quantity": "Количество",
+                    "submitButton": "Изпрати"
+                },
+                "Medicaments": {
+                    "title": "Лекарства",
+                    "medicamentPlaceholder": "Лекарство...",
+                    "quantityPlaceholder": "Количество...",
+                    "removeMedicament": "Премахни лекарство",
+                    "addMedicament": "Добави лекарство",
+                    "submitButton": "Изпрати"
+                }
+            }
+        },
+        "Doctor": {
+            "Prescriptions": {
+                "title": "Формуляр за рецепта",
+                "form": {
+                    "patient": "Пациент",
+                    "selectPatient": "Изберете пациент",
+                    "noPatientFound": "Няма намерен пациент.",
+                    "ucn": "ЕГН",
+                    "selectUCN": "Изберете ЕГН",
+                    "medicaments": "Лекарства",
+                    "medicament": "Лекарство",
+                    "selectMedicament": "Изберете лекарство",
+                    "noMedicamentFound": "Няма намерено лекарство.",
+                    "addMedicament": "Добави лекарство",
+                    "removePrescription": "Премахни рецепта",
+                    "addPrescription": "Добави рецепта",
+                    "submit": "Изпрати"
+                }
+            }
+        }
     }
 }
