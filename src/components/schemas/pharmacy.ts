@@ -8,14 +8,23 @@ export const addMedicamentsSchema = z.object({
         })
     ),
 });
+
 export const listPrescriptionsSchema = z.object({
-    ucn: z.string().length(10, { message: "UCN must be 10 characters long" }),
-    prescriptions: z.array(
+    ucn: z.string(),
+    prescriptions: z
+      .array(
         z.object({
-            id: z.number(),
-            medicament: z.string(),
-            quantity: z.number(),
-            fulfilled: z.boolean(),
-        })
-    ),
-});
+          id: z.number(),
+          medicaments: z.array(
+            z.object({
+              id: z.number(),
+              name: z.string(),
+              quantity: z.number(),
+              fulfilled: z.boolean(),
+            }),
+          ),
+        }),
+      )
+      .optional(),
+  })
+  
