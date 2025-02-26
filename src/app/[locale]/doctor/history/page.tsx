@@ -1,21 +1,20 @@
 "use client";
 
-import type React from "react";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, Pill } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import type React from "react";
+import { useState } from "react";
 
 interface Medicament {
     name: string;

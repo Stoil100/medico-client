@@ -1,5 +1,6 @@
 "use client";
-import { useTranslations } from "next-intl";
+import ModeratorCitizenForm from "@/components/forms/moderators/citizen";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
     Table,
     TableBody,
@@ -8,8 +9,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import ModeratorCitizenForm from "@/components/forms/moderators/citizen";
+import { useTranslations } from "next-intl";
 
 interface Citizen {
     id: string;
@@ -37,7 +37,7 @@ const mockCitizens: Citizen[] = [
 ];
 
 export default function CitizensPage() {
-    const t = useTranslations("Pages.Moderator.Citizens");
+    const t = useTranslations("Pages.Moderators.Citizens");
 
     return (
         <div>

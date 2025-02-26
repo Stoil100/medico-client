@@ -1,55 +1,418 @@
 {
     "Pages": {
         "Home": {
-            "title": "Medico - вашият личен медицински помощник",
-            "subtitle": "Управлявайте здравето си без усилие с Medico – вашият доверен дигитален спътник за медицински нужди.",
+            "title": "Medico - вашият личен медицински асистент",
+            "subtitle": "Управлявайте здравето си без усилия с Medico – вашият доверен цифров спътник за медицински нужди.",
             "loginButton": "Вход",
             "learnMoreButton": "Научете повече",
-            "features":{
+            "features": {
                 "secure": "Сигурни медицински досиета",
-                "support": "Граждански насочени услуги",
-                "insights": "Персонализирани здравни анализи"
+                "support": "Услуги, насочени към гражданите",
+                "insights": "Персонализирани здравни препоръки"
             }
         },
-        "Pharmacy": {
-            "Pharmacist": {
-                "Prescriptions": {
-                    "title": "Списък с рецепти",
-                    "ucnLabel": "ЕГН",
-                    "selectPatient": "Изберете пациент",
-                    "searchPlaceholder": "Търсене по ЕГН...",
-                    "noPatientFound": "Няма намерен пациент.",
-                    "prescriptionsList": "Рецепти",
-                    "quantity": "Количество",
-                    "submitButton": "Изпрати"
-                },
-                "Medicaments": {
-                    "title": "Лекарства",
-                    "medicamentPlaceholder": "Лекарство...",
-                    "quantityPlaceholder": "Количество...",
-                    "removeMedicament": "Премахни лекарство",
-                    "addMedicament": "Добави лекарство",
-                    "submitButton": "Изпрати"
+        "Auth": {
+            "Login": {
+                "title": "Вход:",
+                "email": "Имейл...",
+                "password": "Парола...",
+                "errors": {
+                    "email": "Моля, въведете валиден имейл адрес",
+                    "password": "Паролата трябва да бъде поне 8 символа"
                 }
             }
         },
-        "Doctor": {
+        "Citizen": {
+            "Info": {
+                "title": "Информация за гражданина",
+                "firstName": "Собствено име",
+                "secondName": "Бащино име",
+                "surname": "Фамилия",
+                "age": "Възраст",
+                "birthday": "Рожден ден",
+                "sex": "Пол",
+                "ucn": "ЕГН",
+
+                "height": "Височина",
+                "heightUnit": "см",
+                "weight": "Тегло",
+                "weightUnit": "кг",
+                "bloodType": "Кръвна група",
+                "phone": "Телефон",
+
+                "email": "Имейл",
+                "doctor": {
+                    "view": "Преглед на информацията за лекаря",
+                    "title": "Лична информация за лекаря",
+                    "firstName": "Собствено име на лекаря",
+                    "secondName": "Бащино име на лекаря",
+                    "surname": "Фамилия на лекаря",
+                    "uin": "УИН на лекаря",
+                    "phone": "Телефон на лекаря",
+                    "email": "Имейл на лекаря"
+                }
+            },
             "Prescriptions": {
-                "title": "Формуляр за рецепта",
+                "title": "Рецепти",
+                "active": "Активни",
+                "fulfilled": "Изпълнени",
+                "invalid": "Невалидни",
+                "viewDetails": "Виж детайли",
+                "prescriptionDetails": "Детайли за рецептата",
+                "uin": "УИН:",
+                "status": "Статус",
+                "issuedDate": "Дата на издаване",
+                "expirationDate": "Дата на изтичане",
+                "medicaments": "Медикаменти",
+                "doctor": "Лекар"
+            },
+            "Settings": {
+                "title": "Настройки на гражданина"
+            }
+        },
+        "Doctor": {
+            "Info": {
+                "title": "Информация за гражданина",
+                "firstName": "Собствено име",
+                "secondName": "Бащино име",
+                "surname": "Фамилия",
+                "age": "Възраст",
+                "birthday": "Рожден ден",
+                "sex": "Пол",
+                "ucn": "ЕГН",
+                "email": "Имейл"
+            },
+            "History": {
+                "title": "История на рецептите",
+                "active": "Активни",
+                "fulfilled": "Изпълнени",
+                "invalid": "Невалидни",
+                "viewDetails": "Виж детайли",
+                "prescriptionDetails": "Детайли за рецептата",
+                "status": "Статус",
+                "issuedDate": "Дата на издаване",
+                "expirationDate": "Дата на изтичане",
+                "medicaments": "Медикаменти",
+                "patient": "Пациент"
+            },
+            "Prescriptions": {
+                "title": "Издаване на рецепта:",
                 "form": {
                     "patient": "Пациент",
                     "selectPatient": "Изберете пациент",
                     "noPatientFound": "Няма намерен пациент.",
                     "ucn": "ЕГН",
                     "selectUCN": "Изберете ЕГН",
-                    "medicaments": "Лекарства",
-                    "medicament": "Лекарство",
-                    "selectMedicament": "Изберете лекарство",
-                    "noMedicamentFound": "Няма намерено лекарство.",
-                    "addMedicament": "Добави лекарство",
-                    "removePrescription": "Премахни рецепта",
-                    "addPrescription": "Добави рецепта",
-                    "submit": "Изпрати"
+                    "medicaments": "Медикаменти",
+                    "medicament": "Медикамент",
+                    "selectMedicament": "Изберете медикамент",
+                    "noMedicamentFound": "Няма намерен медикамент.",
+                    "addMedicament": "Добавяне на медикамент",
+                    "removePrescription": "Премахване на рецепта",
+                    "addPrescription": "Добавяне на рецепта",
+                    "submit": "Изпрати",
+                    "errors": {
+                        "patient": "Това поле е задължително",
+                        "medicaments": {
+                            "number": "Поне един елемент",
+                            "value": "Това поле е задължително",
+                            "required": "Това поле е задължително"
+                        },
+                        "ucn": "Невалидно ЕГН"
+                    }
+                }
+            }
+        },
+        "Pharmacy": {
+            "Pharmacist": {
+                "nav": {
+                    "prescriptions": "Рецепти",
+                    "medicaments": "Медикаменти"
+                },
+                "Prescriptions": {
+                    "title": "Списък с рецепти",
+                    "form": {
+                        "title": "Изпълнение на рецепта",
+                        "ucnLabel": "ЕГН",
+                        "selectPatient": "Изберете пациент",
+                        "searchPlaceholder": "Търсене по ЕГН...",
+                        "noPatientFound": "Няма намерен пациент.",
+                        "prescriptionsList": "Рецепти",
+                        "quantity": "Количество",
+                        "submitButton": "Изпрати",
+                        "errors": {
+                            "ucn": "Невалидно ЕГН",
+                            "prescriptionId": "Идентификаторът на рецептата е задължителен",
+                            "medicamentId": "Идентификаторът на медикамента е задължителен",
+                            "medicamentName": "Името на медикамента е задължително",
+                            "quantity": "Количеството трябва да бъде поне 1",
+                            "medicamentsRequired": "Необходимо е поне един медикамент",
+                            "prescriptionsRequired": "Необходима е поне една рецепта"
+                        }
+                    }
+                },
+                "Medicaments": {
+                    "title": "Медикаменти",
+                    "form": {
+                        "title": "Добавяне на медикаменти",
+                        "medicament": "Медикамент",
+                        "quantity": "Количество...",
+                        "remove": "Премахване на медикамент",
+                        "add": "Добавяне на медикамент",
+                        "submit": "Изпрати",
+                        "errors": {
+                            "value": "Това поле е задължително",
+                            "number": "Необходим е поне един елемент"
+                        }
+                    }
+                }
+            },
+            "Admin": {
+                "form": {
+                    "firstName": {
+                        "label": "Собствено име",
+                        "placeholder": "Въведете собствено име"
+                    },
+                    "middleName": {
+                        "label": "Бащино име",
+                        "placeholder": "Въведете бащино име"
+                    },
+                    "lastName": {
+                        "label": "Фамилия",
+                        "placeholder": "Въведете фамилия"
+                    },
+                    "pharmacy": {
+                        "label": "Изберете аптека",
+                        "placeholder": "Изберете аптека",
+                        "searchPlaceholder": "Търсене на аптека...",
+                        "empty": "Няма намерени аптеки"
+                    },
+                    "submit": "Добавяне на фармацевт",
+                    "errors": {
+                        "firstName": "Това поле е задължително",
+                        "middleName": "Това поле е задължително",
+                        "lastName": "Това поле е задължително",
+                        "pharmacy": "Това поле е задължително"
+                    }
+                }
+            }
+        },
+        "Moderators": {
+            "redirecting": "Пренасочване...",
+            "Doctors": {
+                "list": {
+                    "title": "Списък с лекари",
+                    "firstName": "Собствено име",
+                    "secondName": "Бащино име",
+                    "surname": "Фамилия",
+                    "UIN": "УИН",
+                    "actions": "Действия",
+                    "changePassword": "Промяна на паролата",
+                    "delete": "Изтрий"
+                },
+                "form": {
+                    "title": "Добавяне на нов лекар:",
+                    "firstName": {
+                        "label": "Собствено име",
+                        "placeholder": "Въведете собствено име"
+                    },
+                    "middleName": {
+                        "label": "Бащино име",
+                        "placeholder": "Въведете бащино име"
+                    },
+                    "lastName": {
+                        "label": "Фамилия",
+                        "placeholder": "Въведете фамилия"
+                    },
+                    "uin": {
+                        "label": "УИН",
+                        "placeholder": "Въведете УИН"
+                    },
+                    "submit": "Изпрати",
+                    "errors": {
+                        "firstName": "Това поле е задължително",
+                        "middleName": "Това поле е задължително",
+                        "lastName": "Това поле е задължително",
+                        "uin": "Невалиден УИН",
+                        "email": "Моля, въведете валиден имейл адрес",
+                        "password": "Паролата трябва да бъде поне 8 символа"
+                    }
+                }
+            },
+            "Pharmacies": {
+                "list": {
+                    "title": "Списък с аптеки",
+                    "name": "Име",
+                    "ownerName": "Име на собственика",
+                    "actions": "Действия",
+                    "remove": "Премахни"
+                },
+                "form": {
+                    "pharmacy": {
+                        "title": "Добавяне на нова аптека:",
+                        "name": {
+                            "label": "Име на аптеката",
+                            "placeholder": "Въведете име на аптеката"
+                        },
+                        "submit": "Изпрати",
+                        "errors": {
+                            "name": "Това поле е задължително",
+                            "owner": "Това поле е задължително",
+                            "ownerEmail": "Моля, въведете валиден имейл адрес",
+                            "ownerPassword": "Паролата трябва да бъде поне 8 символа"
+                        }
+                    },
+                    "pharmacist": {
+                        "title": "Добавяне на нов фармацевт:",
+                        "firstName": {
+                            "label": "Собствено име",
+                            "placeholder": "Въведете собствено име"
+                        },
+                        "middleName": {
+                            "label": "Бащино име",
+                            "placeholder": "Въведете бащино име"
+                        },
+                        "lastName": {
+                            "label": "Фамилия",
+                            "placeholder": "Въведете фамилия"
+                        },
+                        "pharmacy": {
+                            "label": "Аптека",
+                            "placeholder": "Изберете аптека",
+                            "searchPlaceholder": "Търсене на аптека...",
+                            "empty": "Няма намерена аптека"
+                        },
+                        "submit": "Изпрати",
+                        "errors": {
+                            "firstName": "Това поле е задължително",
+                            "middleName": "Това поле е задължително",
+                            "lastName": "Това поле е задължително",
+                            "pharmacy": "Това поле е задължително"
+                        }
+                    }
+                }
+            },
+            "Citizens": {
+                "list": {
+                    "title": "Списък с граждани",
+                    "firstName": "Собствено име",
+                    "secondName": "Бащино име",
+                    "surname": "Фамилия",
+                    "UCN": "ЕГН"
+                },
+                "form": {
+                    "title": "Добавяне на нов гражданин:",
+                    "firstName": {
+                        "label": "Собствено име",
+                        "placeholder": "Въведете собствено име"
+                    },
+                    "middleName": {
+                        "label": "Бащино име",
+                        "placeholder": "Въведете бащино име"
+                    },
+                    "lastName": {
+                        "label": "Фамилия",
+                        "placeholder": "Въведете фамилия"
+                    },
+                    "ucn": {
+                        "label": "ЕГН",
+                        "placeholder": "Въведете ЕГН"
+                    },
+                    "email": {
+                        "label": "Имейл",
+                        "placeholder": "Въведете имейл"
+                    },
+                    "password": {
+                        "label": "Парола",
+                        "placeholder": "Въведете парола"
+                    },
+                    "submit": "Изпрати",
+                    "errors": {
+                        "firstName": "Това поле е задължително",
+                        "middleName": "Това поле е задължително",
+                        "lastName": "Това поле е задължително",
+                        "ucn": "Невалидно ЕГН",
+                        "email": "Моля, въведете валиден имейл адрес",
+                        "password": "Паролата трябва да бъде поне 8 символа"
+                    }
+                }
+            },
+            "Medicaments": {
+                "list": {
+                    "title": "Списък с медикаменти",
+                    "officialName": "Официално име",
+                    "activeIngredients": "Активни съставки",
+                    "ATC": "ATC",
+                    "requiredPrescription": "Нужда от рецепта",
+                    "actions": "Действия",
+                    "delete": "Изтрий",
+                    "yes": "Да",
+                    "no": "Не"
+                },
+                "form": {
+                    "title": "Добавяне на нов медикамент:",
+                    "name": {
+                        "label": "Име на медикамента",
+                        "placeholder": "Въведете име на медикамента"
+                    },
+                    "atc": {
+                        "label": "ATC код",
+                        "placeholder": "Въведете ATC код"
+                    },
+                    "activeIngredients": {
+                        "label": "Активни съставки",
+                        "placeholder": "Стойност"
+                    },
+                    "addIngredient": "Добавяне на активна съставка",
+                    "removeMedicament": "Премахване на медикамент",
+                    "addMedicament": "Добавяне на медикамент",
+                    "submit": "Изпрати",
+                    "errors": {
+                        "required": "Необходим е поне един медикамент",
+                        "name": "Това поле е задължително",
+                        "atc": "Това поле е задължително",
+                        "activeIngridients": "Това поле е задължително"
+                    }
+                }
+            }
+        },
+        "Admin": {
+            "title": "Админ страница",
+            "form": {
+                "firstName": {
+                    "label": "Собствено име",
+                    "placeholder": "Въведете собствено име..."
+                },
+                "secondName": {
+                    "label": "Бащино име",
+                    "placeholder": "Въведете бащино име..."
+                },
+                "surname": {
+                    "label": "Фамилия",
+                    "placeholder": "Въведете фамилия..."
+                },
+                "roles": {
+                    "label": "Изберете роля на модератор",
+                    "placeholder": "Изберете роля...",
+                    "doctor": "Лекар",
+                    "pharmacy": "Аптека",
+                    "citizen": "Гражданин",
+                    "medicaments": "Медикаменти"
+                },
+                "email": {
+                    "label": "Имейл адрес",
+                    "placeholder": "Въведете имейл..."
+                },
+                "password": {
+                    "label": "Парола",
+                    "placeholder": "Въведете парола..."
+                },
+                "submit": "Добавяне на модератор",
+                "errors": {
+                    "firstName": "Собственото име трябва да бъде поне 2 символа.",
+                    "surname": "Фамилията трябва да бъде поне 2 символа.",
+                    "email": "Моля, въведете валиден имейл адрес.",
+                    "password": "Паролата трябва да бъде поне 8 символа."
                 }
             }
         }

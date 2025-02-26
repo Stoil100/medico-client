@@ -14,9 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { moderatorPharmacySchema as formSchema } from "@/components/schemas/moderators";
-
-type ModeratorPharmacyFormValues = z.infer<typeof formSchema>;
+import { moderatorPharmacySchema as formSchema, ModeratorPharmacyType } from "@/components/schemas/moderators";
 
 type ModeratorPharmacyFormProps = {
     t: (args: string) => string;
@@ -24,14 +22,14 @@ type ModeratorPharmacyFormProps = {
 export default function ModeratorPharmacyForm({
     t,
 }: ModeratorPharmacyFormProps) {
-    const form = useForm<ModeratorPharmacyFormValues>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<ModeratorPharmacyType>({
+        resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
         defaultValues: {
             name: "",
         },
     });
 
-    function onSubmit(data: ModeratorPharmacyFormValues) {
+    function onSubmit(data: ModeratorPharmacyType) {
         console.log(data);
     }
 

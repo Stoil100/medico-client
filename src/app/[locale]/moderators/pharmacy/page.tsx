@@ -1,6 +1,7 @@
 "use client";
-import { useTranslations } from "next-intl";
+import ModeratorPharmacyForm from "@/components/forms/moderators/pharmacy";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
     Table,
     TableBody,
@@ -9,8 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import ModeratorPharmacyForm from "@/components/forms/moderators/pharmacy";
+import { useTranslations } from "next-intl";
 
 interface Pharmacy {
     id: string;
@@ -24,7 +24,7 @@ const mockPharmacies: Pharmacy[] = [
 ];
 
 export default function ModeratorsPharmaciesPage() {
-    const t = useTranslations("Pages.Moderator.Pharmacies");
+    const t = useTranslations("Pages.Moderators.Pharmacies");
 
     const handleRemovePharmacy = (id: string) => {
         console.log(`Remove pharmacy with id: ${id}`);
@@ -72,10 +72,12 @@ export default function ModeratorsPharmaciesPage() {
             </Card>
             <Card className="w-full">
                 <CardHeader>
-                    <CardTitle>{t("form.title")}</CardTitle>
+                    <CardTitle>{t("form.pharmacy.title")}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ModeratorPharmacyForm t={(key) => t(`form.pharmacy.${key}`)} />
+                    <ModeratorPharmacyForm
+                        t={(key) => t(`form.pharmacy.${key}`)}
+                    />
                 </CardContent>
             </Card>
         </div>

@@ -1,18 +1,9 @@
 "use client";
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, User, UserCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type React from "react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Phone, Mail, UserCircle } from "lucide-react";
 
 interface Doctor {
     firstName: string;

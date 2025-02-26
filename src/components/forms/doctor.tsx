@@ -27,19 +27,20 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
 import { useFieldArray, useForm } from "react-hook-form";
-import type { z } from "zod";
-import { doctorSchema as formSchema } from "../schemas/doctor";
-type FormValues = z.infer<typeof formSchema>;
+import {
+    DoctorType,
+    doctorSchema as formSchema,
+} from "../schemas/doctor";
 
 const patients = [
-    { name: "John Doe", ucn: "0105050505" },
+    { name: "Петър Димитров", ucn: "0105050505" },
     { name: "Jane Smith", ucn: "0205050505" },
     { name: "Alice Johnson", ucn: "0305050505" },
     { name: "Bob Williams", ucn: "0405050505" },
     { name: "Charlie Brown", ucn: "0505050505" },
 ] as const;
 const medicaments = [
-    "Aspirin",
+    "Аспирин",
     "Ibuprofen",
     "Paracetamol",
     "Amoxicillin",
@@ -47,9 +48,13 @@ const medicaments = [
     "Metformin",
 ];
 
-export function DoctorForm() {
-    const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
+type DoctorFormProps = {
+    t: (args: string) => string;
+};
+
+export function DoctorForm({ t }: DoctorFormProps) {
+    const form = useForm<DoctorType>({
+        resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             prescriptions: [
                 {
@@ -70,25 +75,25 @@ export function DoctorForm() {
         name: "prescriptions",
     });
 
-    const onSubmit = (data: FormValues) => {
+    const onSubmit = (data: DoctorType) => {
         console.log(data);
     };
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 {prescriptionFields.map(
                     (prescriptionField, prescriptionIndex) => (
                         <div
                             key={prescriptionField.id}
-                            className="space-y-4 p-4 border rounded-md"
+                            className="space-y-4 p-6 border rounded-md bg-gray-50"
                         >
                             <FormField
                                 control={form.control}
                                 name={`prescriptions.${prescriptionIndex}.patient`}
                                 render={({ field }) => (
-                                    <FormItem className="space-x-2">
-                                        <FormLabel>Patient</FormLabel>
+                                    <FormItem className="space-y-2">
+                                        <FormLabel>{t("patient")}</FormLabel>
                                         <Popover>
                                             <PopoverTrigger asChild>
                                                 <FormControl>
@@ -96,7 +101,7 @@ export function DoctorForm() {
                                                         variant="outline"
                                                         role="combobox"
                                                         className={cn(
-                                                            "w-[200px] justify-between",
+                                                            "w-full justify-between",
                                                             !field.value &&
                                                                 "text-muted-foreground"
                                                         )}
@@ -107,17 +112,25 @@ export function DoctorForm() {
                                                                       patient.name ===
                                                                       field.value
                                                               )?.name
-                                                            : "Select patient"}
+                                                            : t(
+                                                                  "selectPatient"
+                                                              )}
                                                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
-                                            <PopoverContent className="w-[200px] p-0">
+                                            <PopoverContent className="w-full p-0">
                                                 <Command>
-                                                    <CommandInput placeholder="Search patient..." />
+                                                    <CommandInput
+                                                        placeholder={t(
+                                                            "selectPatient"
+                                                        )}
+                                                    />
                                                     <CommandList>
                                                         <CommandEmpty>
-                                                            No patient found.
+                                                            {t(
+                                                                "noPatientFound"
+                                                            )}
                                                         </CommandEmpty>
                                                         <CommandGroup>
                                                             {patients.map(
@@ -171,8 +184,8 @@ export function DoctorForm() {
                                 control={form.control}
                                 name={`prescriptions.${prescriptionIndex}.ucn`}
                                 render={({ field }) => (
-                                    <FormItem className="space-x-2">
-                                        <FormLabel>UCN</FormLabel>
+                                    <FormItem className="space-y-2">
+                                        <FormLabel>{t("ucn")}</FormLabel>
                                         <Popover>
                                             <PopoverTrigger asChild>
                                                 <FormControl>
@@ -180,7 +193,7 @@ export function DoctorForm() {
                                                         variant="outline"
                                                         role="combobox"
                                                         className={cn(
-                                                            "w-[200px] justify-between",
+                                                            "w-full justify-between",
                                                             !field.value &&
                                                                 "text-muted-foreground"
                                                         )}
@@ -191,17 +204,23 @@ export function DoctorForm() {
                                                                       patient.ucn ===
                                                                       field.value
                                                               )?.ucn
-                                                            : "Select patient"}
+                                                            : t("selectUCN")}
                                                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
-                                            <PopoverContent className="w-[200px] p-0">
+                                            <PopoverContent className="w-full p-0">
                                                 <Command>
-                                                    <CommandInput placeholder="Search UCN..." />
+                                                    <CommandInput
+                                                        placeholder={t(
+                                                            "selectUCN"
+                                                        )}
+                                                    />
                                                     <CommandList>
                                                         <CommandEmpty>
-                                                            No patient found.
+                                                            {t(
+                                                                "noPatientFound"
+                                                            )}
                                                         </CommandEmpty>
                                                         <CommandGroup>
                                                             {patients.map(
@@ -252,8 +271,8 @@ export function DoctorForm() {
                                 )}
                             />
                             <div>
-                                <FormLabel>Medicaments</FormLabel>
-                                <ul className="space-y-2">
+                                <FormLabel>{t("medicaments")}</FormLabel>
+                                <ul className="space-y-4 mt-2">
                                     {form
                                         .watch(
                                             `prescriptions.${prescriptionIndex}.medicaments`
@@ -261,15 +280,17 @@ export function DoctorForm() {
                                         .map((_, medicamentIndex) => (
                                             <li
                                                 key={medicamentIndex}
-                                                className="flex items-end gap-2"
+                                                className="flex items-end gap-4"
                                             >
                                                 <FormField
                                                     control={form.control}
                                                     name={`prescriptions.${prescriptionIndex}.medicaments.${medicamentIndex}.value`}
                                                     render={({ field }) => (
-                                                        <FormItem className="space-x-2">
+                                                        <FormItem className="flex-1">
                                                             <FormLabel>
-                                                                Medicament
+                                                                {t(
+                                                                    "medicament"
+                                                                )}
                                                             </FormLabel>
                                                             <Popover>
                                                                 <PopoverTrigger
@@ -280,7 +301,7 @@ export function DoctorForm() {
                                                                             variant="outline"
                                                                             role="combobox"
                                                                             className={cn(
-                                                                                "w-[200px] justify-between",
+                                                                                "w-full justify-between",
                                                                                 !field.value &&
                                                                                     "text-muted-foreground"
                                                                             )}
@@ -293,19 +314,25 @@ export function DoctorForm() {
                                                                                           medicament ===
                                                                                           field.value
                                                                                   )
-                                                                                : "Select medicament"}
+                                                                                : t(
+                                                                                      "selectMedicament"
+                                                                                  )}
                                                                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                                         </Button>
                                                                     </FormControl>
                                                                 </PopoverTrigger>
-                                                                <PopoverContent className="w-[200px] p-0">
+                                                                <PopoverContent className="w-full p-0">
                                                                     <Command>
-                                                                        <CommandInput placeholder="Search medicament..." />
+                                                                        <CommandInput
+                                                                            placeholder={t(
+                                                                                "selectMedicament"
+                                                                            )}
+                                                                        />
                                                                         <CommandList>
                                                                             <CommandEmpty>
-                                                                                No
-                                                                                medicament
-                                                                                found.
+                                                                                {t(
+                                                                                    "noMedicamentFound"
+                                                                                )}
                                                                             </CommandEmpty>
                                                                             <CommandGroup>
                                                                                 <div>
@@ -417,7 +444,7 @@ export function DoctorForm() {
                                     type="button"
                                     variant="outline"
                                     size="sm"
-                                    className="mt-2"
+                                    className="mt-4"
                                     onClick={() => {
                                         const medicaments = form.getValues(
                                             `prescriptions.${prescriptionIndex}.medicaments`
@@ -431,8 +458,8 @@ export function DoctorForm() {
                                         );
                                     }}
                                 >
-                                    <Plus className="h-4 w-4 mr-2" /> Add
-                                    Medicament
+                                    <Plus className="h-4 w-4 mr-2" />{" "}
+                                    {t("addMedicament")}
                                 </Button>
                             </div>
 
@@ -444,13 +471,13 @@ export function DoctorForm() {
                                         removePrescription(prescriptionIndex)
                                     }
                                 >
-                                    Remove Prescription
+                                    {t("removePrescription")}
                                 </Button>
                             )}
                         </div>
                     )
                 )}
-                <div className="space-x-2 px-4">
+                <div className="space-x-4">
                     <Button
                         type="button"
                         variant="outline"
@@ -462,10 +489,10 @@ export function DoctorForm() {
                             })
                         }
                     >
-                        Add Prescription
+                        {t("addPrescription")}
                     </Button>
 
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">{t("submit")}</Button>
                 </div>
             </form>
         </Form>

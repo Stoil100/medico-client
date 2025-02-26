@@ -11,6 +11,17 @@
                 "insights": "Personalized health insights"
             }
         },
+        "Auth": {
+            "Login": {
+                "title": "Login:",
+                "email": "Email...",
+                "password": "Password...",
+                "errors": {
+                    "email": "Please enter a valid email address",
+                    "password": "Password must be at least 8 characters"
+                }
+            }
+        },
         "Citizen": {
             "Info": {
                 "title": "Citizen Information",
@@ -54,6 +65,9 @@
                 "expirationDate": "Expiration Date",
                 "medicaments": "Medicaments",
                 "doctor": "Doctor"
+            },
+            "Settings": {
+                "title": "Citizen Settings"
             }
         },
         "Doctor": {
@@ -82,6 +96,7 @@
                 "patient": "Patient"
             },
             "Prescriptions": {
+                "title":"Issue a prescription:",
                 "form": {
                     "patient": "Patient",
                     "selectPatient": "Select patient",
@@ -95,33 +110,96 @@
                     "addMedicament": "Add Medicament",
                     "removePrescription": "Remove Prescription",
                     "addPrescription": "Add Prescription",
-                    "submit": "Submit"
+                    "submit": "Submit",
+                    "errors":{
+                        "patient": "This field is required",
+                        "medicaments": {
+                            "number": "At least one item",
+                            "value": "This field is required",
+                            "required": "This field is required"
+                        },
+                        "ucn": "Invalid UCN"
+                    }
+                      
                 }
             }
         },
         "Pharmacy": {
             "Pharmacist": {
+                "nav": {
+                    "prescriptions": "Prescriptions",
+                    "medicaments": "Medicaments"
+                },
                 "Prescriptions": {
                     "title": "Prescription List",
-                    "ucnLabel": "UCN",
-                    "selectPatient": "Select patient",
-                    "searchPlaceholder": "Search UCN...",
-                    "noPatientFound": "No patient found.",
-                    "prescriptionsList": "Prescriptions",
-                    "quantity": "Quantity",
-                    "submitButton": "Submit"
+                    "form":{
+                        "title":"Fulfill prescription",
+                        "ucnLabel": "UCN",
+                        "selectPatient": "Select patient",
+                        "searchPlaceholder": "Search UCN...",
+                        "noPatientFound": "No patient found.",
+                        "prescriptionsList": "Prescriptions",
+                        "quantity": "Quantity",
+                        "submitButton": "Submit",
+                        "errors": {
+                            "ucn": "Invalid UCN",
+                            "prescriptionId": "Prescription ID is required",
+                            "medicamentId": "Medicament ID is required",
+                            "medicamentName": "Medicament name is required",
+                            "quantity": "Quantity must be at least 1",
+                            "medicamentsRequired": "At least one medicament is required",
+                            "prescriptionsRequired": "At least one prescription is required"
+                        }
+                    }
                 },
                 "Medicaments": {
                     "title": "Medications",
-                    "medicamentPlaceholder": "Medication...",
-                    "quantityPlaceholder": "Quantity...",
-                    "removeMedicament": "Remove medication",
-                    "addMedicament": "Add medication",
-                    "submitButton": "Submit"
+                    "form":{
+                        "title":"Add medicaments",
+                        "medicament": "Medicament",
+                        "quantity": "Quantity...",
+                        "remove": "Remove medication",
+                        "add": "Add medication",
+                        "submit": "Submit",
+                        "errors": {
+                            "value": "This field is required",
+                            "number": "At least one item is required"
+                        }
+                    }
+                }
+            },
+            "Admin":{
+                "form":{
+                    "firstName": {
+                        "label": "First Name",
+                        "placeholder": "Enter first name"
+                    },
+                    "middleName": {
+                        "label": "Middle Name",
+                        "placeholder": "Enter middle name"
+                    },
+                    "lastName": {
+                        "label": "Last Name",
+                        "placeholder": "Enter last name"
+                    },
+                    "pharmacy": {
+                        "label": "Select Pharmacy",
+                        "placeholder": "Choose a pharmacy",
+                        "searchPlaceholder": "Search for a pharmacy...",
+                        "empty": "No pharmacies found"
+                    },
+                    "submit": "Add Pharmacist",
+                    "errors": {
+                        "firstName": "This field is required",
+                        "middleName": "This field is required",
+                        "lastName": "This field is required",
+                        "pharmacy": "This field is required"
+                    }
                 }
             }
         },
-        "Moderator": {
+        "Moderators": {
+            "redirecting": "Regirecting...",
             "Doctors": {
                 "list": {
                     "title": "Doctors List",
@@ -152,7 +230,15 @@
                         "label": "UIN",
                         "placeholder": "Enter UIN"
                     },
-                    "submit": "Submit"
+                    "submit": "Submit",
+                    "errors":{
+                        "firstName": "This field is required",
+                        "middleName": "This field is required",
+                        "lastName": "This field is required",
+                        "uin": "Invalid UIN",
+                        "email": "Please enter a valid email address",
+                        "password": "Password must be at least 8 characters"
+                    }
                 }
             },
             "Pharmacies": {
@@ -170,7 +256,13 @@
                             "label": "Pharmacy Name",
                             "placeholder": "Enter pharmacy name"
                         },
-                        "submit": "Submit"
+                        "submit": "Submit",
+                        "errors": {
+                            "name": "This field is required",
+                            "owner": "This field is required",
+                            "ownerEmail": "Please enter a valid email address",
+                            "ownerPassword": "Password must be at least 8 characters"
+                        }
                     },
                     "pharmacist": {
                         "title": "Add new pharmacist:",
@@ -192,7 +284,13 @@
                             "searchPlaceholder": "Search pharmacy...",
                             "empty": "No pharmacy found"
                         },
-                        "submit": "Submit"
+                        "submit": "Submit",
+                        "errors": {
+                            "firstName": "This field is required",
+                            "middleName": "This field is required",
+                            "lastName": "This field is required",
+                            "pharmacy": "This field is required"
+                        }
                     }
                 }
             },
@@ -230,7 +328,15 @@
                         "label": "Password",
                         "placeholder": "Enter password"
                     },
-                    "submit": "Submit"
+                    "submit": "Submit",
+                    "errors": {
+                        "firstName": "This field is required",
+                        "middleName": "This field is required",
+                        "lastName": "This field is required",
+                        "ucn": "Invalid UCN",
+                        "email": "Please enter a valid email address",
+                        "password": "Password must be at least 8 characters"
+                    }
                 }
             },
             "Medicaments": {
@@ -262,7 +368,54 @@
                     "addIngredient": "Add Active Ingredient",
                     "removeMedicament": "Remove Medicament",
                     "addMedicament": "Add Medicament",
-                    "submit": "Submit"
+                    "submit": "Submit",
+                    "errors": {
+                        "required": "At least one medicament is required",
+                        "name": "This field is required",
+                        "atc": "This field is required",
+                        "activeIngridients": "This field is required"
+                    }
+                }
+            }
+        },
+        "Admin": {
+            "title": "Admin Page",
+            "form": {
+                "firstName": {
+                    "label": "First Name",
+                    "placeholder": "Enter first name..."
+                },
+                "secondName": {
+                    "label": "Second Name",
+                    "placeholder": "Enter middle name..."
+                },
+    
+                "surname": {
+                    "label": "Surname",
+                    "placeholder": "Enter last name..."
+                },
+                "roles": {
+                    "label": "Select moderator role",
+                    "placeholder": "Select a role...",
+                    "doctor": "Doctor",
+                    "pharmacy": "Pharmacy",
+                    "citizen": "Citizen",
+                    "medicaments": "Medicaments"
+                },
+                "email": {
+                    "label": "Email Address",
+                    "placeholder": "Enter email..."
+                },
+                "password": {
+                    "label": "Password",
+                    "placeholder": "Enter password..."
+                },
+                "submit": "Add Moderator",
+                "errors": {
+                    "firstName": "First name must be at least 2 characters.",
+                    "surname": "Surname must be at least 2 characters.",
+                    "email": "Please enter a valid email address.",
+                    "password": "Password must be at least 8 characters."
                 }
             }
         }

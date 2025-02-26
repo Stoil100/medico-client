@@ -29,9 +29,7 @@ import {
 } from "@/components/ui/command";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { moderatorPharmacistSchema as formSchema } from "@/components/schemas/moderators";
-
-type PharmacyAddPharmacistFormValues = z.infer<typeof formSchema>;
+import { addPharmacistSchema as formSchema, AddPharmacistType } from "@/components/schemas/pharmacy";
 
 type PharmacyAddPharmacistFormProps = {
     t: (args: string) => string;
@@ -48,8 +46,8 @@ export default function PharmacyAddPharmacistForm({
         { value: "pharmacy5", label: "Grizha Pharmacy" },
     ];
 
-    const form = useForm<PharmacyAddPharmacistFormValues>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<AddPharmacistType>({
+        resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -58,7 +56,7 @@ export default function PharmacyAddPharmacistForm({
         },
     });
 
-    function onSubmit(data: PharmacyAddPharmacistFormValues) {
+    function onSubmit(data: AddPharmacistType) {
         console.log(data);
     }
 

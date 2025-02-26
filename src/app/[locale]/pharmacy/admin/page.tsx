@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl'
 import React from 'react'
 
 export default function PharmacyAdminPage() {
-    const t = useTranslations("Pages.Pharmacy.Admin")
+    const t = useTranslations("Pages.Admin")
   return (
     <div>
         <PharmacyAddPharmacistForm t={(key)=>t(`form.${key}`)}/>

@@ -1,6 +1,8 @@
 "use client";
-import { useTranslations } from "next-intl";
+import ModeratorMedicamentForm from "@/components/forms/moderators/medicaments";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
     Table,
     TableBody,
@@ -9,9 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import ModeratorMedicamentForm from "@/components/forms/moderators/medicaments";
+import { useTranslations } from "next-intl";
 
 interface Medicament {
     id: string;
@@ -39,7 +39,7 @@ const mockMedicaments: Medicament[] = [
 ];
 
 export default function MedicamentsPage() {
-    const t = useTranslations("Pages.Moderator.Medicaments");
+    const t = useTranslations("Pages.Moderators.Medicaments");
 
     const handleDeleteMedicament = (id: string) => {
         console.log(`Delete medicament with id: ${id}`);
@@ -56,7 +56,9 @@ export default function MedicamentsPage() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead>{t("list.officialName")}</TableHead>
-                                <TableHead>{t("list.activeIngredients")}</TableHead>
+                                <TableHead>
+                                    {t("list.activeIngredients")}
+                                </TableHead>
                                 <TableHead>{t("list.ATC")}</TableHead>
                                 <TableHead>
                                     {t("list.requiredPrescription")}
