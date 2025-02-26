@@ -1,6 +1,7 @@
 "use client";
-import { useTranslations } from "next-intl";
+import ModeratorDoctorForm from "@/components/forms/moderators/doctor";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
     Table,
     TableBody,
@@ -9,8 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import ModeratorDoctorForm from "@/components/forms/moderators/doctor";
+import { useTranslations } from "next-intl";
 
 interface Doctor {
     id: string;
@@ -38,7 +38,7 @@ const mockDoctors: Doctor[] = [
 ];
 
 export default function DoctorsPage() {
-    const t = useTranslations("Pages.Moderator.Doctors");
+    const t = useTranslations("Pages.Moderators.Doctors");
 
     const handleChangePassword = (id: string) => {
         console.log(`Change password for doctor with id: ${id}`);

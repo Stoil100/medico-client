@@ -13,7 +13,7 @@ export default function PharmacistsPage() {
                     <CardTitle>{t("title")}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ListPrescriptionForm t={t} />
+                    <ListPrescriptionForm t={(key)=>t(`form.${key}`)} />
                 </CardContent>
             </Card>
         </div>

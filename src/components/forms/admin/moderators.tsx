@@ -21,16 +21,17 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { addModeratorSchema as formSchema } from "@/components/schemas/admin";
+import {
+    AddModeratorType,
+    addModeratorSchema as formSchema,
+} from "@/components/schemas/admin";
 
-
-type ModeratorFormValues = z.infer<typeof formSchema>;
-
-export default function AdminModeratorForm() {
-    const t = useTranslations("Forms.AddModerator");
-
-    const form = useForm<ModeratorFormValues>({
-        resolver: zodResolver(formSchema),
+type AddModeratorFormProps = {
+    t: (args: string) => string;
+};
+export default function AddModeratorForm({ t }: AddModeratorFormProps) {
+    const form = useForm<AddModeratorType>({
+        resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
             secondName: "",
@@ -41,7 +42,7 @@ export default function AdminModeratorForm() {
         },
     });
 
-    function onSubmit(data: ModeratorFormValues) {
+    function onSubmit(data: AddModeratorType) {
         console.log(data);
         // Here you would typically send the data to your API
     }
@@ -54,7 +55,7 @@ export default function AdminModeratorForm() {
                     name="firstName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("firstName")}</FormLabel>
+                            <FormLabel>{t("firstName.label")}</FormLabel>
                             <FormControl>
                                 <Input {...field} />
                             </FormControl>
@@ -67,13 +68,13 @@ export default function AdminModeratorForm() {
                     name="secondName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("secondName")}</FormLabel>
+                            <FormLabel>{t("secondName.label")}</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder={t("secondName.placeholder")}
+                                />
                             </FormControl>
-                            <FormDescription>
-                                {t("secondNameOptional")}
-                            </FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
@@ -83,9 +84,12 @@ export default function AdminModeratorForm() {
                     name="surname"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("surname")}</FormLabel>
+                            <FormLabel>{t("surname.label")}</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder={t("surname.placeholder")}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -96,7 +100,7 @@ export default function AdminModeratorForm() {
                     name="role"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("role")}</FormLabel>
+                            <FormLabel>{t("roles.label")}</FormLabel>
                             <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
@@ -104,22 +108,22 @@ export default function AdminModeratorForm() {
                                 <FormControl>
                                     <SelectTrigger>
                                         <SelectValue
-                                            placeholder={t("selectRole")}
+                                            placeholder={t("roles.placeholder")}
                                         />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
                                     <SelectItem value="doctor">
-                                        {t("roleDoctor")}
+                                        {t("roles.doctor")}
                                     </SelectItem>
                                     <SelectItem value="pharmacy">
-                                        {t("rolePharmacy")}
+                                        {t("roles.pharmacy")}
                                     </SelectItem>
                                     <SelectItem value="citizen">
-                                        {t("roleCitizen")}
+                                        {t("roles.citizen")}
                                     </SelectItem>
                                     <SelectItem value="medicaments">
-                                        {t("roleMedicaments")}
+                                        {t("roles.medicaments")}
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
@@ -132,9 +136,13 @@ export default function AdminModeratorForm() {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("email")}</FormLabel>
+                            <FormLabel>{t("email.label")}</FormLabel>
                             <FormControl>
-                                <Input {...field} type="email" />
+                                <Input
+                                    {...field}
+                                    type="email"
+                                    placeholder={t("email.placeholder")}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -145,9 +153,13 @@ export default function AdminModeratorForm() {
                     name="password"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("password")}</FormLabel>
+                            <FormLabel>{t("password.label")}</FormLabel>
                             <FormControl>
-                                <Input {...field} type="password" />
+                                <Input
+                                    {...field}
+                                    type="password"
+                                    placeholder={t("password.placeholder")}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

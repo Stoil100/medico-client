@@ -14,17 +14,15 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { moderatorDoctorSchema as formSchema } from "@/components/schemas/moderators";
-
-type ModeratorDoctorFormValues = z.infer<typeof formSchema>;
+import { moderatorDoctorSchema as formSchema, ModeratorDoctorType } from "@/components/schemas/moderators";
 
 type ModeratorDoctorFormProps = {
     t: (args: string) => string;
 };
 
 export default function ModeratorDoctorForm({ t }: ModeratorDoctorFormProps) {
-    const form = useForm<ModeratorDoctorFormValues>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<ModeratorDoctorType>({
+        resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -33,7 +31,7 @@ export default function ModeratorDoctorForm({ t }: ModeratorDoctorFormProps) {
         },
     });
 
-    function onSubmit(data: ModeratorDoctorFormValues) {
+    function onSubmit(data: ModeratorDoctorType) {
         console.log(data);
     }
 

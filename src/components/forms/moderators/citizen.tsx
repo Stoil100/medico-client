@@ -14,18 +14,18 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { moderatorCitizenSchema as formSchema } from "@/components/schemas/moderators";
+import {
+    moderatorCitizenSchema as formSchema,
+    ModeratorCitizenType,
+} from "@/components/schemas/moderators";
 
-type ModeratorUserFormValues = z.infer<typeof formSchema>;
+type ModeratorCitizenFormProps = {
+    t: (args: string) => string;
+};
 
-type ModeratorCitizenFormProps ={
-    t:(args:string)=>string;
-}
-
-export default function ModeratorCitizenForm({t}:ModeratorCitizenFormProps) {
-
-    const form = useForm<ModeratorUserFormValues>({
-        resolver: zodResolver(formSchema),
+export default function ModeratorCitizenForm({ t }: ModeratorCitizenFormProps) {
+    const form = useForm<ModeratorCitizenType>({
+        resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -36,7 +36,7 @@ export default function ModeratorCitizenForm({t}:ModeratorCitizenFormProps) {
         },
     });
 
-    function onSubmit(values: ModeratorUserFormValues) {
+    function onSubmit(values: ModeratorCitizenType) {
         console.log(values);
     }
 

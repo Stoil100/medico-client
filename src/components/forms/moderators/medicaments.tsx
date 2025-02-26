@@ -15,9 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PlusCircle, Trash2 } from "lucide-react";
-import { moderatorMedicamentSchema as formSchema } from "@/components/schemas/moderators";
+import { moderatorMedicamentsSchema as formSchema, ModeratorMedicamentsType } from "@/components/schemas/moderators";
 
-type ModeratorMedicamentFormValues = z.infer<typeof formSchema>;
 
 type ModeratorMedicamentFormProps = {
     t: (args: string) => string;
@@ -25,8 +24,8 @@ type ModeratorMedicamentFormProps = {
 export default function ModeratorMedicamentForm({
     t,
 }: ModeratorMedicamentFormProps) {
-    const form = useForm<ModeratorMedicamentFormValues>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<ModeratorMedicamentsType>({
+        resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
         defaultValues: {
             medicaments: [
                 { name: "", atc: "", activeIngridients: [{ value: "" }] },
@@ -43,7 +42,7 @@ export default function ModeratorMedicamentForm({
         name: "medicaments",
     });
 
-    function onSubmit(data: ModeratorMedicamentFormValues) {
+    function onSubmit(data: ModeratorMedicamentsType) {
         console.log(data);
     }
 

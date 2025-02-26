@@ -1,50 +1,65 @@
 import { z } from "zod";
 
-export const moderatorCitizenSchema = z.object({
-    firstName: z.string({ message: "Полето е задължително" }),
-    middleName: z.string({ message: "Полето е задължително" }),
-    lastName: z.string({ message: "Полето е задължително" }),
-    ucn: z.string().length(10, "Невалидно ЕГН"),
-    email: z.string().email(),
-    password: z.string(),
-});
+export const moderatorCitizenSchema = (t: (args: string) => string) =>
+  z.object({
+    firstName: z.string({ message: t("firstName") }),
+    middleName: z.string({ message: t("middleName") }),
+    lastName: z.string({ message: t("lastName") }),
+    ucn: z.string().length(10, { message: t("ucn") }),
+    email: z.string().email({ message: t("email") }),
+    password: z.string().min(8, { message: t("password") }),
+  });
 
-export const moderatorMedicamentSchema = z.object({
+export type ModeratorCitizenType = z.infer<ReturnType<typeof moderatorCitizenSchema>>;
+
+export const moderatorMedicamentsSchema = (t: (args: string) => string) =>
+  z.object({
     medicaments: z
-        .array(
+      .array(
+        z.object({
+          name: z.string({ message: t("name") }),
+          atc: z.string().min(1, { message: t("atc") }),
+          activeIngridients: z.array(
             z.object({
-                name: z.string({ message: "Полето е задължително" }),
-                atc: z.string().min(1, "Полето е задължително"),
-                activeIngridients: z.array(
-                    z.object({
-                        id: z.string(),
-                        value: z.string().min(1, "Полето е задължително"),
-                    })
-                ),
+              id: z.string(),
+              value: z.string().min(1, { message: t("activeIngridients") }),
             })
-        )
-        .min(1, "Полето е задължително"),
-});
+          ),
+        })
+      )
+      .min(1, { message: t("required") }),
+  });
 
-export const moderatorDoctorSchema = z.object({
-    firstName: z.string({ message: "Полето е задължително" }),
-    middleName: z.string({ message: "Полето е задължително" }),
-    lastName: z.string({ message: "Полето е задължително" }),
-    uin: z.string().length(10, "Невалиден УИН"),
-    email: z.string().email(),
-    password: z.string(),
-});
+export type ModeratorMedicamentsType = z.infer<ReturnType<typeof moderatorMedicamentsSchema>>;
 
-export const moderatorPharmacistSchema = z.object({
-    firstName: z.string({ message: "Полето е задължително" }),
-    middleName: z.string({ message: "Полето е задължително" }),
-    lastName: z.string({ message: "Полето е задължително" }),
-    pharmacy: z.string().min(1, "Полето е задължително"),
-});
+export const moderatorDoctorSchema = (t: (args: string) => string) =>
+  z.object({
+    firstName: z.string({ message: t("firstName") }),
+    middleName: z.string({ message: t("middleName") }),
+    lastName: z.string({ message: t("lastName") }),
+    uin: z.string().length(10, { message: t("uin") }),
+    email: z.string().email({ message: t("email") }),
+    password: z.string().min(8, { message: t("password") }),
+  });
 
-export const moderatorPharmacySchema = z.object({
-    name: z.string({ message: "Полето е задължително" }),
-    owner: z.string({ message: "Полето е задължително" }),
-    ownerEmail: z.string().email(),
-    ownerPassword: z.string(),
-});
+export type ModeratorDoctorType = z.infer<ReturnType<typeof moderatorDoctorSchema>>;
+
+// export const moderatorPharmacistSchema = (t: (args: string) => string) =>
+//   z.object({
+//     firstName: z.string({ message: t("firstName") }),
+//     middleName: z.string({ message: t("middleName") }),
+//     lastName: z.string({ message: t("lastName") }),
+//     pharmacy: z.string().min(1, { message: t("pharmacy") }),
+//   });
+
+// export type ModeratorPharmacistType = z.infer<ReturnType<typeof moderatorPharmacistSchema>>;
+
+export const moderatorPharmacySchema = (t: (args: string) => string) =>
+  z.object({
+    name: z.string({ message: t("name") }),
+    owner: z.string({ message: t("owner") }),
+    ownerEmail: z.string().email({ message: t("ownerEmail") }),
+    ownerPassword: z.string().min(8, { message: t("ownerPassword") }),
+  });
+
+export type ModeratorPharmacyType = z.infer<ReturnType<typeof moderatorPharmacySchema>>;
