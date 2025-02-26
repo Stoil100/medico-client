@@ -19,7 +19,7 @@ export default function HomeNavigation() {
         <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50 py-2 flex items-center justify-between px-4">
             <Link href={"/"}>
                 <Image
-                    src="/logo.svg"
+                    src="/logoText.png"
                     alt="Medico Logo"
                     width={40}
                     height={40}

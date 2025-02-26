@@ -25,7 +25,7 @@ export default function HomePage() {
                 <div className="max-w-3xl">
                     <div className="mb-8 flex items-center flex-col justify-center space-x-4">
                         <Image
-                            src="/logo.svg"
+                            src="/logo.png"
                             alt="Medico Logo"
                             width={80}
                             height={80}
