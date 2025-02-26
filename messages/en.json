@@ -1,5 +1,16 @@
 {
     "Pages": {
+        "Home": {
+            "title": "Medico - your personal medical assistant",
+            "subtitle": "Manage your health effortlessly with Medico – your trusted digital companion for medical needs.",
+            "loginButton": "Log in",
+            "learnMoreButton": "Learn More",
+            "features": {
+                "secure": "Secure medical records",
+                "support": "Citizen directed services",
+                "insights": "Personalized health insights"
+            }
+        },
         "Citizen": {
             "Info": {
                 "title": "Citizen Information",
@@ -70,8 +81,8 @@
                 "medicaments": "Medicaments",
                 "patient": "Patient"
             },
-            "Prescriptions":{
-                "form":{
+            "Prescriptions": {
+                "form": {
                     "patient": "Patient",
                     "selectPatient": "Select patient",
                     "noPatientFound": "No patient found.",
