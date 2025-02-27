@@ -3,6 +3,13 @@ import ModeratorDoctorForm from "@/components/forms/moderators/doctor";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import {
     Table,
     TableBody,
     TableCell,
@@ -10,6 +17,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface Doctor {
@@ -53,8 +61,27 @@ export default function DoctorsPage() {
     return (
         <div className="space-y-2">
             <Card className="w-full">
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle>{t("list.title")}</CardTitle>
+                    <Dialog>
+                        <DialogTrigger>
+                            <Button
+                                asChild
+                                className="w-fit border-2 hover:border-none border-dashed"
+                                variant="outline"
+                            >
+                                <Plus />
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>{t("form.title")}</DialogTitle>
+                            </DialogHeader>
+                            <ModeratorDoctorForm
+                                t={(key) => t(`form.${key}`)}
+                            />
+                        </DialogContent>
+                    </Dialog>
                 </CardHeader>
                 <CardContent>
                     <Table>
@@ -99,14 +126,6 @@ export default function DoctorsPage() {
                             ))}
                         </TableBody>
                     </Table>
-                </CardContent>
-            </Card>
-            <Card className="w-full">
-                <CardHeader>
-                    <CardTitle>{t("form.title")}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ModeratorDoctorForm t={(key) => t(`form.${key}`)} />
                 </CardContent>
             </Card>
         </div>
