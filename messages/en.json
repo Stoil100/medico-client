@@ -96,7 +96,7 @@
                 "patient": "Patient"
             },
             "Prescriptions": {
-                "title":"Issue a prescription:",
+                "title": "Issue a prescription:",
                 "form": {
                     "patient": "Patient",
                     "selectPatient": "Select patient",
@@ -111,7 +111,7 @@
                     "removePrescription": "Remove Prescription",
                     "addPrescription": "Add Prescription",
                     "submit": "Submit",
-                    "errors":{
+                    "errors": {
                         "patient": "This field is required",
                         "medicaments": {
                             "number": "At least one item",
@@ -120,7 +120,6 @@
                         },
                         "ucn": "Invalid UCN"
                     }
-                      
                 }
             }
         },
@@ -132,8 +131,8 @@
                 },
                 "Prescriptions": {
                     "title": "Prescription List",
-                    "form":{
-                        "title":"Fulfill prescription",
+                    "form": {
+                        "title": "Fulfill prescription",
                         "ucnLabel": "UCN",
                         "selectPatient": "Select patient",
                         "searchPlaceholder": "Search UCN...",
@@ -154,8 +153,8 @@
                 },
                 "Medicaments": {
                     "title": "Medications",
-                    "form":{
-                        "title":"Add medicaments",
+                    "form": {
+                        "title": "Add medicaments",
                         "medicament": "Medicament",
                         "quantity": "Quantity...",
                         "remove": "Remove medication",
@@ -168,8 +167,8 @@
                     }
                 }
             },
-            "Admin":{
-                "form":{
+            "Admin": {
+                "form": {
                     "firstName": {
                         "label": "First Name",
                         "placeholder": "Enter first name"
@@ -231,7 +230,7 @@
                         "placeholder": "Enter UIN"
                     },
                     "submit": "Submit",
-                    "errors":{
+                    "errors": {
                         "firstName": "This field is required",
                         "middleName": "This field is required",
                         "lastName": "This field is required",
@@ -250,47 +249,29 @@
                     "remove": "Remove"
                 },
                 "form": {
-                    "pharmacy": {
-                        "title": "Add new pharmacy:",
-                        "name": {
-                            "label": "Pharmacy Name",
-                            "placeholder": "Enter pharmacy name"
-                        },
-                        "submit": "Submit",
-                        "errors": {
-                            "name": "This field is required",
-                            "owner": "This field is required",
-                            "ownerEmail": "Please enter a valid email address",
-                            "ownerPassword": "Password must be at least 8 characters"
-                        }
+                    "title": "Add new pharmacy:",
+                    "name": {
+                        "label": "Pharmacy Name",
+                        "placeholder": "Enter pharmacy name"
                     },
-                    "pharmacist": {
-                        "title": "Add new pharmacist:",
-                        "firstName": {
-                            "label": "First Name",
-                            "placeholder": "Enter first name"
-                        },
-                        "middleName": {
-                            "label": "Middle Name",
-                            "placeholder": "Enter middle name"
-                        },
-                        "lastName": {
-                            "label": "Last Name",
-                            "placeholder": "Enter last name"
-                        },
-                        "pharmacy": {
-                            "label": "Pharmacy",
-                            "placeholder": "Select a pharmacy",
-                            "searchPlaceholder": "Search pharmacy...",
-                            "empty": "No pharmacy found"
-                        },
-                        "submit": "Submit",
-                        "errors": {
-                            "firstName": "This field is required",
-                            "middleName": "This field is required",
-                            "lastName": "This field is required",
-                            "pharmacy": "This field is required"
-                        }
+                    "ownerName": {
+                        "label": "Owner Name",
+                        "placeholder": "Enter the owner's name"
+                    },
+                    "ownerEmail": {
+                        "label": "Owner Email",
+                        "placeholder": "Enter the owner's email"
+                    },
+                    "ownerPassword": {
+                        "label": "Owner Password",
+                        "placeholder": "Enter the owner's password"
+                    },
+                    "submit": "Submit",
+                    "errors": {
+                        "name": "This field is required",
+                        "owner": "This field is required",
+                        "ownerEmail": "Please enter a valid email address",
+                        "ownerPassword": "Password must be at least 8 characters"
                     }
                 }
             },
@@ -389,7 +370,7 @@
                     "label": "Second Name",
                     "placeholder": "Enter middle name..."
                 },
-    
+
                 "surname": {
                     "label": "Surname",
                     "placeholder": "Enter last name..."
@@ -417,6 +398,36 @@
                     "email": "Please enter a valid email address.",
                     "password": "Password must be at least 8 characters."
                 }
+            }
+        }
+    },
+    "Forms": {
+        "pharmacist": {
+            "title": "Add new pharmacist:",
+            "firstName": {
+                "label": "First Name",
+                "placeholder": "Enter first name"
+            },
+            "middleName": {
+                "label": "Middle Name",
+                "placeholder": "Enter middle name"
+            },
+            "lastName": {
+                "label": "Last Name",
+                "placeholder": "Enter last name"
+            },
+            "pharmacy": {
+                "label": "Pharmacy",
+                "placeholder": "Select a pharmacy",
+                "searchPlaceholder": "Search pharmacy...",
+                "empty": "No pharmacy found"
+            },
+            "submit": "Submit",
+            "errors": {
+                "firstName": "This field is required",
+                "middleName": "This field is required",
+                "lastName": "This field is required",
+                "pharmacy": "This field is required"
             }
         }
     }

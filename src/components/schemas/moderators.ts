@@ -51,7 +51,7 @@ export type ModeratorDoctorType = z.infer<ReturnType<typeof moderatorDoctorSchem
 export const moderatorPharmacySchema = (t: (args: string) => string) =>
   z.object({
     name: z.string({ message: t("name") }),
-    owner: z.string({ message: t("owner") }),
+    ownerName: z.string({ message: t("owner") }),
     ownerEmail: z.string().email({ message: t("ownerEmail") }),
     ownerPassword: z.string().min(8, { message: t("ownerPassword") }),
   });
