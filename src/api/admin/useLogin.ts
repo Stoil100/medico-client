@@ -1,0 +1,15 @@
+import { apiClient } from "..";
+import { useQuery } from "@tanstack/react-query";
+
+export function useLogin() {
+    const postLogin = async () => {
+        const response = await apiClient.post("/admin/login");
+        return response.data;
+    };
+
+    return useQuery({
+        queryKey: ["postLogin"],
+        queryFn: postLogin,
+        retry: 1,
+    });
+}
