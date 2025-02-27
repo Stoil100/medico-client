@@ -82,43 +82,60 @@
                 "ucn": "UCN",
                 "email": "Email"
             },
-            "History": {
-                "title": "Prescription History",
-                "active": "Active",
-                "fulfilled": "Fulfilled",
-                "invalid": "Invalid",
-                "viewDetails": "View Details",
-                "prescriptionDetails": "Prescription Details",
-                "status": "Status",
-                "issuedDate": "Issued Date",
-                "expirationDate": "Expiration Date",
-                "medicaments": "Medicaments",
-                "patient": "Patient"
-            },
             "Prescriptions": {
-                "title": "Issue a prescription:",
-                "form": {
-                    "patient": "Patient",
-                    "selectPatient": "Select patient",
-                    "noPatientFound": "No patient found.",
-                    "ucn": "UCN",
-                    "selectUCN": "Select UCN",
-                    "medicaments": "Medicaments",
-                    "medicament": "Medicament",
-                    "selectMedicament": "Select medicament",
-                    "noMedicamentFound": "No medicament found.",
-                    "addMedicament": "Add Medicament",
-                    "removePrescription": "Remove Prescription",
-                    "addPrescription": "Add Prescription",
-                    "submit": "Submit",
-                    "errors": {
-                        "patient": "This field is required",
+                "tabs":{
+                    "prescriptions":"Prescriptions Tab",
+                    "history":"History Tab"
+                },
+                "table":{
+                    "id":"Id",
+                    "date":"Date",
+                    "medications":"Medications",
+                    "status":"Status"
+                },
+                "forms": {
+                    "search":{
+                        "title":"Search Patient:",
+                        "patient": {
+                            "label": "Patient",
+                            "select": "Select patient",
+                            "placeholder": "Select patient...",
+                            "notFound": "No patient found."
+                        },
+                        "ucn": {
+                            "label": "UCN",
+                            "select": "Select UCN",
+                            "placeholder": "Select UCN...",
+                            "notFound": "No UCN found."
+                        },
+                        "errors": {
+                            "patient": "This field is required",
+                            "ucn": "Invalid UCN"
+                        }
+                    },
+                    "prescription":{
+                        "title": "Medicaments",
+                        "name":{
+                            "label": "Prescription Name",
+                            "placeholder":"Enter Prescription Name..."
+                        },
                         "medicaments": {
+                            "label": "Medicament",
+                            "select": "Select medicament",
+                            "search": "Search medicament",
+                            "notFound": "No medicament found.",
+                            "quantity":"Quantity",
+                            "add": "Add Medicament"
+                        },
+                        "remove": "Remove Prescription",
+                        "add": "Add Prescription",
+                        "submit": "Submit",
+                        "errors": {
+                            "name":"Prescription name is required",
                             "number": "At least one item",
                             "value": "This field is required",
                             "required": "This field is required"
-                        },
-                        "ucn": "Invalid UCN"
+                        }
                     }
                 }
             }

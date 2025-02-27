@@ -72,9 +72,9 @@
         },
         "Doctor": {
             "Info": {
-                "title": "Информация за гражданина",
-                "firstName": "Собствено име",
-                "secondName": "Бащино име",
+                "title": "Гражданска информация",
+                "firstName": "Име",
+                "secondName": "Презиме",
                 "surname": "Фамилия",
                 "age": "Възраст",
                 "birthday": "Рожден ден",
@@ -82,43 +82,60 @@
                 "ucn": "ЕГН",
                 "email": "Имейл"
             },
-            "History": {
-                "title": "История на рецептите",
-                "active": "Активни",
-                "fulfilled": "Изпълнени",
-                "invalid": "Невалидни",
-                "viewDetails": "Виж детайли",
-                "prescriptionDetails": "Детайли за рецептата",
-                "status": "Статус",
-                "issuedDate": "Дата на издаване",
-                "expirationDate": "Дата на изтичане",
-                "medicaments": "Медикаменти",
-                "patient": "Пациент"
-            },
             "Prescriptions": {
-                "title": "Издаване на рецепта:",
-                "form": {
-                    "patient": "Пациент",
-                    "selectPatient": "Изберете пациент",
-                    "noPatientFound": "Няма намерен пациент.",
-                    "ucn": "ЕГН",
-                    "selectUCN": "Изберете ЕГН",
-                    "medicaments": "Медикаменти",
-                    "medicament": "Медикамент",
-                    "selectMedicament": "Изберете медикамент",
-                    "noMedicamentFound": "Няма намерен медикамент.",
-                    "addMedicament": "Добавяне на медикамент",
-                    "removePrescription": "Премахване на рецепта",
-                    "addPrescription": "Добавяне на рецепта",
-                    "submit": "Изпрати",
-                    "errors": {
-                        "patient": "Това поле е задължително",
+                "tabs": {
+                    "prescriptions": "Рецепти",
+                    "history": "История"
+                },
+                "table": {
+                    "id": "Идентификатор",
+                    "date": "Дата",
+                    "medications": "Лекарства",
+                    "status": "Статус"
+                },
+                "forms": {
+                    "search": {
+                        "title": "Търсене на пациент:",
+                        "patient": {
+                            "label": "Пациент",
+                            "select": "Изберете пациент",
+                            "placeholder": "Изберете пациент...",
+                            "notFound": "Пациентът не е намерен."
+                        },
+                        "ucn": {
+                            "label": "ЕГН",
+                            "select": "Изберете ЕГН",
+                            "placeholder": "Изберете ЕГН...",
+                            "notFound": "ЕГН не е намерено."
+                        },
+                        "errors": {
+                            "patient": "Това поле е задължително",
+                            "ucn": "Невалидно ЕГН"
+                        }
+                    },
+                    "prescription": {
+                        "title": "Медикаменти",
+                        "name": {
+                            "label": "Име на рецепта",
+                            "placeholder": "Въведете име на рецепта..."
+                        },
                         "medicaments": {
+                            "label": "Медикамент",
+                            "select": "Изберете медикамент",
+                            "search": "Търсене на медикамент",
+                            "notFound": "Няма намерени медикаменти.",
+                            "quantity": "Количество",
+                            "add": "Добави медикамент"
+                        },
+                        "remove": "Премахни рецепта",
+                        "add": "Добави рецепта",
+                        "submit": "Изпрати",
+                        "errors": {
+                            "name": "Името на рецептата е задължително",
                             "number": "Поне един елемент",
                             "value": "Това поле е задължително",
                             "required": "Това поле е задължително"
-                        },
-                        "ucn": "Невалидно ЕГН"
+                        }
                     }
                 }
             }
