@@ -361,7 +361,28 @@
         },
         "Admin": {
             "title": "Admin Page",
+            "list": {
+                "title": "Moderator Management",
+                "firstName": "First Name",
+                "surname": "Surname",
+                "email": "Email",
+                "role": "Role",
+                "actions": "Actions",
+                "roles": {
+                    "doctor": "Doctors",
+                    "citizen": "Citizens",
+                    "medicaments": "Medicaments",
+                    "pharmacy": "Pharmacies"
+                },
+                "removeDialog": {
+                    "title": "Remove Moderator",
+                    "description": "Are you sure you want to remove this moderator? This action cannot be undone.",
+                    "cancel": "Cancel",
+                    "confirm": "Remove"
+                }
+            },
             "form": {
+                "title": "Add New Moderator",
                 "firstName": {
                     "label": "First Name",
                     "placeholder": "Enter first name..."
