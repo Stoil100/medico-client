@@ -1,4 +1,4 @@
-import { apiClient } from "..";
+import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 
 export function useLogout() {
