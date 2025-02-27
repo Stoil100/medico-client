@@ -1,6 +1,14 @@
 "use client";
 import ModeratorCitizenForm from "@/components/forms/moderators/citizen";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
 import {
     Table,
     TableBody,
@@ -9,6 +17,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface Citizen {
@@ -40,10 +49,29 @@ export default function CitizensPage() {
     const t = useTranslations("Pages.Moderators.Citizens");
 
     return (
-        <div>
+        <div className="p-4 space-y-2">
             <Card className="w-full">
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle>{t("list.title")}</CardTitle>
+                    <Dialog>
+                        <DialogTrigger>
+                            <Button
+                                asChild
+                                className="w-fit border-2 hover:border-none border-dashed"
+                                variant="outline"
+                            >
+                                <Plus />
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>{t("form.title")}</DialogTitle>
+                            </DialogHeader>
+                            <ModeratorCitizenForm
+                                t={(key) => t(`form.${key}`)}
+                            />
+                        </DialogContent>
+                    </Dialog>
                 </CardHeader>
                 <CardContent>
                     <Table>
@@ -70,14 +98,6 @@ export default function CitizensPage() {
                             ))}
                         </TableBody>
                     </Table>
-                </CardContent>
-            </Card>
-            <Card className="w-full">
-                <CardHeader>
-                    <CardTitle>{t("form.title")}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ModeratorCitizenForm t={(key) => t(`form.${key}`)} />
                 </CardContent>
             </Card>
         </div>
