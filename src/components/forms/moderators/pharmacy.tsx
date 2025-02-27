@@ -52,7 +52,54 @@ export default function ModeratorPharmacyForm({
                         </FormItem>
                     )}
                 />
-
+                <FormField
+                    control={form.control}
+                    name="ownerName"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>{t("ownerName.label")}</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder={t("ownerName.placeholder")}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="ownerEmail"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>{t("ownerEmail.label")}</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder={t("ownerEmail.placeholder")}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="ownerPassword"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>{t("ownerPassword.label")}</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder={t("ownerPassword.placeholder")}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <Button type="submit">{t("submit")}</Button>
             </form>
         </Form>

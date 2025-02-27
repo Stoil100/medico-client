@@ -12,25 +12,19 @@ export const moderatorCitizenSchema = (t: (args: string) => string) =>
 
 export type ModeratorCitizenType = z.infer<ReturnType<typeof moderatorCitizenSchema>>;
 
-export const moderatorMedicamentsSchema = (t: (args: string) => string) =>
-  z.object({
-    medicaments: z
-      .array(
-        z.object({
-          name: z.string({ message: t("name") }),
-          atc: z.string().min(1, { message: t("atc") }),
-          activeIngridients: z.array(
+export const moderatorMedicamentSchema = (t: (args: string) => string) =>
+    z.object({
+        name: z.string({ message: t("name") }),
+        atc: z.string().min(1, { message: t("atc") }),
+        activeIngridients: z.array(
             z.object({
-              id: z.string(),
-              value: z.string().min(1, { message: t("activeIngridients") }),
+                id: z.string(),
+                value: z.string().min(1, { message: t("activeIngridients") }),
             })
-          ),
-        })
-      )
-      .min(1, { message: t("required") }),
-  });
+        ),
+    });
 
-export type ModeratorMedicamentsType = z.infer<ReturnType<typeof moderatorMedicamentsSchema>>;
+export type ModeratorMedicamentType = z.infer<ReturnType<typeof moderatorMedicamentSchema>>;
 
 export const moderatorDoctorSchema = (t: (args: string) => string) =>
   z.object({
@@ -57,7 +51,7 @@ export type ModeratorDoctorType = z.infer<ReturnType<typeof moderatorDoctorSchem
 export const moderatorPharmacySchema = (t: (args: string) => string) =>
   z.object({
     name: z.string({ message: t("name") }),
-    owner: z.string({ message: t("owner") }),
+    ownerName: z.string({ message: t("owner") }),
     ownerEmail: z.string().email({ message: t("ownerEmail") }),
     ownerPassword: z.string().min(8, { message: t("ownerPassword") }),
   });
