@@ -54,17 +54,65 @@
             },
             "Prescriptions": {
                 "title": "Prescriptions",
-                "active": "Active",
-                "fulfilled": "Fulfilled",
-                "invalid": "Invalid",
+                "view":"View and manage your medical prescriptions",
+                "Tabs":{
+                    "active": "Active",
+                    "fulfilled": "Fulfilled",
+                    "invalid": "Invalid",
+                    "alert": {
+                        "title": "No prescriptions",
+                        "description": "You don't have any {status} prescriptions at the moment."
+                    },
+                    "Item":{
+                        "Badge":{
+                            "active": "Active",
+                            "fulfilled": "Fulfilled",
+                            "invalid": "Invalid"
+                        },
+                        "dr":"Dr.",
+                        "label":"View prescription details"
+                    }
+                },
+                "Details":{
+                    "Badge":{
+                        "active": "Active",
+                        "fulfilled": "Fulfilled",
+                        "invalid": "Invalid"
+                    },
+                    "title":"Prescription details",
+                    "Info":{
+                        "title": "Prescription Information",
+                        "issuedDate": "Issued Date",
+                        "expirationDate": "Expiration Date",
+                        "doctor": "Doctor",
+                        "dr": "Dr.",
+                        "uin": "UIN:",
+                        "view":"View Profile"
+                    },
+                    "Table":{
+                        "title": "Prescription Medicaments",
+                        "name": "Name",
+                        "quantity": "Quantity"
+                    },
+                    "nearby":"Nearby Pharmacies",
+                    "loading":"Loading pharmacy locations...",
+                    "List":{
+                        "available":"Available Pharmacies",
+                        "select":"Select a pharmacy to fulfill your prescription"
+                    }
+                },
+
+
+
+               
                 "viewDetails": "View Details",
                 "prescriptionDetails": "Prescription Details",
-                "uin": "UIN:",
+              
                 "status": "Status",
-                "issuedDate": "Issued Date",
-                "expirationDate": "Expiration Date",
-                "medicaments": "Medicaments",
-                "doctor": "Doctor"
+              
+              
+                "medicaments": "Medicaments"
+               
             },
             "Settings": {
                 "title": "Citizen Settings"
