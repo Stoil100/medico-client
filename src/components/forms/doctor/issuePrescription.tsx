@@ -16,11 +16,10 @@ import {
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -28,14 +27,12 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
 import { useCallback, useMemo } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Sample medicaments data - in a real app, this would likely come from an API
 const MEDICAMENTS = [
@@ -69,6 +66,7 @@ export default function IssuePrescriptionForm({
     const form = useForm<IssuePrescriptionType>({
         resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
+            name:"",
             medicaments: [{ number: 1, value: "" }],
         },
     });
