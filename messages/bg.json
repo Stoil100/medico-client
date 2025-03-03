@@ -24,6 +24,11 @@
         },
 
         "Citizen": {
+            "navigation":{
+                "home":"Начало",
+                "settings":"Настройки",
+                "prescriptions":"Рецепти"
+            },
             "Info": {
                 "title": "Информация за гражданина",
                 "firstName": "Първо име",
@@ -183,7 +188,7 @@
         },
         "Pharmacy": {
             "Pharmacist": {
-                "nav": {
+                "navigation": {
                     "prescriptions": "Рецепти",
                     "medicaments": "Медикаменти"
                 },
