@@ -8,7 +8,7 @@ export function useLogout() {
     };
 
     return useQuery({
-        queryKey: ["postLogout"],
+        queryKey: ["admin", "logout"],
         queryFn: postLogout,
         retry: 1,
     });

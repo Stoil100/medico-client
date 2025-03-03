@@ -1,15 +1,16 @@
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { AdminLoginType } from "@/components/schemas/admin";
 
 export function useLogin() {
-    const postLogin = async () => {
-        const response = await apiClient.post("/admin/login");
+    const postLogin = async (loginData: AdminLoginType) => {
+        const response = await apiClient.post("/admin/login", loginData);
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["postLogin"],
-        queryFn: postLogin,
+    return useMutation({
+        mutationKey: ["admin", "login"],
+        mutationFn: postLogin,
         retry: 1,
     });
 }
