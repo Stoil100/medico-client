@@ -20,49 +20,22 @@ import {
 } from "@/components/ui/table";
 import { Plus, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-type Moderator = {
-    id: string;
-    firstName: string;
-    surname: string;
-    email: string;
-    role: "doctor" | "citizen" | "medicaments" | "pharmacy";
-};
-const moderators: Moderator[] = [
-    {
-        id: "1",
-        firstName: "John",
-        surname: "Doe",
-        email: "john.doe@example.com",
-        role: "doctor",
-    },
-    {
-        id: "2",
-        firstName: "Jane",
-        surname: "Smith",
-        email: "jane.smith@example.com",
-        role: "citizen",
-    },
-    {
-        id: "3",
-        firstName: "Alex",
-        surname: "Johnson",
-        email: "alex.johnson@example.com",
-        role: "medicaments",
-    },
-    {
-        id: "4",
-        firstName: "Maria",
-        surname: "Garcia",
-        email: "maria.garcia@example.com",
-        role: "pharmacy",
-    },
-];
+import { useDeleteModerator , useGetModerators } from "@/api/admin";
+
 export default function AdminPage() {
     const t = useTranslations("Pages.Admin");
 
+    const { data: moderators, isFetching } = useGetModerators();
+
+    const {mutate: deleteModerator} = useDeleteModerator();
+
+
+    if (isFetching) {
+        return <div>Loading...</div>;
+    }
+
     const handleDeleteModerator = (id: string) => {
-        console.log(`Delete doctor with id: ${id}`);
-        // Implement delete doctor logic
+        deleteModerator({id: id});
     };
     return (
         <div className="p-4 space-y-2">
@@ -92,23 +65,23 @@ export default function AdminPage() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead>{t("list.firstName")}</TableHead>
-                                <TableHead>{t("list.surname")}</TableHead>
+                                <TableHead>{t("list.lastName")}</TableHead>
                                 <TableHead>{t("list.email")}</TableHead>
-                                <TableHead>{t("list.role")}</TableHead>
+                                <TableHead>{t("list.type")}</TableHead>
                                 <TableHead className="w-[100px]">
                                     {t("list.actions")}
                                 </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {moderators.map((moderator) => (
+                            {moderators && moderators.map((moderator) => (
                                 <TableRow key={moderator.id}>
                                     <TableCell>{moderator.firstName}</TableCell>
-                                    <TableCell>{moderator.surname}</TableCell>
+                                    <TableCell>{moderator.lastName}</TableCell>
                                     <TableCell>{moderator.email}</TableCell>
                                     <TableCell>
                                         {t(
-                                            `list.roles.${moderator.role.toLowerCase()}`
+                                            `list.types.${moderator.type.toLowerCase()}`
                                         )}
                                     </TableCell>
                                     <TableCell>

@@ -1,13 +1,10 @@
 "use client";
-import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -25,6 +22,7 @@ import {
     AddModeratorType,
     addModeratorSchema as formSchema,
 } from "@/components/schemas/admin";
+import { useCreateModerators } from "@/api/admin";
 
 type AddModeratorFormProps = {
     t: (args: string) => string;
@@ -35,16 +33,17 @@ export default function AddModeratorForm({ t }: AddModeratorFormProps) {
         defaultValues: {
             firstName: "",
             secondName: "",
-            surname: "",
-            role: "doctor",
+            lastName: "",
+            type: "doctor",
             email: "",
             password: "",
         },
     });
 
+    const {mutate: createModerator} = useCreateModerators();
+
     function onSubmit(data: AddModeratorType) {
-        console.log(data);
-        // Here you would typically send the data to your API
+        createModerator(data)
     }
 
     return (
@@ -81,14 +80,14 @@ export default function AddModeratorForm({ t }: AddModeratorFormProps) {
                 />
                 <FormField
                     control={form.control}
-                    name="surname"
+                    name="lastName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("surname.label")}</FormLabel>
+                            <FormLabel>{t("lastName.label")}</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
-                                    placeholder={t("surname.placeholder")}
+                                    placeholder={t("lastName.placeholder")}
                                 />
                             </FormControl>
                             <FormMessage />
@@ -97,10 +96,10 @@ export default function AddModeratorForm({ t }: AddModeratorFormProps) {
                 />
                 <FormField
                     control={form.control}
-                    name="role"
+                    name="type"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("roles.label")}</FormLabel>
+                            <FormLabel>{t("types.label")}</FormLabel>
                             <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
@@ -108,22 +107,22 @@ export default function AddModeratorForm({ t }: AddModeratorFormProps) {
                                 <FormControl>
                                     <SelectTrigger>
                                         <SelectValue
-                                            placeholder={t("roles.placeholder")}
+                                            placeholder={t("types.placeholder")}
                                         />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
                                     <SelectItem value="doctor">
-                                        {t("roles.doctor")}
+                                        {t("types.doctor")}
                                     </SelectItem>
                                     <SelectItem value="pharmacy">
-                                        {t("roles.pharmacy")}
+                                        {t("types.pharmacy")}
                                     </SelectItem>
                                     <SelectItem value="citizen">
-                                        {t("roles.citizen")}
+                                        {t("types.citizen")}
                                     </SelectItem>
-                                    <SelectItem value="medicaments">
-                                        {t("roles.medicaments")}
+                                    <SelectItem value="medicament">
+                                        {t("types.medicament")}
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
