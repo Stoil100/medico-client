@@ -16,7 +16,7 @@ export const mockPrescriptions: Prescription[] = [
         ],
         doctor: {
             firstName: "Петър",
-            surname: "Данаилов",
+            lastName: "Данаилов",
             UIN: "123456",
             avatarUrl: "/placeholder.svg?height=40&width=40",
         },
@@ -32,7 +32,7 @@ export const mockPrescriptions: Prescription[] = [
         ],
         doctor: {
             firstName: "Георги",
-            surname: "Петков",
+            lastName: "Петков",
             UIN: "789012",
             avatarUrl: "/placeholder.svg?height=40&width=40",
         },
@@ -48,7 +48,7 @@ export const mockPrescriptions: Prescription[] = [
         ],
         doctor: {
             firstName: "Alice",
-            surname: "Johnson",
+            lastName: "Johnson",
             UIN: "345678",
             avatarUrl: "/placeholder.svg?height=40&width=40",
         },
@@ -69,7 +69,7 @@ export const mockPrescriptions: Prescription[] = [
         ],
         doctor: {
             firstName: "Robert",
-            surname: "Williams",
+            lastName: "Williams",
             UIN: "567890",
             avatarUrl: "/placeholder.svg?height=40&width=40",
         },

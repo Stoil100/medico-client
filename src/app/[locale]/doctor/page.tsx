@@ -8,7 +8,7 @@ import type React from "react";
 interface Doctor {
     firstName: string;
     secondName: string;
-    surname: string;
+    lastName: string;
     age: number;
     birthday: string;
     sex: string;
@@ -32,7 +32,7 @@ export default function doctorPage() {
     const doctor: Doctor = {
         firstName: "John",
         secondName: "Michael",
-        surname: "Doe",
+        lastName: "Doe",
         age: 37,
         birthday: "1988-07-12",
         sex: "male",
@@ -72,8 +72,8 @@ export default function doctorPage() {
                         icon={<User className="w-4 h-4" />}
                     />
                     <InfoItem
-                        label={t("surname")}
-                        value={doctor.surname}
+                        label={t("lastName")}
+                        value={doctor.lastName}
                         icon={<User className="w-4 h-4" />}
                     />
                     <InfoItem

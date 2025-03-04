@@ -44,12 +44,12 @@ export function PrescriptionInfo({ prescription, t }: PrescriptionInfoProps) {
                         <div className="flex items-center">
                             <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium mr-3">
                                 {prescription.doctor.firstName[0]}
-                                {prescription.doctor.surname[0]}
+                                {prescription.doctor.lastName[0]}
                             </div>
                             <div>
                                 <div className="font-medium">
                                     {t("dr")} {prescription.doctor.firstName}{" "}
-                                    {prescription.doctor.surname}
+                                    {prescription.doctor.lastName}
                                 </div>
                                 <div className="text-sm text-muted-foreground">
                                     {t("uin")} {prescription.doctor.UIN}

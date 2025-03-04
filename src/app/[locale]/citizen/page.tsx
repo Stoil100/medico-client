@@ -17,7 +17,7 @@ import { User, Phone, Mail, UserCircle } from "lucide-react";
 interface PersonalDoctor {
     firstName: string;
     secondName: string;
-    surname: string;
+    lastName: string;
     UIN: string;
     email: string;
 }
@@ -25,7 +25,7 @@ interface PersonalDoctor {
 interface Citizen {
     firstName: string;
     secondName: string;
-    surname: string;
+    lastName: string;
     age: number;
     birthday: string;
     sex: string;
@@ -47,7 +47,7 @@ export default function CitizenPage() {
     const citizen: Citizen = {
         firstName: "John",
         secondName: "Michael",
-        surname: "Doe",
+        lastName: "Doe",
         age: 35,
         birthday: "1988-07-12",
         sex: "male",
@@ -56,7 +56,7 @@ export default function CitizenPage() {
         personalDoctor: {
             firstName: "Jane",
             secondName: "Elizabeth",
-            surname: "Smith",
+            lastName: "Smith",
             UIN: "111222333",
             email: "dr.smith@example.com",
         },
@@ -90,8 +90,8 @@ export default function CitizenPage() {
                         icon={<User className="w-4 h-4" />}
                     />
                     <InfoItem
-                        label={t("surname")}
-                        value={citizen.surname}
+                        label={t("lastName")}
+                        value={citizen.lastName}
                         icon={<User className="w-4 h-4" />}
                     />
                     <InfoItem
@@ -141,8 +141,8 @@ export default function CitizenPage() {
                                 icon={<User className="w-4 h-4" />}
                             />
                             <InfoItem
-                                label={t("doctor.surname")}
-                                value={citizen.personalDoctor.surname}
+                                label={t("doctor.lastName")}
+                                value={citizen.personalDoctor.lastName}
                                 icon={<User className="w-4 h-4" />}
                             />
                             <InfoItem

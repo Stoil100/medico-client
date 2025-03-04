@@ -1,6 +1,6 @@
 export type Doctor = {
     firstName: string;
-    surname: string;
+    lastName: string;
     UIN: string;
     avatarUrl?: string;
 };

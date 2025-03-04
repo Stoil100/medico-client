@@ -1,16 +1,20 @@
 
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export function useDeleteCitizen(id: string) {
-    const deleteCitizen = async () => {
-        const response = await apiClient.delete(`/moderator/citizen/delete?${id}`);
+export function useDeleteCitizen() {
+    const deleteCitizen = async (id: string) => {
+        const response = await apiClient.delete(`/moderator/citizen/delete?citizenId=${id}`);
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["deleteCitizen"],
-        queryFn: deleteCitizen,
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationKey: ["deleteCitizen"],
+        mutationFn: deleteCitizen,
         retry: 1,
+        onSuccess: async () =>
+            queryClient.invalidateQueries({queryKey: ["moderator", "citizen", "get"]})
     });
 }

@@ -16,6 +16,7 @@ import {
     moderatorCitizenSchema as formSchema,
     ModeratorCitizenType,
 } from "@/components/schemas/moderators";
+import { useCreateCitizen } from "@/api/moderators/citizen";
 
 type ModeratorCitizenFormProps = {
     t: (args: string) => string;
@@ -34,8 +35,11 @@ export default function ModeratorCitizenForm({ t }: ModeratorCitizenFormProps) {
         },
     });
 
+    const {mutate: createDoctor} = useCreateCitizen();
+
+
     function onSubmit(values: ModeratorCitizenType) {
-        console.log(values);
+        createDoctor(values);
     }
 
     return (

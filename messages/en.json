@@ -27,7 +27,7 @@
                 "title": "Citizen Information",
                 "firstName": "First Name",
                 "secondName": "Second Name",
-                "surname": "Surname",
+                "lastName": "Last Name",
                 "age": "Age",
                 "birthday": "Birthday",
                 "sex": "Sex",
@@ -46,7 +46,7 @@
                     "title": "Personal Doctor Information",
                     "firstName": "Doctor's First Name",
                     "secondName": "Doctor's Second Name",
-                    "surname": "Doctor's Surname",
+                    "lastName": "Doctor's Surname",
                     "uin": "Doctor's UIN",
                     "phone": "Doctor's Phone",
                     "email": "Doctor's Email"
@@ -123,7 +123,7 @@
                 "title": "Citizen Information",
                 "firstName": "First Name",
                 "secondName": "Second Name",
-                "surname": "Surname",
+                "lastName": "Last Name",
                 "age": "Age",
                 "birthday": "Birthday",
                 "sex": "Sex",
@@ -269,7 +269,7 @@
                     "title": "Doctors List",
                     "firstName": "First Name",
                     "secondName": "Second Name",
-                    "surname": "Surname",
+                    "lastName": "Last Name",
                     "UIN": "UIN",
                     "actions": "Actions",
                     "changePassword": "Change Password",
@@ -345,7 +345,7 @@
                     "title": "Citizens List",
                     "firstName": "First Name",
                     "secondName": "Second Name",
-                    "surname": "Surname",
+                    "lastName": "Surname",
                     "UCN": "UCN"
                 },
                 "form": {
@@ -429,7 +429,7 @@
             "list": {
                 "title": "Moderator Management",
                 "firstName": "First Name",
-                "surname": "Surname",
+                "lastName": "Surname",
                 "email": "Email",
                 "role": "Role",
                 "actions": "Actions",
@@ -457,7 +457,7 @@
                     "placeholder": "Enter middle name..."
                 },
 
-                "surname": {
+                "lastName": {
                     "label": "Surname",
                     "placeholder": "Enter last name..."
                 },
@@ -480,7 +480,7 @@
                 "submit": "Add Moderator",
                 "errors": {
                     "firstName": "First name must be at least 2 characters.",
-                    "surname": "Surname must be at least 2 characters.",
+                    "lastName": "Surname must be at least 2 characters.",
                     "email": "Please enter a valid email address.",
                     "password": "Password must be at least 8 characters."
                 }

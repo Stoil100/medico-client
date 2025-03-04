@@ -38,7 +38,7 @@ export function PrescriptionItem({
                     <div className="text-sm text-muted-foreground flex items-center">
                         <User className="inline-block w-4 h-4 mr-1" />
                         {t("dr")} {prescription.doctor.firstName}{" "}
-                        {prescription.doctor.surname}
+                        {prescription.doctor.lastName}
                     </div>
                 </div>
             </CardContent>
