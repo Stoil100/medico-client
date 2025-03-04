@@ -50,7 +50,7 @@ export function MedicamentsTable({ medicaments, t }: MedicamentsTableProps) {
                                                     asChild
                                                 >
                                                     <Link
-                                                        href={`/medicaments/${med.id}`}
+                                                        href={`/medicament/${med.id}`}
                                                     >
                                                         {t("info")}
                                                     </Link>

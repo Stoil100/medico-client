@@ -34,7 +34,7 @@ import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
 import { useCallback, useMemo } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 
-// Sample medicaments data - in a real app, this would likely come from an API
+// Sample medicament data - in a real app, this would likely come from an API
 const MEDICAMENTS = [
     "Аспирин",
     "Ibuprofen",
@@ -71,13 +71,13 @@ export default function IssuePrescriptionForm({
         },
     });
 
-    // Use field array for managing dynamic medicaments
+    // Use field array for managing dynamic medicament
     const { fields, append, remove } = useFieldArray({
         control: form.control,
         name: "medicaments",
     });
 
-    // Memoize the medicaments list to prevent unnecessary re-renders
+    // Memoize the medicament list to prevent unnecessary re-renders
     const medicamentsList = useMemo(() => MEDICAMENTS, []);
 
     // Handle form submission
@@ -142,7 +142,7 @@ export default function IssuePrescriptionForm({
                                                 <FormLabel
                                                     htmlFor={`medicaments-${index}`}
                                                 >
-                                                    {t("medicaments.label")}
+                                                    {t("medicament.label")}
                                                 </FormLabel>
                                                 <Popover>
                                                     <PopoverTrigger asChild>
@@ -155,7 +155,7 @@ export default function IssuePrescriptionForm({
                                                                     false
                                                                 }
                                                                 aria-label={t(
-                                                                    "medicaments.select"
+                                                                    "medicament.select"
                                                                 )}
                                                                 className={cn(
                                                                     "w-full justify-between",
@@ -172,7 +172,7 @@ export default function IssuePrescriptionForm({
                                                                               valueField.value
                                                                       )
                                                                     : t(
-                                                                          "medicaments.select"
+                                                                          "medicament.select"
                                                                       )}
                                                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                             </Button>
@@ -185,14 +185,14 @@ export default function IssuePrescriptionForm({
                                                         <Command>
                                                             <CommandInput
                                                                 placeholder={t(
-                                                                    "medicaments.search"
+                                                                    "medicament.search"
                                                                 )}
                                                                 className="h-9"
                                                             />
                                                             <CommandList>
                                                                 <CommandEmpty>
                                                                     {t(
-                                                                        "medicaments.notFound"
+                                                                        "medicament.notFound"
                                                                     )}
                                                                 </CommandEmpty>
                                                                 <CommandGroup>
@@ -253,7 +253,7 @@ export default function IssuePrescriptionForm({
                                                 <FormLabel
                                                     htmlFor={`quantity-${index}`}
                                                 >
-                                                    {t("medicaments.quantity")}
+                                                    {t("medicament.quantity")}
                                                 </FormLabel>
                                                 <FormControl>
                                                     <Input
@@ -300,7 +300,7 @@ export default function IssuePrescriptionForm({
                         className="mt-4"
                         onClick={addMedicament}
                     >
-                        <Plus className="h-4 w-4 mr-2" /> {t("medicaments.add")}
+                        <Plus className="h-4 w-4 mr-2" /> {t("medicament.add")}
                     </Button>
                 </div>
 

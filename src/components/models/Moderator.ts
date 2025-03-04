@@ -13,3 +13,10 @@ export interface ModeratorCitizen {
     lastName: string;
     ucn: string;
 }
+
+export interface ModeratorMedicament {
+    id: string;
+    name: string;
+    activeIngredients: string[];
+    atc: string;
+}

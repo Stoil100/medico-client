@@ -24,9 +24,9 @@ export const moderatorMedicamentSchema = (t: (args: string) => string) =>
     z.object({
         name: z.string({ message: t("name") }),
         atc: z.string().min(1, { message: t("atc") }),
-        activeIngridients: z.array(
+        activeIngredients: z.array(
             z.object({
-                id: z.string(),
+                // id: z.string(),
                 value: z.string().min(1, { message: t("activeIngridients") })
             })
         )
