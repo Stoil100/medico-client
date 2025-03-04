@@ -1,6 +1,6 @@
 "use client";
 
-import ListPrescriptionForm from "@/components/forms/pharmacy/listPrescription";
+import ListPrescriptionForm from "@/components/forms/pharmacy/pharmacist/listPrescription";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 
@@ -13,7 +13,7 @@ export default function PharmacistsPage() {
                     <CardTitle>{t("title")}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ListPrescriptionForm t={(key)=>t(`form.${key}`)} />
+                    <ListPrescriptionForm t={(key) => t(`form.${key}`)} />
                 </CardContent>
             </Card>
         </div>

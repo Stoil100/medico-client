@@ -1,10 +1,18 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import * as z from "zod";
+import {
+    AddPharmacistType,
+    addPharmacistSchema as formSchema,
+} from "@/components/schemas/pharmacy";
 import { Button } from "@/components/ui/button";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+} from "@/components/ui/command";
 import {
     Form,
     FormControl,
@@ -19,17 +27,10 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from "@/components/ui/command";
-import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { addPharmacistSchema as formSchema, AddPharmacistType } from "@/components/schemas/pharmacy";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { useForm } from "react-hook-form";
 
 type PharmacyAddPharmacistFormProps = {
     t: (args: string) => string;
@@ -47,7 +48,7 @@ export default function PharmacyAddPharmacistForm({
     ];
 
     const form = useForm<AddPharmacistType>({
-        resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
+        resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
             middleName: "",

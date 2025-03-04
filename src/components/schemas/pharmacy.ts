@@ -25,6 +25,28 @@ export type AddMedicamentsType = z.infer<
     ReturnType<typeof addMedicamentsSchema>
 >;
 
+export const addBranchSchema = (t: (args: string) => string) =>
+    z.object({
+        name: z
+            .string()
+            .min(2, {
+                message: t("name.min"),
+            })
+            .max(50, {
+                message: t("name.max"),
+            }),
+        latitude: z.coerce
+            .number()
+            .min(-90, { message: t("lat") })
+            .max(90, { message: t("lat") }),
+        longitude: z.coerce
+            .number()
+            .min(-180, { message: t("lng") })
+            .max(180, { message: t("lng") }),
+    });
+
+export type AddBranchType = z.infer<ReturnType<typeof addBranchSchema>>;
+
 export const listPrescriptionsSchema = (t: (args: string) => string) =>
     z.object({
         ucn: z.string().length(10, { message: t("ucn") }),
