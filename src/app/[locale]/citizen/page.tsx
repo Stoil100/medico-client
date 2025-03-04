@@ -1,9 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import type React from "react";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
     Dialog,
     DialogContent,
@@ -11,8 +9,10 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Phone, Mail, UserCircle } from "lucide-react";
+import { Mail, User, UserCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
+import type React from "react";
+import { useState } from "react";
 
 interface PersonalDoctor {
     firstName: string;

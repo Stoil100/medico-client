@@ -23,6 +23,11 @@
             }
         },
         "Citizen": {
+            "navigation":{
+                "home":"Home",
+                "settings":"Settings",
+                "prescriptions":"Prescriptions"
+            },
             "Info": {
                 "title": "Citizen Information",
                 "firstName": "First Name",
@@ -190,7 +195,7 @@
         },
         "Pharmacy": {
             "Pharmacist": {
-                "nav": {
+                "navigation": {
                     "prescriptions": "Prescriptions",
                     "medicaments": "Medicaments"
                 },
