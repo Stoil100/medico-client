@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
 import { useEffect } from "react";
-import { Link, useRouter, usePathname } from "@/i18n/routing";
+import { useRouter, usePathname } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 
 export default function page() {
