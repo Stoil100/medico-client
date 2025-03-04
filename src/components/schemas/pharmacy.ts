@@ -3,7 +3,7 @@ import { z } from "zod";
 export const addPharmacistSchema = (t: (args: string) => string) =>
     z.object({
         firstName: z.string({ message: t("firstName") }),
-        middleName: z.string({ message: t("middleName") }),
+        secondName: z.string({ message: t("secondName") }),
         lastName: z.string({ message: t("lastName") }),
         pharmacy: z.string().min(1, { message: t("pharmacy") }),
     });
