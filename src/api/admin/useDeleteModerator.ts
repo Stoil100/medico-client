@@ -2,7 +2,7 @@ import { apiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useDeleteModerator() {
-    const deleteModerator = async ({ id }: { id: string }) => {
+    const deleteModerator = async (id: string ) => {
         const response = await apiClient.delete(`/admin/moderator/delete?moderatorId=${id}`);
         return response.data;
     };

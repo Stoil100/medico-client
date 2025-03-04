@@ -35,7 +35,7 @@ export default function AdminPage() {
     }
 
     const handleDeleteModerator = (id: string) => {
-        deleteModerator({id: id});
+        deleteModerator(id);
     };
     return (
         <div className="p-4 space-y-2">
