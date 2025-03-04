@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { adminLoginSchema, AdminLoginType } from "@/components/schemas/admin";
-import { useLogin } from "@/api/admin";
+import { useAdminLogin } from "@/api/admin";
 
 export const AdminLoginForm = () => {
     const t = useTranslations("Pages.Auth.Login");
@@ -30,7 +30,7 @@ export const AdminLoginForm = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const { mutate: login } = useLogin();
+    const { mutate: login } = useAdminLogin();
 
     const onSubmit = async (values: AdminLoginType) => {
         login(values);

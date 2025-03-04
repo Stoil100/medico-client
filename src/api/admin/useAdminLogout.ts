@@ -1,15 +1,15 @@
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
-export function useLogout() {
+export function useAdminLogout() {
     const postLogout = async () => {
         const response = await apiClient.post("/admin/logout");
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["admin", "logout"],
-        queryFn: postLogout,
+    return useMutation({
+        mutationKey: ["admin", "logout"],
+        mutationFn: postLogout,
         retry: 1,
     });
 }
