@@ -1,15 +1,15 @@
-
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import { ModeratorDoctor } from "@/components/models/Moderator";
 
 export function useGetDoctors() {
     const getDoctors = async () => {
-        const response = await apiClient.get("/moderator/doctor/get");
+        const response = await apiClient.get<ModeratorDoctor[]>("/moderator/doctor/get");
         return response.data;
     };
 
     return useQuery({
-        queryKey: ["getDoctors"],
+        queryKey: ["moderator", "doctors", "get"],
         queryFn: getDoctors,
         retry: 1,
     });

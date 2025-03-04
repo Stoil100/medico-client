@@ -1,16 +1,20 @@
-
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ModeratorDoctorType } from "@/components/schemas/moderators";
 
 export function useCreateDoctor() {
-    const createDoctor = async () => {
-        const response = await apiClient.post("/moderator/doctor/create");
+    const createDoctor = async (newDoctor: ModeratorDoctorType) => {
+        const response = await apiClient.post("/moderator/doctor/create", newDoctor);
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["createDoctor"],
-        queryFn: createDoctor,
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationKey: ["moderator", "doctor", "create"],
+        mutationFn: createDoctor,
         retry: 1,
+        onSuccess: async () =>
+            queryClient.invalidateQueries({ queryKey: ["moderator", "doctors", "get"], exact: true })
     });
 }
