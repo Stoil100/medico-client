@@ -23,10 +23,10 @@
             }
         },
         "Citizen": {
-            "navigation":{
-                "home":"Home",
-                "settings":"Settings",
-                "prescriptions":"Prescriptions"
+            "navigation": {
+                "home": "Home",
+                "settings": "Settings",
+                "prescriptions": "Prescriptions"
             },
             "Info": {
                 "title": "Citizen Information",
@@ -59,8 +59,8 @@
             },
             "Prescriptions": {
                 "title": "Prescriptions",
-                "view":"View and manage your medical prescriptions",
-                "Tabs":{
+                "view": "View and manage your medical prescriptions",
+                "Tabs": {
                     "active": "Active",
                     "fulfilled": "Fulfilled",
                     "invalid": "Invalid",
@@ -68,56 +68,51 @@
                         "title": "No prescriptions",
                         "description": "You don't have any {status} prescriptions at the moment."
                     },
-                    "Item":{
-                        "Badge":{
+                    "Item": {
+                        "Badge": {
                             "active": "Active",
                             "fulfilled": "Fulfilled",
                             "invalid": "Invalid"
                         },
-                        "dr":"Dr.",
-                        "label":"View prescription details"
+                        "dr": "Dr.",
+                        "label": "View prescription details"
                     }
                 },
-                "Details":{
-                    "Badge":{
+                "Details": {
+                    "Badge": {
                         "active": "Active",
                         "fulfilled": "Fulfilled",
                         "invalid": "Invalid"
                     },
-                    "title":"Prescription details",
-                    "Info":{
+                    "title": "Prescription details",
+                    "Info": {
                         "title": "Prescription Information",
                         "issuedDate": "Issued Date",
                         "expirationDate": "Expiration Date",
                         "doctor": "Doctor",
                         "dr": "Dr.",
                         "uin": "UIN:",
-                        "view":"View Profile"
+                        "view": "View Profile"
                     },
-                    "Table":{
+                    "Table": {
                         "title": "Prescription Medicaments",
                         "name": "Name",
                         "quantity": "Quantity"
                     },
-                    "nearby":"Nearby Pharmacies",
-                    "loading":"Loading pharmacy locations...",
-                    "List":{
-                        "available":"Available Pharmacies",
-                        "select":"Select a pharmacy to fulfill your prescription"
+                    "nearby": "Nearby Pharmacies",
+                    "loading": "Loading pharmacy locations...",
+                    "List": {
+                        "available": "Available Pharmacies",
+                        "select": "Select a pharmacy to fulfill your prescription"
                     }
                 },
 
-
-
-               
                 "viewDetails": "View Details",
                 "prescriptionDetails": "Prescription Details",
-              
+
                 "status": "Status",
-              
-              
+
                 "medicaments": "Medicaments"
-               
             },
             "Settings": {
                 "title": "Citizen Settings"
@@ -136,19 +131,19 @@
                 "email": "Email"
             },
             "Prescriptions": {
-                "tabs":{
-                    "prescriptions":"Prescriptions Tab",
-                    "history":"History Tab"
+                "tabs": {
+                    "prescriptions": "Prescriptions Tab",
+                    "history": "History Tab"
                 },
-                "table":{
-                    "id":"Id",
-                    "date":"Date",
-                    "medications":"Medications",
-                    "status":"Status"
+                "table": {
+                    "id": "Id",
+                    "date": "Date",
+                    "medications": "Medications",
+                    "status": "Status"
                 },
                 "forms": {
-                    "search":{
-                        "title":"Search Patient:",
+                    "search": {
+                        "title": "Search Patient:",
                         "patient": {
                             "label": "Patient",
                             "select": "Select patient",
@@ -166,25 +161,25 @@
                             "ucn": "Invalid UCN"
                         }
                     },
-                    "prescription":{
+                    "prescription": {
                         "title": "Medicaments",
-                        "name":{
+                        "name": {
                             "label": "Prescription Name",
-                            "placeholder":"Enter Prescription Name..."
+                            "placeholder": "Enter Prescription Name..."
                         },
                         "medicaments": {
                             "label": "Medicament",
                             "select": "Select medicament",
                             "search": "Search medicament",
                             "notFound": "No medicament found.",
-                            "quantity":"Quantity",
+                            "quantity": "Quantity",
                             "add": "Add Medicament"
                         },
                         "remove": "Remove Prescription",
                         "add": "Add Prescription",
                         "submit": "Submit",
                         "errors": {
-                            "name":"Prescription name is required",
+                            "name": "Prescription name is required",
                             "number": "At least one item",
                             "value": "This field is required",
                             "required": "This field is required"
@@ -238,31 +233,62 @@
                 }
             },
             "Admin": {
-                "form": {
-                    "firstName": {
-                        "label": "First Name",
-                        "placeholder": "Enter first name"
-                    },
-                    "middleName": {
-                        "label": "Middle Name",
-                        "placeholder": "Enter middle name"
-                    },
-                    "lastName": {
-                        "label": "Last Name",
-                        "placeholder": "Enter last name"
-                    },
-                    "pharmacy": {
-                        "label": "Select Pharmacy",
-                        "placeholder": "Choose a pharmacy",
-                        "searchPlaceholder": "Search for a pharmacy...",
-                        "empty": "No pharmacies found"
-                    },
-                    "submit": "Add Pharmacist",
-                    "errors": {
-                        "firstName": "This field is required",
-                        "middleName": "This field is required",
-                        "lastName": "This field is required",
-                        "pharmacy": "This field is required"
+                "title": "Pharmacy Administration",
+                "description": "Manage your pharmacy staff and branches",
+                "Branch": {
+                    "title": "Create new branch:",
+                    "form": {
+                        "name": {
+                            "label": "Name",
+                            "placeholder": "Enter branch name..."
+                        },
+                        "lat": {
+                            "label": "Latitude",
+                            "placeholder": "Pick location from map"
+                        },
+                        "lng": {
+                            "label": "Longitude",
+                            "placeholder": "Pick location from map"
+                        },
+                        "errors": {
+                            "name": {
+                                "min": "Branch name must be at least 2 characters.",
+                                "max": "Branch name must not exceed 50 characters."
+                            },
+                            "lat": "Latitude must be between -90 and 90.",
+                            "lng": "Longitude must be between -180 and 180."
+                        },
+                        "submit": "Submit"
+                    }
+                },
+                "Pharmacist": {
+                    "title": "Add new pharmacist:",
+                    "form": {
+                        "firstName": {
+                            "label": "First Name",
+                            "placeholder": "Enter first name"
+                        },
+                        "middleName": {
+                            "label": "Middle Name",
+                            "placeholder": "Enter middle name"
+                        },
+                        "lastName": {
+                            "label": "Last Name",
+                            "placeholder": "Enter last name"
+                        },
+                        "pharmacy": {
+                            "label": "Select Pharmacy",
+                            "placeholder": "Choose a pharmacy",
+                            "searchPlaceholder": "Search for a pharmacy...",
+                            "empty": "No pharmacies found"
+                        },
+                        "submit": "Add Pharmacist",
+                        "errors": {
+                            "firstName": "This field is required",
+                            "middleName": "This field is required",
+                            "lastName": "This field is required",
+                            "pharmacy": "This field is required"
+                        }
                     }
                 }
             }
