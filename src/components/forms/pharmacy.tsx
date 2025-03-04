@@ -50,7 +50,7 @@ export default function PharmacyAddPharmacistForm({
         resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
-            middleName: "",
+            secondName: "",
             lastName: "",
             pharmacy: "",
         },
@@ -84,13 +84,13 @@ export default function PharmacyAddPharmacistForm({
                 {/* Middle Name */}
                 <FormField
                     control={form.control}
-                    name="middleName"
+                    name="secondName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("middleName.label")}</FormLabel>
+                            <FormLabel>{t("secondName.label")}</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder={t("middleName.placeholder")}
+                                    placeholder={t("secondName.placeholder")}
                                     {...field}
                                 />
                             </FormControl>

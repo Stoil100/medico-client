@@ -2,8 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -28,7 +26,7 @@ export default function ModeratorCitizenForm({ t }: ModeratorCitizenFormProps) {
         resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
-            middleName: "",
+            secondName: "",
             lastName: "",
             ucn: "",
             email: "",
@@ -61,13 +59,13 @@ export default function ModeratorCitizenForm({ t }: ModeratorCitizenFormProps) {
                 />
                 <FormField
                     control={form.control}
-                    name="middleName"
+                    name="secondName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("middleName.label")}</FormLabel>
+                            <FormLabel>{t("secondName.label")}</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder={t("middleName.placeholder")}
+                                    placeholder={t("secondName.placeholder")}
                                     {...field}
                                 />
                             </FormControl>
