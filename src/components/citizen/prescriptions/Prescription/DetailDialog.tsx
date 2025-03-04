@@ -1,3 +1,4 @@
+import { Prescription } from "@/components/models/Prescription";
 import {
     Dialog,
     DialogContent,
@@ -6,10 +7,10 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { Prescription } from "@/components/models/Prescription";
 import { Loader2 } from "lucide-react";
 import { usePharmacies } from "../hooks/usePharmacies";
 import { MedicamentsTable } from "../MedicamentsTable";
+import { ExpandPharmacyMapDialog } from "../Pharmacy/Expand";
 import { PharmacyList } from "../Pharmacy/List";
 import { PharmacyMap } from "../Pharmacy/Map";
 import { StatusBadge } from "../StatusBadge";
@@ -79,8 +80,17 @@ export function PrescriptionDetailDialog({
                                     </div>
                                 ) : (
                                     <>
-                                        <div className="h-[300px] border rounded-md bg-muted/20 overflow-hidden">
+                                        <div className="h-[300px] border relative rounded-md bg-muted/20 overflow-hidden">
                                             <PharmacyMap
+                                                availablePharmacies={pharmacies}
+                                                selectedPharmacy={
+                                                    selectedPharmacy
+                                                }
+                                                setSelectedPharmacy={
+                                                    setSelectedPharmacy
+                                                }
+                                            />
+                                            <ExpandPharmacyMapDialog
                                                 availablePharmacies={pharmacies}
                                                 selectedPharmacy={
                                                     selectedPharmacy
