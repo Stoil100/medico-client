@@ -1,5 +1,5 @@
 export * from "./useGetModeratros"
 export * from "./useCreateModerator"
 export * from "./useDeleteModerator"
-export * from "./useLogin"
-export * from "./useLogout"
+export * from "./useAdminLogin"
+export * from "./useAdminLogout"

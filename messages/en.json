@@ -238,7 +238,7 @@
                         "label": "First Name",
                         "placeholder": "Enter first name"
                     },
-                    "middleName": {
+                    "secondName": {
                         "label": "Middle Name",
                         "placeholder": "Enter middle name"
                     },
@@ -255,7 +255,7 @@
                     "submit": "Add Pharmacist",
                     "errors": {
                         "firstName": "This field is required",
-                        "middleName": "This field is required",
+                        "secondName": "This field is required",
                         "lastName": "This field is required",
                         "pharmacy": "This field is required"
                     }
@@ -282,7 +282,7 @@
                         "label": "First Name",
                         "placeholder": "Enter first name"
                     },
-                    "middleName": {
+                    "secondName": {
                         "label": "Middle Name",
                         "placeholder": "Enter middle name"
                     },
@@ -297,7 +297,7 @@
                     "submit": "Submit",
                     "errors": {
                         "firstName": "This field is required",
-                        "middleName": "This field is required",
+                        "secondName": "This field is required",
                         "lastName": "This field is required",
                         "uin": "Invalid UIN",
                         "email": "Please enter a valid email address",
@@ -354,7 +354,7 @@
                         "label": "First Name",
                         "placeholder": "Enter first name"
                     },
-                    "middleName": {
+                    "secondName": {
                         "label": "Middle Name",
                         "placeholder": "Enter middle name"
                     },
@@ -377,7 +377,7 @@
                     "submit": "Submit",
                     "errors": {
                         "firstName": "This field is required",
-                        "middleName": "This field is required",
+                        "secondName": "This field is required",
                         "lastName": "This field is required",
                         "ucn": "Invalid UCN",
                         "email": "Please enter a valid email address",
@@ -494,7 +494,7 @@
                 "label": "First Name",
                 "placeholder": "Enter first name"
             },
-            "middleName": {
+            "secondName": {
                 "label": "Middle Name",
                 "placeholder": "Enter middle name"
             },
@@ -511,7 +511,7 @@
             "submit": "Submit",
             "errors": {
                 "firstName": "This field is required",
-                "middleName": "This field is required",
+                "secondName": "This field is required",
                 "lastName": "This field is required",
                 "pharmacy": "This field is required"
             }
