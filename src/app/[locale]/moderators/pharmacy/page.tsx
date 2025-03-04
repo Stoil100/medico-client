@@ -19,24 +19,22 @@ import {
 } from "@/components/ui/table";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-interface Pharmacy {
-    id: string;
-    name: string;
-    ownerName: string;
-}
-
-const mockPharmacies: Pharmacy[] = [
-    { id: "1", name: "City Pharmacy", ownerName: "Alice Johnson" },
-    { id: "2", name: "Health Plus", ownerName: "Bob Williams" },
-];
+import { useDeletePharmacy, useGetPharmacies } from "@/api/moderators/pharmacy";
 
 export default function ModeratorsPharmaciesPage() {
     const t = useTranslations("Pages.Moderators.Pharmacies");
 
+    const {data: pharmacies, isFetching} = useGetPharmacies();
+
+    const {mutate: deletePharmacy} = useDeletePharmacy();
+
     const handleRemovePharmacy = (id: string) => {
-        console.log(`Remove pharmacy with id: ${id}`);
+        deletePharmacy(id)
     };
+
+    if (isFetching) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>
@@ -75,7 +73,7 @@ export default function ModeratorsPharmaciesPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {mockPharmacies.map((pharmacy) => (
+                            {pharmacies && pharmacies.map((pharmacy) => (
                                 <TableRow key={pharmacy.id}>
                                     <TableCell>{pharmacy.name}</TableCell>
                                     <TableCell>{pharmacy.ownerName}</TableCell>

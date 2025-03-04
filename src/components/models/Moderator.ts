@@ -20,3 +20,9 @@ export interface ModeratorMedicament {
     activeIngredients: string[];
     atc: string;
 }
+
+export interface ModeratorPharmacy {
+    id: string;
+    name: string;
+    ownerName: string;
+}

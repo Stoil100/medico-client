@@ -1,16 +1,20 @@
-
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ModeratorPharmacyType } from "@/components/schemas/moderators";
 
 export function useCreatePharmacy() {
-    const createPharmacy = async () => {
-        const response = await apiClient.post("/moderator/pharma/create");
+    const createPharmacy = async (newPharmacy: ModeratorPharmacyType) => {
+        const response = await apiClient.post("/moderator/pharma/create", newPharmacy);
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["createPharmacy"],
-        queryFn: createPharmacy,
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationKey: ["moderator", "pharmacy", "create"],
+        mutationFn: createPharmacy,
         retry: 1,
+        onSuccess: async () =>
+            queryClient.invalidateQueries({ queryKey: ["moderator", "pharmacies", "get"] })
     });
 }

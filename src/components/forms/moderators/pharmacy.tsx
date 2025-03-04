@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { moderatorPharmacySchema as formSchema, ModeratorPharmacyType } from "@/components/schemas/moderators";
+import { useCreatePharmacy } from "@/api/moderators/pharmacy";
 
 type ModeratorPharmacyFormProps = {
     t: (args: string) => string;
@@ -26,11 +27,16 @@ export default function ModeratorPharmacyForm({
         resolver: zodResolver(formSchema((key)=>t(`errors.${key}`))),
         defaultValues: {
             name: "",
+            ownerEmail: "",
+            ownerName: "",
+            ownerPassword: ""
         },
     });
 
+    const {mutate: createPharmacy}= useCreatePharmacy();
+
     function onSubmit(data: ModeratorPharmacyType) {
-        console.log(data);
+        createPharmacy(data);
     }
 
     return (

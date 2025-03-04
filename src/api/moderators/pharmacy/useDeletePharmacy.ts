@@ -1,16 +1,19 @@
-
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export function useDeletePharmacy(id: string) {
-    const deletePharmacy = async () => {
-        const response = await apiClient.delete(`/moderator/pharma/delete?${id}`);
+export function useDeletePharmacy() {
+    const deletePharmacy = async (id: string) => {
+        const response = await apiClient.delete(`/moderator/pharma/delete?pharmacyId=${id}`);
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["deletePharmacy"],
-        queryFn: deletePharmacy,
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationKey: ["moderator", "pharmacy", "delete"],
+        mutationFn: deletePharmacy,
         retry: 1,
+        onSuccess: async () =>
+            queryClient.invalidateQueries({queryKey: ["moderator", "pharmacies", "get"]})
     });
 }
