@@ -1,15 +1,20 @@
 import { apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import type { IssuePrescriptionType } from "@/components/schemas/doctor";
 
 export function useCreateCitizenPrescriptions() {
-    const createCitizenPrescriptions = async () => {
-        const response = await apiClient.post(`/doctor/citizen/prescription`);
+    const createCitizenPrescriptions = async (newPrescription: IssuePrescriptionType) => {
+        const response = await apiClient.post(`/doctor/citizen/prescription`, newPrescription);
         return response.data;
     };
 
-    return useQuery({
-        queryKey: ["createCitizenPrescriptions"],
-        queryFn: createCitizenPrescriptions,
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationKey: ["doctor", "citizen", "prescription", "issue"],
+        mutationFn: createCitizenPrescriptions,
         retry: 1,
+        onSuccess: async () =>
+            queryClient.invalidateQueries({queryKey: ["doctor", "citizen", "prescriptions", "get"]})
     });
 }

@@ -31,31 +31,32 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
-import { useCallback, useMemo } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useCallback, useEffect, useMemo } from "react";
+import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { useCreateCitizenPrescriptions } from "@/api/doctor";
 
 // Sample medicament data - in a real app, this would likely come from an API
-const MEDICAMENTS = [
-    "Аспирин",
-    "Ibuprofen",
-    "Paracetamol",
-    "Amoxicillin",
-    "Lisinopril",
-    "Metformin",
-    "Atorvastatin",
-    "Omeprazole",
-    "Losartan",
-    "Simvastatin",
-    "Metoprolol",
-    "Amlodipine",
-    "Gabapentin",
-    "Hydrochlorothiazide",
-    "Sertraline",
-];
+// const MEDICAMENTS = [
+//     "Аспирин",
+//     "Ibuprofen",
+//     "Paracetamol",
+//     "Amoxicillin",
+//     "Lisinopril",
+//     "Metformin",
+//     "Atorvastatin",
+//     "Omeprazole",
+//     "Losartan",
+//     "Simvastatin",
+//     "Metoprolol",
+//     "Amlodipine",
+//     "Gabapentin",
+//     "Hydrochlorothiazide",
+//     "Sertraline",
+// ];
 
 type IssuePrescriptionFormProps = {
     t: (args: string) => string;
-    citizenId: string;
+    citizenId: string | undefined;
 };
 
 export default function IssuePrescriptionForm({
@@ -66,10 +67,14 @@ export default function IssuePrescriptionForm({
     const form = useForm<IssuePrescriptionType>({
         resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
+            citizenId: citizenId,
             name:"",
-            medicaments: [{ number: 1, value: "" }],
+            medicaments: [{ quantity: 1, officialName: "" }],
         },
     });
+
+
+    const watch = useWatch(form);
 
     // Use field array for managing dynamic medicament
     const { fields, append, remove } = useFieldArray({
@@ -78,16 +83,22 @@ export default function IssuePrescriptionForm({
     });
 
     // Memoize the medicament list to prevent unnecessary re-renders
-    const medicamentsList = useMemo(() => MEDICAMENTS, []);
+    // const medicamentsList = useMemo(() => MEDICAMENTS, []);
+
+    const { mutate: issuePrescription } = useCreateCitizenPrescriptions();
+
+    useEffect(() => {
+        form.setValue("citizenId", citizenId)
+    }, [citizenId, form])
 
     // Handle form submission
     function handleSubmit(data: IssuePrescriptionType) {
-        console.log(data);
+        issuePrescription(data)
     }
 
     // Add a new medicament field
     const addMedicament = useCallback(() => {
-        append({ number: 1, value: "" });
+        append({ quantity: 1, officialName: "" });
     }, [append]);
 
     // Remove a medicament field
@@ -136,118 +147,126 @@ export default function IssuePrescriptionForm({
                                 >
                                     <FormField
                                         control={form.control}
-                                        name={`medicaments.${index}.value`}
+                                        name={`medicaments.${index}.officialName`}
                                         render={({ field: valueField }) => (
                                             <FormItem className="flex-1">
-                                                <FormLabel
-                                                    htmlFor={`medicaments-${index}`}
-                                                >
-                                                    {t("medicament.label")}
-                                                </FormLabel>
-                                                <Popover>
-                                                    <PopoverTrigger asChild>
-                                                        <FormControl>
-                                                            <Button
-                                                                variant="outline"
-                                                                role="combobox"
-                                                                id={`medicaments-${index}`}
-                                                                aria-expanded={
-                                                                    false
-                                                                }
-                                                                aria-label={t(
-                                                                    "medicament.select"
-                                                                )}
-                                                                className={cn(
-                                                                    "w-full justify-between",
-                                                                    !valueField.value &&
-                                                                        "text-muted-foreground"
-                                                                )}
-                                                            >
-                                                                {valueField.value
-                                                                    ? medicamentsList.find(
-                                                                          (
-                                                                              medicament
-                                                                          ) =>
-                                                                              medicament ===
-                                                                              valueField.value
-                                                                      )
-                                                                    : t(
-                                                                          "medicament.select"
-                                                                      )}
-                                                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                            </Button>
-                                                        </FormControl>
-                                                    </PopoverTrigger>
-                                                    <PopoverContent
-                                                        className="w-full p-0"
-                                                        align="start"
-                                                    >
-                                                        <Command>
-                                                            <CommandInput
-                                                                placeholder={t(
-                                                                    "medicament.search"
-                                                                )}
-                                                                className="h-9"
-                                                            />
-                                                            <CommandList>
-                                                                <CommandEmpty>
-                                                                    {t(
-                                                                        "medicament.notFound"
-                                                                    )}
-                                                                </CommandEmpty>
-                                                                <CommandGroup>
-                                                                    <ScrollArea className="h-[200px]">
-                                                                        {medicamentsList.map(
-                                                                            (
-                                                                                medicament
-                                                                            ) => (
-                                                                                <CommandItem
-                                                                                    value={
-                                                                                        medicament
-                                                                                    }
-                                                                                    key={
-                                                                                        medicament
-                                                                                    }
-                                                                                    onSelect={() => {
-                                                                                        form.setValue(
-                                                                                            `medicaments.${index}.value`,
-                                                                                            medicament,
-                                                                                            {
-                                                                                                shouldValidate:
-                                                                                                    true,
-                                                                                            }
-                                                                                        );
-                                                                                    }}
-                                                                                >
-                                                                                    {
-                                                                                        medicament
-                                                                                    }
-                                                                                    <Check
-                                                                                        className={cn(
-                                                                                            "ml-auto h-4 w-4",
-                                                                                            medicament ===
-                                                                                                valueField.value
-                                                                                                ? "opacity-100"
-                                                                                                : "opacity-0"
-                                                                                        )}
-                                                                                    />
-                                                                                </CommandItem>
-                                                                            )
-                                                                        )}
-                                                                    </ScrollArea>
-                                                                </CommandGroup>
-                                                            </CommandList>
-                                                        </Command>
-                                                    </PopoverContent>
-                                                </Popover>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder={t("medicament.label")}
+                                                        {...valueField}
+                                                    />
+                                                </FormControl>
                                                 <FormMessage />
+
+                                                {/*<FormLabel*/}
+                                                {/*    htmlFor={`medicaments-${index}`}*/}
+                                                {/*>*/}
+                                                {/*    {t("medicament.label")}*/}
+                                                {/*</FormLabel>*/}
+                                                {/*<Popover>*/}
+                                                {/*    <PopoverTrigger asChild>*/}
+                                                {/*        <FormControl>*/}
+                                                {/*            <Button*/}
+                                                {/*                variant="outline"*/}
+                                                {/*                role="combobox"*/}
+                                                {/*                id={`medicaments-${index}`}*/}
+                                                {/*                aria-expanded={*/}
+                                                {/*                    false*/}
+                                                {/*                }*/}
+                                                {/*                aria-label={t(*/}
+                                                {/*                    "medicament.select"*/}
+                                                {/*                )}*/}
+                                                {/*                className={cn(*/}
+                                                {/*                    "w-full justify-between",*/}
+                                                {/*                    !valueField.value &&*/}
+                                                {/*                        "text-muted-foreground"*/}
+                                                {/*                )}*/}
+                                                {/*            >*/}
+                                                {/*                {valueField.value*/}
+                                                {/*                    ? medicamentsList.find(*/}
+                                                {/*                          (*/}
+                                                {/*                              medicament*/}
+                                                {/*                          ) =>*/}
+                                                {/*                              medicament ===*/}
+                                                {/*                              valueField.value*/}
+                                                {/*                      )*/}
+                                                {/*                    : t(*/}
+                                                {/*                          "medicament.select"*/}
+                                                {/*                      )}*/}
+                                                {/*                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />*/}
+                                                {/*            </Button>*/}
+                                                {/*        </FormControl>*/}
+                                                {/*    </PopoverTrigger>*/}
+                                                {/*    <PopoverContent*/}
+                                                {/*        className="w-full p-0"*/}
+                                                {/*        align="start"*/}
+                                                {/*    >*/}
+                                                {/*        <Command>*/}
+                                                {/*            <CommandInput*/}
+                                                {/*                placeholder={t(*/}
+                                                {/*                    "medicament.search"*/}
+                                                {/*                )}*/}
+                                                {/*                className="h-9"*/}
+                                                {/*            />*/}
+                                                {/*            <CommandList>*/}
+                                                {/*                <CommandEmpty>*/}
+                                                {/*                    {t(*/}
+                                                {/*                        "medicament.notFound"*/}
+                                                {/*                    )}*/}
+                                                {/*                </CommandEmpty>*/}
+                                                {/*                <CommandGroup>*/}
+                                                {/*                    <ScrollArea className="h-[200px]">*/}
+                                                {/*                        {medicamentsList.map(*/}
+                                                {/*                            (*/}
+                                                {/*                                medicament*/}
+                                                {/*                            ) => (*/}
+                                                {/*                                <CommandItem*/}
+                                                {/*                                    value={*/}
+                                                {/*                                        medicament*/}
+                                                {/*                                    }*/}
+                                                {/*                                    key={*/}
+                                                {/*                                        medicament*/}
+                                                {/*                                    }*/}
+                                                {/*                                    onSelect={() => {*/}
+                                                {/*                                        form.setValue(*/}
+                                                {/*                                            `medicaments.${index}.value`,*/}
+                                                {/*                                            medicament,*/}
+                                                {/*                                            {*/}
+                                                {/*                                                shouldValidate:*/}
+                                                {/*                                                    true,*/}
+                                                {/*                                            }*/}
+                                                {/*                                        );*/}
+                                                {/*                                    }}*/}
+                                                {/*                                >*/}
+                                                {/*                                    {*/}
+                                                {/*                                        medicament*/}
+                                                {/*                                    }*/}
+                                                {/*                                    <Check*/}
+                                                {/*                                        className={cn(*/}
+                                                {/*                                            "ml-auto h-4 w-4",*/}
+                                                {/*                                            medicament ===*/}
+                                                {/*                                                valueField.value*/}
+                                                {/*                                                ? "opacity-100"*/}
+                                                {/*                                                : "opacity-0"*/}
+                                                {/*                                        )}*/}
+                                                {/*                                    />*/}
+                                                {/*                                </CommandItem>*/}
+                                                {/*                            )*/}
+                                                {/*                        )}*/}
+                                                {/*                    </ScrollArea>*/}
+                                                {/*                </CommandGroup>*/}
+                                                {/*            </CommandList>*/}
+                                                {/*        </Command>*/}
+                                                {/*    </PopoverContent>*/}
+                                                {/*</Popover>*/}
+                                                {/*<FormMessage />*/}
                                             </FormItem>
                                         )}
                                     />
 
                                     <FormField
                                         control={form.control}
-                                        name={`medicaments.${index}.number`}
+                                        name={`medicaments.${index}.quantity`}
                                         render={({ field: numberField }) => (
                                             <FormItem className="w-full sm:w-24">
                                                 <FormLabel

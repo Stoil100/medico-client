@@ -11,94 +11,28 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import axios from "axios";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useGetCitizenInfo, useGetCitizenPrescriptions } from "@/api/doctor";
 
-interface Medicament {
-    value: string;
-    quantity: number;
-}
-
-interface Prescription {
-    id: number;
-    name: string;
-    status: "active" | "fulfilled" | "invalid";
-    issuedDate: string;
-    expirationDate: string;
-    medicaments: Medicament[];
-}
 export default function DoctorPrescriptionsPage() {
     const t = useTranslations("Pages.Doctor.Prescriptions");
-    const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
-    const [citizenId, setCitizenId] = useState<string>();
-    useEffect(() => {
-        if (!citizenId) return;
+    const [citizenUcn, setCitizenUcn] = useState<string>("");
 
-        const fetchPrescriptions = async () => {
-            try {
-                // Simulating a real API request
-                const response = await axios.get(
-                    `https://jsonplaceholder.typicode.com/posts/${citizenId}`
-                );
+    const {data: currentCitizen} = useGetCitizenInfo(citizenUcn, citizenUcn.length === 10);
 
-                // Simulating mock data transformation from API response
-                const mockPrescriptions: Prescription[] = [
-                    {
-                        id: 1,
-                        name: "Blood Pressure Control",
-                        status: "active",
-                        issuedDate: "2025-02-15",
-                        expirationDate: "2025-08-15",
-                        medicaments: [
-                            { value: "Lisinopril", quantity: 30 },
-                            { value: "Amlodipine", quantity: 30 },
-                        ],
-                    },
-                    {
-                        id: 2,
-                        name: "Pain Relief",
-                        status: "fulfilled",
-                        issuedDate: "2024-12-01",
-                        expirationDate: "2025-06-01",
-                        medicaments: [
-                            { value: "Ibuprofen", quantity: 20 },
-                            { value: "Paracetamol", quantity: 15 },
-                        ],
-                    },
-                    {
-                        id: 3,
-                        name: "Diabetes Treatment",
-                        status: "invalid",
-                        issuedDate: "2023-05-20",
-                        expirationDate: "2023-11-20",
-                        medicaments: [
-                            { value: "Metformin", quantity: 60 },
-                            { value: "Insulin Glargine", quantity: 10 },
-                        ],
-                    },
-                ];
+    const citizenId = currentCitizen?.id;
 
-                // Simulate API delay
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-
-                setPrescriptions(mockPrescriptions);
-            } catch (err) {
-                console.error("Failed to fetch prescriptions");
-            }
-        };
-
-        fetchPrescriptions();
-    }, [citizenId]);
+    const {data: prescriptions} = useGetCitizenPrescriptions(citizenId)
 
     return (
         <div className="flex flex-col items-center space-y-8 p-8 bg-gray-50 min-h-screen">
             <div className="w-full max-w-4xl bg-white rounded-lg shadow-md p-6">
                 <SearchCitizenForm
                     t={(key) => t(`forms.search.${key}`)}
-                    setCitizenId={setCitizenId}
+                    setCitizenUcn={setCitizenUcn}
                 />
-                {citizenId && (
+                {citizenUcn && (
                     <div className="mt-8">
                         <Tabs defaultValue="issue" className="w-full">
                             <TabsList className="grid w-full grid-cols-2">
@@ -134,10 +68,10 @@ export default function DoctorPrescriptionsPage() {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {prescriptions.map((prescription) => (
+                                        {prescriptions && prescriptions.map((prescription) => (
                                             <TableRow key={prescription.id}>
                                                 <TableCell className="font-medium">
-                                                    {prescription.id}
+                                                    {prescription.name}
                                                 </TableCell>
                                                 <TableCell>
                                                     {new Date(
@@ -153,7 +87,7 @@ export default function DoctorPrescriptionsPage() {
                                                             >
                                                                 <p>
                                                                     {
-                                                                        medicament.value
+                                                                        medicament.officialName
                                                                     }
                                                                 </p>
                                                                 <p>

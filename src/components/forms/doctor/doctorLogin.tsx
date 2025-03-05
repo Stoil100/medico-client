@@ -6,7 +6,7 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormMessage,
+    FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,31 +14,32 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { moderatorLoginSchema, ModeratorLoginType } from "@/components/schemas/moderators";
-import { useModeratorLogin } from "@/api/moderators/useModeratorLogin";
+import { doctorLoginSchema, DoctorLoginType } from "@/components/schemas/doctor";
+import { useDoctorLogin } from "@/api/doctor";
 import { useRouter } from "@/i18n/routing";
 
-export const ModeratorLoginForm = () => {
+export const DoctorLoginForm = () => {
     const t = useTranslations("Pages.Auth.Login");
     const router = useRouter();
 
-    const form = useForm<ModeratorLoginType>({
-        resolver: zodResolver(moderatorLoginSchema((key) => t(`errors.${key}`))),
+    const form = useForm<DoctorLoginType>({
+        resolver: zodResolver(doctorLoginSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             email: "",
-            password: "",
-        },
+            password: ""
+        }
     });
 
     const [visible, setVisible] = useState(false);
 
-    const {mutate: login} = useModeratorLogin()
+    const { mutate: doctorLogin } = useDoctorLogin();
 
-    const onSubmit = async (values: ModeratorLoginType) => {
-        login(values, {onSuccess: (type) => {
-            console.log(type);
-                router.push("/moderators/"+type, {locale: "bg"})
-            }})
+    const onSubmit = async (values: DoctorLoginType) => {
+        doctorLogin(values, {
+            onSuccess: () => {
+                router.replace("/doctor/prescriptions", { locale: "bg" });
+            }
+        });
     };
 
     return (
@@ -89,7 +90,7 @@ export const ModeratorLoginForm = () => {
                     </Button>
                 </div>
                 <Button type={"submit"}>
-                    Изпрати
+                    Submit
                 </Button>
             </form>
         </Form>

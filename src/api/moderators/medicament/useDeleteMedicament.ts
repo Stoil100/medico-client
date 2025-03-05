@@ -3,7 +3,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useDeleteMedicament() {
     const deleteMedicament = async (id: string) => {
-        const response = await apiClient.delete(`/moderator/medicament/delete?medicamentId=${id}`);
+        const response = await apiClient.delete(`/moderator/medicament/delete`,
+            {
+                params: {
+                    medicamentId: id
+                }
+            });
         return response.data;
     };
 
