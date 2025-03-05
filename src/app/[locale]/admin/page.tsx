@@ -21,6 +21,7 @@ import {
 import { Plus, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useDeleteModerator , useGetModerators } from "@/api/admin";
+import Loader from "@/components/Loader";
 
 export default function AdminPage() {
     const t = useTranslations("Pages.Admin");
@@ -31,7 +32,7 @@ export default function AdminPage() {
 
 
     if (isFetching) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     const handleDeleteModerator = (id: string) => {

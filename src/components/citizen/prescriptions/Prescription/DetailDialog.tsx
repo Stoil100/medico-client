@@ -1,4 +1,3 @@
-import { Prescription } from "@/components/models/Prescription";
 import {
     Dialog,
     DialogContent,
@@ -8,16 +7,18 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
-import { usePharmacies } from "../hooks/usePharmacies";
 import { MedicamentsTable } from "../MedicamentsTable";
 import { ExpandPharmacyMapDialog } from "../Pharmacy/Expand";
 import { PharmacyList } from "../Pharmacy/List";
 import { PharmacyMap } from "../Pharmacy/Map";
 import { StatusBadge } from "../StatusBadge";
 import { PrescriptionInfo } from "./Info";
+import { CitizenPharmacy, CitizenPrescription } from "@/components/models/Citizen";
+import { useGetAvailablePharmacies } from "@/api/citizen";
+import { useState } from "react";
 
 interface PrescriptionDetailDialogProps {
-    prescription: Prescription | null;
+    prescription: CitizenPrescription | null;
     open: boolean;
     onOpenChange: (open: boolean) => void;
     t: (args: string) => string;
@@ -29,8 +30,9 @@ export function PrescriptionDetailDialog({
     onOpenChange,
     t,
 }: PrescriptionDetailDialogProps) {
-    const { pharmacies, selectedPharmacy, setSelectedPharmacy, isLoading } =
-        usePharmacies(prescription);
+    const [selectedPharmacy, setSelectedPharmacy] = useState<CitizenPharmacy>()
+
+    const {data: pharmacies, isLoading} = useGetAvailablePharmacies(prescription?.id)
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -90,15 +92,15 @@ export function PrescriptionDetailDialog({
                                                     setSelectedPharmacy
                                                 }
                                             />
-                                            <ExpandPharmacyMapDialog
-                                                availablePharmacies={pharmacies}
-                                                selectedPharmacy={
-                                                    selectedPharmacy
-                                                }
-                                                setSelectedPharmacy={
-                                                    setSelectedPharmacy
-                                                }
-                                            />
+                                            {/*<ExpandPharmacyMapDialog*/}
+                                            {/*    availablePharmacies={pharmacies}*/}
+                                            {/*    selectedPharmacy={*/}
+                                            {/*        selectedPharmacy*/}
+                                            {/*    }*/}
+                                            {/*    setSelectedPharmacy={*/}
+                                            {/*        setSelectedPharmacy*/}
+                                            {/*    }*/}
+                                            {/*/>*/}
                                         </div>
 
                                         {pharmacies.length > 0 && (

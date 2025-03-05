@@ -1,7 +1,7 @@
 export interface Doctor {
     firstName: string;
     lastName: string;
-    UIN: string;
+    uin: string;
     avatarUrl?: string;
 }
 

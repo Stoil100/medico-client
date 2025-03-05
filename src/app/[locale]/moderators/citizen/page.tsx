@@ -20,6 +20,7 @@ import {
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useDeleteCitizen, useGetCitizens } from "@/api/moderators/citizen";
+import Loader from "@/components/Loader";
 
 export default function CitizensPage() {
     const t = useTranslations("Pages.Moderators.Citizens");
@@ -29,7 +30,7 @@ export default function CitizensPage() {
     const { mutate: deleteCitizen } = useDeleteCitizen();
 
     if (isFetching) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     const handleDeleteDoctor = (id: string) => {

@@ -2,13 +2,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Prescription } from "@/components/models/Prescription";
 import { Calendar, Clock } from "lucide-react";
+import { CitizenPrescription } from "@/components/models/Citizen";
 
 interface PrescriptionInfoProps {
-    prescription: Prescription;
+    prescription: CitizenPrescription;
     t: (args: string) => string;
 }
 
 export function PrescriptionInfo({ prescription, t }: PrescriptionInfoProps) {
+
+    const formattedDate = new Intl.DateTimeFormat('bg', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).format(new Date(prescription.issuedDate));
+
     return (
         <div>
             <h3 className="text-sm font-medium mb-2">{t("title")}</h3>
@@ -21,18 +29,18 @@ export function PrescriptionInfo({ prescription, t }: PrescriptionInfoProps) {
                             </div>
                             <div className="flex items-center">
                                 <Calendar className="w-4 h-4 mr-1 text-muted-foreground" />
-                                {prescription.issuedDate}
+                                {formattedDate}
                             </div>
                         </div>
-                        <div>
-                            <div className="text-sm font-medium text-muted-foreground">
-                                {t("expirationDate")}
-                            </div>
-                            <div className="flex items-center">
-                                <Clock className="w-4 h-4 mr-1 text-muted-foreground" />
-                                {prescription.expirationDate}
-                            </div>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <div className="text-sm font-medium text-muted-foreground">*/}
+                        {/*        {t("expirationDate")}*/}
+                        {/*    </div>*/}
+                        {/*    <div className="flex items-center">*/}
+                        {/*        <Clock className="w-4 h-4 mr-1 text-muted-foreground" />*/}
+                        {/*        {prescription.expirationDate}*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </div>
 
                     <Separator />
@@ -52,7 +60,7 @@ export function PrescriptionInfo({ prescription, t }: PrescriptionInfoProps) {
                                     {prescription.doctor.lastName}
                                 </div>
                                 <div className="text-sm text-muted-foreground">
-                                    {t("uin")} {prescription.doctor.UIN}
+                                    {t("uin")} {prescription.doctor.uin}
                                 </div>
                             </div>
                         </div>

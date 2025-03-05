@@ -14,11 +14,12 @@ import {
 } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { CitizenPrescription } from "@/components/models/Citizen";
 
 export default function CitizenPrescriptionsPage() {
     const t = useTranslations("Pages.Citizen.Prescriptions");
     const [selectedPrescription, setSelectedPrescription] =
-        useState<Prescription | null>(null);
+        useState<CitizenPrescription | null>(null);
     const { groupedPrescriptions, isLoading } = usePrescriptions();
 
     return (

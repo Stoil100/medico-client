@@ -1,10 +1,10 @@
-import { LoginForm } from "@/components/forms/login";
 import React from "react";
+import { CitizenLoginForm } from "@/components/forms/citizen/citizenLogin";
 
 export default function CitizenLoginPage() {
     return (
         <div>
-            <LoginForm />
+            <CitizenLoginForm />
         </div>
     );
 }

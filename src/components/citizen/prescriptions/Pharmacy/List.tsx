@@ -7,13 +7,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Pharmacy } from "@/components/models/Pharmacy";
+
 import { MapPin } from "lucide-react";
+import { CitizenPharmacy } from "@/components/models/Citizen";
 
 interface PharmacyListProps {
-    pharmacies: Pharmacy[];
-    selectedPharmacy: Pharmacy | undefined;
-    onSelectPharmacy: (pharmacy: Pharmacy) => void;
+    pharmacies: CitizenPharmacy[];
+    selectedPharmacy: CitizenPharmacy | undefined;
+    onSelectPharmacy: (pharmacy: CitizenPharmacy) => void;
     t: (args: string) => string;
 }
 

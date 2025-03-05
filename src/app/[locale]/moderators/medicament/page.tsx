@@ -20,6 +20,7 @@ import {
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useDeleteMedicament, useGetModerators } from "@/api/moderators/medicament";
+import Loader from "@/components/Loader";
 
 export default function MedicamentsPage() {
     const t = useTranslations("Pages.Moderators.Medicaments");
@@ -33,7 +34,7 @@ export default function MedicamentsPage() {
     };
 
     if (isFetching) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     return (

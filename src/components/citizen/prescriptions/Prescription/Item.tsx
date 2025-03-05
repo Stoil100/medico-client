@@ -2,10 +2,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Prescription } from "@/components/models/Prescription";
 import { Calendar, User } from "lucide-react";
 import { StatusBadge } from "../StatusBadge";
+import { CitizenPrescription } from "@/components/models/Citizen";
 
 interface PrescriptionItemProps {
-    prescription: Prescription;
-    onSelect: (prescription: Prescription) => void;
+    prescription: CitizenPrescription;
+    onSelect: (prescription: CitizenPrescription) => void;
     t: (args: string) => string;
 }
 
@@ -30,11 +31,11 @@ export function PrescriptionItem({
                             t={(key) => t(`Badge.${key}`)}
                         />
                     </div>
-                    <div className="text-sm text-muted-foreground flex items-center">
-                        <Calendar className="inline-block w-4 h-4 mr-1" />
-                        {prescription.issuedDate} -{" "}
-                        {prescription.expirationDate}
-                    </div>
+                    {/*<div className="text-sm text-muted-foreground flex items-center">*/}
+                    {/*    <Calendar className="inline-block w-4 h-4 mr-1" />*/}
+                    {/*    {prescription.issuedDate} -{" "}*/}
+                    {/*    {prescription.expirationDate}*/}
+                    {/*</div>*/}
                     <div className="text-sm text-muted-foreground flex items-center">
                         <User className="inline-block w-4 h-4 mr-1" />
                         {t("dr")} {prescription.doctor.firstName}{" "}

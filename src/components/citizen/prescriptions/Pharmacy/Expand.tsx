@@ -1,6 +1,6 @@
 import { Expand } from "lucide-react";
 
-import { Pharmacy } from "@/components/models/Pharmacy";
+
 import {
     Dialog,
     DialogContent,
@@ -9,11 +9,12 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { PharmacyMap } from "./Map";
+import { CitizenPharmacy } from "@/components/models/Citizen";
 
 interface ExpandPharmacyMapDialogProps {
-    availablePharmacies: Pharmacy[];
-    selectedPharmacy: Pharmacy | undefined;
-    setSelectedPharmacy: (pharmacy: Pharmacy) => void;
+    availablePharmacies: CitizenPharmacy[];
+    selectedPharmacy: CitizenPharmacy | undefined;
+    setSelectedPharmacy: (pharmacy: CitizenPharmacy) => void;
 }
 export function ExpandPharmacyMapDialog({
     availablePharmacies,

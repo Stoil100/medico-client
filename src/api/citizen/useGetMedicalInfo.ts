@@ -1,15 +1,15 @@
-
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import { Citizen } from "@/components/models/Citizen";
 
-export function useLogin() {
+export function useMedicalInfo() {
     const postLogin = async () => {
-        const response = await apiClient.post("/citizen/login");
+        const response = await apiClient.get<Citizen>("/citizen/medicalInfo");
         return response.data;
     };
 
     return useQuery({
-        queryKey: ["postLogin"],
+        queryKey: ["citizen", "medicalInfo", "get"],
         queryFn: postLogin,
         retry: 1,
     });

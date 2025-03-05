@@ -20,6 +20,7 @@ import {
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useDeleteDoctor, useGetDoctors } from "@/api/moderators/doctor";
+import Loader from "@/components/Loader";
 
 export default function DoctorsPage() {
     const t = useTranslations("Pages.Moderators.Doctors");
@@ -29,7 +30,7 @@ export default function DoctorsPage() {
     const { mutate: deleteDoctor } = useDeleteDoctor();
 
     if (isFetching) {
-        return <div>Loading...</div>;
+        return <Loader/>;;
     }
 
     const handleDeleteDoctor = (id: string) => {
