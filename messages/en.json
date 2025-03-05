@@ -23,10 +23,10 @@
             }
         },
         "Citizen": {
-            "navigation":{
-                "home":"Home",
-                "settings":"Settings",
-                "prescriptions":"Prescriptions"
+            "navigation": {
+                "home": "Home",
+                "settings": "Settings",
+                "prescriptions": "Prescriptions"
             },
             "Info": {
                 "title": "Citizen Information",
@@ -51,7 +51,7 @@
                     "title": "Personal Doctor Information",
                     "firstName": "Doctor's First Name",
                     "secondName": "Doctor's Second Name",
-                    "lastName": "Doctor's Surname",
+                    "surname": "Doctor's Surname",
                     "uin": "Doctor's UIN",
                     "phone": "Doctor's Phone",
                     "email": "Doctor's Email"
@@ -128,7 +128,7 @@
                 "title": "Citizen Information",
                 "firstName": "First Name",
                 "secondName": "Second Name",
-                "lastName": "Last Name",
+                "surname": "Surname",
                 "age": "Age",
                 "birthday": "Birthday",
                 "sex": "Sex",
@@ -238,31 +238,62 @@
                 }
             },
             "Admin": {
-                "form": {
-                    "firstName": {
-                        "label": "First Name",
-                        "placeholder": "Enter first name"
-                    },
-                    "secondName": {
-                        "label": "Middle Name",
-                        "placeholder": "Enter middle name"
-                    },
-                    "lastName": {
-                        "label": "Last Name",
-                        "placeholder": "Enter last name"
-                    },
-                    "pharmacy": {
-                        "label": "Select Pharmacy",
-                        "placeholder": "Choose a pharmacy",
-                        "searchPlaceholder": "Search for a pharmacy...",
-                        "empty": "No pharmacies found"
-                    },
-                    "submit": "Add Pharmacist",
-                    "errors": {
-                        "firstName": "This field is required",
-                        "secondName": "This field is required",
-                        "lastName": "This field is required",
-                        "pharmacy": "This field is required"
+                "title": "Pharmacy Administration",
+                "description": "Manage your pharmacy staff and branches",
+                "Branch": {
+                    "title": "Create new branch:",
+                    "form": {
+                        "name": {
+                            "label": "Name",
+                            "placeholder": "Enter branch name..."
+                        },
+                        "lat": {
+                            "label": "Latitude",
+                            "placeholder": "Pick location from map"
+                        },
+                        "lng": {
+                            "label": "Longitude",
+                            "placeholder": "Pick location from map"
+                        },
+                        "errors": {
+                            "name": {
+                                "min": "Branch name must be at least 2 characters.",
+                                "max": "Branch name must not exceed 50 characters."
+                            },
+                            "lat": "Latitude must be between -90 and 90.",
+                            "lng": "Longitude must be between -180 and 180."
+                        },
+                        "submit": "Submit"
+                    }
+                },
+                "Pharmacist": {
+                    "title": "Add new pharmacist:",
+                    "form": {
+                        "firstName": {
+                            "label": "First Name",
+                            "placeholder": "Enter first name"
+                        },
+                        "secondName": {
+                            "label": "Middle Name",
+                            "placeholder": "Enter middle name"
+                        },
+                        "lastName": {
+                            "label": "Last Name",
+                            "placeholder": "Enter last name"
+                        },
+                        "pharmacy": {
+                            "label": "Select Pharmacy",
+                            "placeholder": "Choose a pharmacy",
+                            "searchPlaceholder": "Search for a pharmacy...",
+                            "empty": "No pharmacies found"
+                        },
+                        "submit": "Add Pharmacist",
+                        "errors": {
+                            "firstName": "This field is required",
+                            "secondName": "This field is required",
+                            "lastName": "This field is required",
+                            "pharmacy": "This field is required"
+                        }
                     }
                 }
             }
@@ -274,7 +305,7 @@
                     "title": "Doctors List",
                     "firstName": "First Name",
                     "secondName": "Second Name",
-                    "lastName": "Last Name",
+                    "surname": "Surname",
                     "UIN": "UIN",
                     "actions": "Actions",
                     "changePassword": "Change Password",
@@ -287,7 +318,7 @@
                         "label": "First Name",
                         "placeholder": "Enter first name"
                     },
-                    "secondName": {
+                    "middleName": {
                         "label": "Middle Name",
                         "placeholder": "Enter middle name"
                     },
@@ -302,7 +333,7 @@
                     "submit": "Submit",
                     "errors": {
                         "firstName": "This field is required",
-                        "secondName": "This field is required",
+                        "middleName": "This field is required",
                         "lastName": "This field is required",
                         "uin": "Invalid UIN",
                         "email": "Please enter a valid email address",
@@ -350,7 +381,7 @@
                     "title": "Citizens List",
                     "firstName": "First Name",
                     "secondName": "Second Name",
-                    "lastName": "Surname",
+                    "surname": "Surname",
                     "UCN": "UCN"
                 },
                 "form": {
@@ -359,7 +390,7 @@
                         "label": "First Name",
                         "placeholder": "Enter first name"
                     },
-                    "secondName": {
+                    "middleName": {
                         "label": "Middle Name",
                         "placeholder": "Enter middle name"
                     },
@@ -382,7 +413,7 @@
                     "submit": "Submit",
                     "errors": {
                         "firstName": "This field is required",
-                        "secondName": "This field is required",
+                        "middleName": "This field is required",
                         "lastName": "This field is required",
                         "ucn": "Invalid UCN",
                         "email": "Please enter a valid email address",
@@ -434,7 +465,7 @@
             "list": {
                 "title": "Moderator Management",
                 "firstName": "First Name",
-                "lastName": "Surname",
+                "surname": "Surname",
                 "email": "Email",
                 "role": "Role",
                 "actions": "Actions",
@@ -462,7 +493,7 @@
                     "placeholder": "Enter middle name..."
                 },
 
-                "lastName": {
+                "surname": {
                     "label": "Surname",
                     "placeholder": "Enter last name..."
                 },
@@ -485,7 +516,7 @@
                 "submit": "Add Moderator",
                 "errors": {
                     "firstName": "First name must be at least 2 characters.",
-                    "lastName": "Surname must be at least 2 characters.",
+                    "surname": "Surname must be at least 2 characters.",
                     "email": "Please enter a valid email address.",
                     "password": "Password must be at least 8 characters."
                 }
@@ -499,7 +530,7 @@
                 "label": "First Name",
                 "placeholder": "Enter first name"
             },
-            "secondName": {
+            "middleName": {
                 "label": "Middle Name",
                 "placeholder": "Enter middle name"
             },
@@ -516,7 +547,7 @@
             "submit": "Submit",
             "errors": {
                 "firstName": "This field is required",
-                "secondName": "This field is required",
+                "middleName": "This field is required",
                 "lastName": "This field is required",
                 "pharmacy": "This field is required"
             }
