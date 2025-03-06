@@ -7,13 +7,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Pharmacy } from "@/components/models/Pharmacy";
+
 import { MapPin } from "lucide-react";
+import { CitizenPharmacy } from "@/components/models/Citizen";
 
 interface PharmacyListProps {
-    pharmacies: Pharmacy[];
-    selectedPharmacy: Pharmacy | undefined;
-    onSelectPharmacy: (pharmacy: Pharmacy) => void;
+    pharmacies: CitizenPharmacy[];
+    selectedPharmacy: CitizenPharmacy | undefined;
+    onSelectPharmacy: (pharmacy: CitizenPharmacy) => void;
     t: (args: string) => string;
 }
 
@@ -45,12 +46,12 @@ export function PharmacyList({
                                 <div className="font-medium">
                                     {pharmacy.name}
                                 </div>
-                                <div className="text-sm text-muted-foreground flex items-center">
-                                    <MapPin className="h-3 w-3 mr-1" />
-                                    {pharmacy.address}
-                                </div>
+                                {/*<div className="text-sm text-muted-foreground flex items-center">*/}
+                                {/*    <MapPin className="h-3 w-3 mr-1" />*/}
+                                {/*    {pharmacy.address}*/}
+                                {/*</div>*/}
                             </div>
-                            <Badge variant="outline">{pharmacy.distance}</Badge>
+                            {/*<Badge variant="outline">{pharmacy.distance}</Badge>*/}
                         </div>
                     ))}
                 </ScrollArea>

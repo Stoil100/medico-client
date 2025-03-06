@@ -1,9 +1,9 @@
-import { LoginForm } from "@/components/forms/login";
+import { PharmacistLoginForm } from "@/components/forms/pharmacy/pharmacist/pharmacistLoginForm";
 
 export default function PharmacyPharmacistLoginPage() {
     return (
         <div>
-            <LoginForm />
+            <PharmacistLoginForm />
         </div>
     );
 }

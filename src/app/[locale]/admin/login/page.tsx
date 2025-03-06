@@ -1,9 +1,9 @@
-import { LoginForm } from "@/components/forms/login";
+import { AdminLoginForm } from "@/components/forms/admin/adminLogin";
 
 export default function AdminLoginPage() {
     return (
         <div>
-            <LoginForm />
+            <AdminLoginForm />
         </div>
     );
 }

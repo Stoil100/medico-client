@@ -19,34 +19,23 @@ import {
 } from "@/components/ui/table";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-interface Citizen {
-    id: string;
-    firstName: string;
-    secondName: string;
-    surname: string;
-    UCN: string;
-}
-
-const mockCitizens: Citizen[] = [
-    {
-        id: "1",
-        firstName: "Emma",
-        secondName: "Rose",
-        surname: "Taylor",
-        UCN: "9876543210",
-    },
-    {
-        id: "2",
-        firstName: "Liam",
-        secondName: "James",
-        surname: "Brown",
-        UCN: "1234567890",
-    },
-];
+import { useDeleteCitizen, useGetCitizens } from "@/api/moderators/citizen";
+import Loader from "@/components/Loader";
 
 export default function CitizensPage() {
     const t = useTranslations("Pages.Moderators.Citizens");
+
+    const { data: citizens, isFetching } = useGetCitizens();
+
+    const { mutate: deleteCitizen } = useDeleteCitizen();
+
+    if (isFetching) {
+        return <Loader/>;
+    }
+
+    const handleDeleteDoctor = (id: string) => {
+        deleteCitizen(id);
+    };
 
     return (
         <div className="p-4 space-y-2">
@@ -79,20 +68,29 @@ export default function CitizensPage() {
                             <TableRow>
                                 <TableHead>{t("list.firstName")}</TableHead>
                                 <TableHead>{t("list.secondName")}</TableHead>
-                                <TableHead>{t("list.surname")}</TableHead>
+                                <TableHead>{t("list.lastName")}</TableHead>
+                                <TableHead>{t("list.UCN")}</TableHead>
                                 <TableHead className="flex justify-end">
-                                    {t("list.UCN")}
+                                    {t("list.actions")}
                                 </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {mockCitizens.map((citizen) => (
+                            {citizens && citizens.map((citizen) => (
                                 <TableRow key={citizen.id}>
                                     <TableCell>{citizen.firstName}</TableCell>
                                     <TableCell>{citizen.secondName}</TableCell>
-                                    <TableCell>{citizen.surname}</TableCell>
+                                    <TableCell>{citizen.lastName}</TableCell>
+                                    <TableCell>{citizen.ucn}</TableCell>
                                     <TableCell className="flex justify-end">
-                                        {citizen.UCN}
+                                        <Button
+                                            variant="destructive"
+                                            onClick={() =>
+                                                handleDeleteDoctor(citizen.id)
+                                            }
+                                        >
+                                            {t("list.remove")}
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

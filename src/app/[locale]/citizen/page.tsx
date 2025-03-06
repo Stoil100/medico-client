@@ -13,26 +13,9 @@ import { Mail, User, UserCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type React from "react";
 import { useState } from "react";
+import { useMedicalInfo } from "@/api/citizen/useGetMedicalInfo";
+import Loader from "@/components/Loader";
 
-interface PersonalDoctor {
-    firstName: string;
-    secondName: string;
-    surname: string;
-    UIN: string;
-    email: string;
-}
-
-interface Citizen {
-    firstName: string;
-    secondName: string;
-    surname: string;
-    age: number;
-    birthday: string;
-    sex: string;
-    UCN: string;
-    email: string;
-    personalDoctor: PersonalDoctor;
-}
 
 interface InfoItemProps {
     label: string;
@@ -42,25 +25,8 @@ interface InfoItemProps {
 
 export default function CitizenPage() {
     const t = useTranslations("Pages.Citizen.Info");
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const citizen: Citizen = {
-        firstName: "John",
-        secondName: "Michael",
-        surname: "Doe",
-        age: 35,
-        birthday: "1988-07-12",
-        sex: "male",
-        UCN: "8807120000",
-        email: "john.doe@example.com",
-        personalDoctor: {
-            firstName: "Jane",
-            secondName: "Elizabeth",
-            surname: "Smith",
-            UIN: "111222333",
-            email: "dr.smith@example.com",
-        },
-    };
+    const {data: citizen} = useMedicalInfo();
 
     const InfoItem: React.FC<InfoItemProps> = ({ label, value, icon }) => (
         <div className="flex items-center space-x-2">
@@ -69,6 +35,10 @@ export default function CitizenPage() {
             <span>{value || "N/A"}</span>
         </div>
     );
+
+    if (!citizen) {
+        return <Loader/>;
+    }
 
     return (
         <Card className="max-w-2xl mx-auto">
@@ -90,28 +60,28 @@ export default function CitizenPage() {
                         icon={<User className="w-4 h-4" />}
                     />
                     <InfoItem
-                        label={t("surname")}
-                        value={citizen.surname}
+                        label={t("lastName")}
+                        value={citizen.lastName}
                         icon={<User className="w-4 h-4" />}
                     />
-                    <InfoItem
-                        label={t("age")}
-                        value={citizen.age}
-                        icon={<UserCircle className="w-4 h-4" />}
-                    />
-                    <InfoItem
-                        label={t("birthday")}
-                        value={citizen.birthday}
-                        icon={<UserCircle className="w-4 h-4" />}
-                    />
-                    <InfoItem
-                        label={t("sex")}
-                        value={citizen.sex}
-                        icon={<UserCircle className="w-4 h-4" />}
-                    />
+                    {/*<InfoItem*/}
+                    {/*    label={t("age")}*/}
+                    {/*    value={citizen.age}*/}
+                    {/*    icon={<UserCircle className="w-4 h-4" />}*/}
+                    {/*/>*/}
+                    {/*<InfoItem*/}
+                    {/*    label={t("birthday")}*/}
+                    {/*    value={citizen.birthday}*/}
+                    {/*    icon={<UserCircle className="w-4 h-4" />}*/}
+                    {/*/>*/}
+                    {/*<InfoItem*/}
+                    {/*    label={t("sex")}*/}
+                    {/*    value={citizen.sex}*/}
+                    {/*    icon={<UserCircle className="w-4 h-4" />}*/}
+                    {/*/>*/}
                     <InfoItem
                         label={t("ucn")}
-                        value={citizen.UCN}
+                        value={citizen.ucn}
                         icon={<UserCircle className="w-4 h-4" />}
                     />
                     <InfoItem
@@ -121,43 +91,43 @@ export default function CitizenPage() {
                     />
                 </div>
 
-                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                    <DialogTrigger asChild>
-                        <Button variant="outline">{t("doctor.view")}</Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                            <DialogTitle>{t("doctor.title")}</DialogTitle>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            <InfoItem
-                                label={t("doctor.firstName")}
-                                value={citizen.personalDoctor.firstName}
-                                icon={<User className="w-4 h-4" />}
-                            />
-                            <InfoItem
-                                label={t("doctor.secondName")}
-                                value={citizen.personalDoctor.secondName}
-                                icon={<User className="w-4 h-4" />}
-                            />
-                            <InfoItem
-                                label={t("doctor.surname")}
-                                value={citizen.personalDoctor.surname}
-                                icon={<User className="w-4 h-4" />}
-                            />
-                            <InfoItem
-                                label={t("doctor.uin")}
-                                value={citizen.personalDoctor.UIN}
-                                icon={<UserCircle className="w-4 h-4" />}
-                            />
-                            <InfoItem
-                                label={t("doctor.email")}
-                                value={citizen.personalDoctor.email}
-                                icon={<Mail className="w-4 h-4" />}
-                            />
-                        </div>
-                    </DialogContent>
-                </Dialog>
+                {/*<Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>*/}
+                {/*    <DialogTrigger asChild>*/}
+                {/*        <Button variant="outline">{t("doctor.view")}</Button>*/}
+                {/*    </DialogTrigger>*/}
+                {/*    <DialogContent className="sm:max-w-[425px]">*/}
+                {/*        <DialogHeader>*/}
+                {/*            <DialogTitle>{t("doctor.title")}</DialogTitle>*/}
+                {/*        </DialogHeader>*/}
+                {/*        <div className="grid gap-4 py-4">*/}
+                {/*            <InfoItem*/}
+                {/*                label={t("doctor.firstName")}*/}
+                {/*                value={citizen.personalDoctor.firstName}*/}
+                {/*                icon={<User className="w-4 h-4" />}*/}
+                {/*            />*/}
+                {/*            <InfoItem*/}
+                {/*                label={t("doctor.secondName")}*/}
+                {/*                value={citizen.personalDoctor.secondName}*/}
+                {/*                icon={<User className="w-4 h-4" />}*/}
+                {/*            />*/}
+                {/*            <InfoItem*/}
+                {/*                label={t("doctor.lastName")}*/}
+                {/*                value={citizen.personalDoctor.lastName}*/}
+                {/*                icon={<User className="w-4 h-4" />}*/}
+                {/*            />*/}
+                {/*            <InfoItem*/}
+                {/*                label={t("doctor.uin")}*/}
+                {/*                value={citizen.personalDoctor.UIN}*/}
+                {/*                icon={<UserCircle className="w-4 h-4" />}*/}
+                {/*            />*/}
+                {/*            <InfoItem*/}
+                {/*                label={t("doctor.email")}*/}
+                {/*                value={citizen.personalDoctor.email}*/}
+                {/*                icon={<Mail className="w-4 h-4" />}*/}
+                {/*            />*/}
+                {/*        </div>*/}
+                {/*    </DialogContent>*/}
+                {/*</Dialog>*/}
             </CardContent>
         </Card>
     );

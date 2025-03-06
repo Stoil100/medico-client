@@ -2,27 +2,27 @@
 
 import type React from "react";
 
-import { Pharmacy } from "@/components/models/Pharmacy";
 import L, { LatLngTuple } from "leaflet";
 import { useEffect } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 // Import Leaflet CSS in a client component
 import "leaflet/dist/leaflet.css";
+import { CitizenPharmacy } from "@/components/models/Citizen";
 
 interface PharmacyMapProps {
-    availablePharmacies: Pharmacy[];
-    selectedPharmacy: Pharmacy | undefined;
-    setSelectedPharmacy: (pharmacy: Pharmacy) => void;
+    availablePharmacies: CitizenPharmacy[];
+    selectedPharmacy: CitizenPharmacy | undefined;
+    setSelectedPharmacy: (pharmacy: CitizenPharmacy) => void;
 }
 
 interface LocationMarkerProps {
-    pharmacy: Pharmacy;
-    onSelect: (pharmacy: Pharmacy) => void;
+    pharmacy: CitizenPharmacy;
+    onSelect: (pharmacy: CitizenPharmacy) => void;
 }
 
 interface MapCenterUpdaterProps {
-    selectedPharmacy: Pharmacy | null;
+    selectedPharmacy: CitizenPharmacy | null;
 }
 
 // Component to update map center when selected pharmacy changes
@@ -32,9 +32,9 @@ const MapCenterUpdater: React.FC<MapCenterUpdaterProps> = ({
     const map = useMap();
 
     useEffect(() => {
-        if (selectedPharmacy && selectedPharmacy.lat && selectedPharmacy.lng) {
+        if (selectedPharmacy && selectedPharmacy.latitude && selectedPharmacy.longitude) {
             map.setView(
-                [selectedPharmacy.lat, selectedPharmacy.lng],
+                [selectedPharmacy.latitude, selectedPharmacy.longitude],
                 map.getZoom(),
                 { animate: true }
             );
@@ -49,7 +49,7 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({
     pharmacy,
     onSelect,
 }) => {
-    const { lat, lng } = pharmacy;
+    const { latitude, longitude } = pharmacy;
     const map = useMap();
 
     // Create custom icon
@@ -61,12 +61,12 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({
 
     const handleClick = () => {
         onSelect(pharmacy);
-        map.setView([lat, lng], map.getZoom(), { animate: true });
+        map.setView([latitude, longitude], map.getZoom(), { animate: true });
     };
 
-    return lat && lng ? (
+    return latitude && longitude ? (
         <Marker
-            position={[lat, lng]}
+            position={[latitude, longitude]}
             icon={pinIcon}
             eventHandlers={{ click: handleClick }}
         />
@@ -86,7 +86,7 @@ export function PharmacyMap({
             className="w-full h-full"
             center={
                 selectedPharmacy
-                    ? [selectedPharmacy.lat, selectedPharmacy.lng]
+                    ? [selectedPharmacy.latitude, selectedPharmacy.longitude]
                     : defaultCenter
             }
             zoom={13}

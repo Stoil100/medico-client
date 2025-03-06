@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
+import QueryProvider from "@/providers/TanstackQueryProvider";
 
 export const metadata: Metadata = {
     title: "Medico",
@@ -31,15 +32,16 @@ export const metadata: Metadata = {
     ],
     manifest: "/site.webmanifest",
 };
-
 export default async function AppLayout({
-    children,
-}: Readonly<{
+                                            children
+                                        }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html lang="en">
-            <body className=" font-helvetica antialiased">{children}</body>
+        <body className=" font-helvetica antialiased">
+        <QueryProvider>{children}</QueryProvider>
+        </body>
         </html>
     );
 }

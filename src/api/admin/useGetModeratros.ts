@@ -1,14 +1,15 @@
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import { Moderator } from "@/components/models/Admin";
 
 export function useGetModerators() {
     const getModerators = async () => {
-        const response = await apiClient.get("/admin/moderator/get");
+        const response = await apiClient.get<Moderator[]>("/admin/moderator/get");
         return response.data;
     };
 
     return useQuery({
-        queryKey: ["getModerators"],
+        queryKey: ["admin", "moderators", "get"],
         queryFn: getModerators,
         retry: 1,
     });

@@ -1,6 +1,5 @@
 "use client";
 import ModeratorMedicamentForm from "@/components/forms/moderators/medicaments";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -20,38 +19,23 @@ import {
 } from "@/components/ui/table";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-interface Medicament {
-    id: string;
-    officialName: string;
-    activeIngredients: string[];
-    ATC: string;
-    requiredPrescription: boolean;
-}
-
-const mockMedicaments: Medicament[] = [
-    {
-        id: "1",
-        officialName: "Aspirin",
-        activeIngredients: ["Acetylsalicylic acid"],
-        ATC: "N02BA01",
-        requiredPrescription: false,
-    },
-    {
-        id: "2",
-        officialName: "Amoxicillin",
-        activeIngredients: ["Amoxicillin trihydrate"],
-        ATC: "J01CA04",
-        requiredPrescription: true,
-    },
-];
+import { useDeleteMedicament, useGetModerators } from "@/api/moderators/medicament";
+import Loader from "@/components/Loader";
 
 export default function MedicamentsPage() {
     const t = useTranslations("Pages.Moderators.Medicaments");
 
+    const {data: medicaments, isFetching} = useGetModerators();
+
+    const {mutate: deleteMedicament} = useDeleteMedicament();
+
     const handleDeleteMedicament = (id: string) => {
-        console.log(`Delete medicament with id: ${id}`);
+        deleteMedicament(id)
     };
+
+    if (isFetching) {
+        return <Loader/>;
+    }
 
     return (
         <div>
@@ -87,39 +71,39 @@ export default function MedicamentsPage() {
                                     {t("list.activeIngredients")}
                                 </TableHead>
                                 <TableHead>{t("list.ATC")}</TableHead>
-                                <TableHead>
-                                    {t("list.requiredPrescription")}
-                                </TableHead>
+                                {/*<TableHead>*/}
+                                {/*    {t("list.requiredPrescription")}*/}
+                                {/*</TableHead>*/}
                                 <TableHead className="flex justify-end">
                                     {t("list.actions")}
                                 </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {mockMedicaments.map((medicament) => (
+                            {medicaments && medicaments.map((medicament) => (
                                 <TableRow key={medicament.id}>
                                     <TableCell>
-                                        {medicament.officialName}
+                                        {medicament.name}
                                     </TableCell>
                                     <TableCell>
                                         {medicament.activeIngredients.join(
                                             ", "
                                         )}
                                     </TableCell>
-                                    <TableCell>{medicament.ATC}</TableCell>
-                                    <TableCell>
-                                        <Badge
-                                            variant={
-                                                medicament.requiredPrescription
-                                                    ? "default"
-                                                    : "secondary"
-                                            }
-                                        >
-                                            {medicament.requiredPrescription
-                                                ? t("list.yes")
-                                                : t("list.no")}
-                                        </Badge>
-                                    </TableCell>
+                                    <TableCell>{medicament.atc}</TableCell>
+                                    {/*<TableCell>*/}
+                                    {/*    <Badge*/}
+                                    {/*        variant={*/}
+                                    {/*            medicament.requiredPrescription*/}
+                                    {/*                ? "default"*/}
+                                    {/*                : "secondary"*/}
+                                    {/*        }*/}
+                                    {/*    >*/}
+                                    {/*        {medicament.requiredPrescription*/}
+                                    {/*            ? t("list.yes")*/}
+                                    {/*            : t("list.no")}*/}
+                                    {/*    </Badge>*/}
+                                    {/*</TableCell>*/}
                                     <TableCell className="flex justify-end">
                                         <Button
                                             variant="destructive"

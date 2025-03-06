@@ -1,7 +1,7 @@
 import { Doctor } from "./Doctor";
 import { Medicament } from "./Medicament";
 
-export type Prescription ={
+export interface Prescription {
     id: string;
     name: string;
     status: "active" | "fulfilled" | "invalid";

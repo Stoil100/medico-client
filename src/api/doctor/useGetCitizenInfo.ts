@@ -1,15 +1,21 @@
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import { DoctorCitizen } from "@/components/models/Doctor";
 
-export function useGetCitizenInfo() {
+export function useGetCitizenInfo(ucn: string, enabled: boolean) {
     const getCitizenInfo = async () => {
-        const response = await apiClient.get(`/doctor/citizen/info`);
+        const response = await apiClient.get<DoctorCitizen>(`/doctor/citizen/info`, {
+            params: {
+                citizenUcn: ucn
+            }
+        });
         return response.data;
     };
 
     return useQuery({
-        queryKey: ["getCitizenInfo"],
+        queryKey: ["doctor", "citizen", "get"],
         queryFn: getCitizenInfo,
         retry: 1,
+        enabled: enabled,
     });
 }

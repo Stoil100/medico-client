@@ -2,8 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -19,6 +17,7 @@ import {
     moderatorMedicamentSchema as formSchema,
     ModeratorMedicamentType,
 } from "@/components/schemas/moderators";
+import { useCreateMedicament } from "@/api/moderators/medicament";
 
 type ModeratorMedicamentFormProps = {
     t: (args: string) => string;
@@ -31,20 +30,23 @@ export default function ModeratorMedicamentForm({
         defaultValues: {
             name: "",
             atc: "",
-            activeIngridients: [{ value: "" }],
+            activeIngredients: [{ value: "" }],
         },
     });
 
+    const {mutate: createMedicament} = useCreateMedicament();
+
     function onSubmit(data: ModeratorMedicamentType) {
-        console.log(data);
+        createMedicament(data);
     }
+
     const {
         fields: ingredientFields,
         append: appendIngredient,
         remove: removeIngredient,
     } = useFieldArray({
         control: form.control,
-        name: "activeIngridients",
+        name: "activeIngredients",
     });
     return (
         <Form {...form}>
@@ -92,7 +94,7 @@ export default function ModeratorMedicamentForm({
                                 >
                                     <FormField
                                         control={form.control}
-                                        name={`activeIngridients.${ingredientIndex}.value`}
+                                        name={`activeIngredients.${ingredientIndex}.value`}
                                         render={({ field }) => (
                                             <FormItem className="flex-1">
                                                 <FormControl>
@@ -127,7 +129,6 @@ export default function ModeratorMedicamentForm({
                             onClick={() => {
                                 appendIngredient({
                                     value: "",
-                                    id: Date.now().toString(),
                                 });
                             }}
                         >

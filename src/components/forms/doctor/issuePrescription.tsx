@@ -31,63 +31,77 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
-import { useCallback, useMemo } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { useCreateCitizenPrescriptions } from "@/api/doctor";
+import { useGetMedicamentsByCommonName } from "@/api/doctor/useGetMedicamentsByCommonName";
 
-// Sample medicaments data - in a real app, this would likely come from an API
-const MEDICAMENTS = [
-    "Аспирин",
-    "Ibuprofen",
-    "Paracetamol",
-    "Amoxicillin",
-    "Lisinopril",
-    "Metformin",
-    "Atorvastatin",
-    "Omeprazole",
-    "Losartan",
-    "Simvastatin",
-    "Metoprolol",
-    "Amlodipine",
-    "Gabapentin",
-    "Hydrochlorothiazide",
-    "Sertraline",
-];
+// Sample medicament data - in a real app, this would likely come from an API
+// const MEDICAMENTS = [
+//     "Аспирин",
+//     "Ibuprofen",
+//     "Paracetamol",
+//     "Amoxicillin",
+//     "Lisinopril",
+//     "Metformin",
+//     "Atorvastatin",
+//     "Omeprazole",
+//     "Losartan",
+//     "Simvastatin",
+//     "Metoprolol",
+//     "Amlodipine",
+//     "Gabapentin",
+//     "Hydrochlorothiazide",
+//     "Sertraline",
+// ];
 
 type IssuePrescriptionFormProps = {
     t: (args: string) => string;
-    citizenId: string;
+    citizenId: string | undefined;
 };
 
 export default function IssuePrescriptionForm({
     t,
     citizenId,
 }: IssuePrescriptionFormProps) {
+
     // Initialize form with Zod validation
     const form = useForm<IssuePrescriptionType>({
         resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
+            citizenId: citizenId,
             name:"",
-            medicaments: [{ number: 1, value: "" }],
+            medicaments: [{ quantity: 1, id: "" }],
         },
     });
 
-    // Use field array for managing dynamic medicaments
+    const [medicamentName, setMedicamentName] = useState<string>("");
+    const {data: medicaments} = useGetMedicamentsByCommonName(medicamentName);
+
+    // Use field array for managing dynamic medicament
     const { fields, append, remove } = useFieldArray({
         control: form.control,
         name: "medicaments",
     });
 
-    // Memoize the medicaments list to prevent unnecessary re-renders
-    const medicamentsList = useMemo(() => MEDICAMENTS, []);
+    // Memoize the medicament list to prevent unnecessary re-renders
+    // const medicamentsList = useMemo(() => MEDICAMENTS, []);
+
+    const { mutate: issuePrescription } = useCreateCitizenPrescriptions();
+
+    useEffect(() => {
+        if(citizenId)
+            form.setValue("citizenId", citizenId)
+    }, [citizenId, form])
 
     // Handle form submission
     function handleSubmit(data: IssuePrescriptionType) {
-        console.log(data);
+        issuePrescription(data)
     }
 
     // Add a new medicament field
     const addMedicament = useCallback(() => {
-        append({ number: 1, value: "" });
+        append({ quantity: 1, id: "" });
     }, [append]);
 
     // Remove a medicament field
@@ -136,13 +150,13 @@ export default function IssuePrescriptionForm({
                                 >
                                     <FormField
                                         control={form.control}
-                                        name={`medicaments.${index}.value`}
+                                        name={`medicaments.${index}.id`}
                                         render={({ field: valueField }) => (
                                             <FormItem className="flex-1">
                                                 <FormLabel
                                                     htmlFor={`medicaments-${index}`}
                                                 >
-                                                    {t("medicaments.label")}
+                                                    {t("medicament.label")}
                                                 </FormLabel>
                                                 <Popover>
                                                     <PopoverTrigger asChild>
@@ -155,7 +169,7 @@ export default function IssuePrescriptionForm({
                                                                     false
                                                                 }
                                                                 aria-label={t(
-                                                                    "medicaments.select"
+                                                                    "medicament.select"
                                                                 )}
                                                                 className={cn(
                                                                     "w-full justify-between",
@@ -164,15 +178,15 @@ export default function IssuePrescriptionForm({
                                                                 )}
                                                             >
                                                                 {valueField.value
-                                                                    ? medicamentsList.find(
+                                                                    ? medicaments && medicaments.find(
                                                                           (
                                                                               medicament
                                                                           ) =>
-                                                                              medicament ===
+                                                                              medicament.id ===
                                                                               valueField.value
-                                                                      )
+                                                                      )?.officialName
                                                                     : t(
-                                                                          "medicaments.select"
+                                                                          "medicament.select"
                                                                       )}
                                                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                             </Button>
@@ -185,33 +199,35 @@ export default function IssuePrescriptionForm({
                                                         <Command>
                                                             <CommandInput
                                                                 placeholder={t(
-                                                                    "medicaments.search"
+                                                                    "medicament.search"
                                                                 )}
                                                                 className="h-9"
+                                                                onValueChange={setMedicamentName}
                                                             />
                                                             <CommandList>
                                                                 <CommandEmpty>
                                                                     {t(
-                                                                        "medicaments.notFound"
+                                                                        "medicament.notFound"
                                                                     )}
                                                                 </CommandEmpty>
                                                                 <CommandGroup>
                                                                     <ScrollArea className="h-[200px]">
-                                                                        {medicamentsList.map(
+                                                                        {medicaments && medicaments.map(
                                                                             (
                                                                                 medicament
                                                                             ) => (
+
                                                                                 <CommandItem
                                                                                     value={
-                                                                                        medicament
+                                                                                        medicament.officialName
                                                                                     }
                                                                                     key={
-                                                                                        medicament
+                                                                                        medicament.id
                                                                                     }
                                                                                     onSelect={() => {
                                                                                         form.setValue(
-                                                                                            `medicaments.${index}.value`,
-                                                                                            medicament,
+                                                                                            `medicaments.${index}.id`,
+                                                                                            medicament.id,
                                                                                             {
                                                                                                 shouldValidate:
                                                                                                     true,
@@ -220,12 +236,12 @@ export default function IssuePrescriptionForm({
                                                                                     }}
                                                                                 >
                                                                                     {
-                                                                                        medicament
+                                                                                        medicament.officialName
                                                                                     }
                                                                                     <Check
                                                                                         className={cn(
                                                                                             "ml-auto h-4 w-4",
-                                                                                            medicament ===
+                                                                                            medicament.id ===
                                                                                                 valueField.value
                                                                                                 ? "opacity-100"
                                                                                                 : "opacity-0"
@@ -247,13 +263,13 @@ export default function IssuePrescriptionForm({
 
                                     <FormField
                                         control={form.control}
-                                        name={`medicaments.${index}.number`}
+                                        name={`medicaments.${index}.quantity`}
                                         render={({ field: numberField }) => (
                                             <FormItem className="w-full sm:w-24">
                                                 <FormLabel
                                                     htmlFor={`quantity-${index}`}
                                                 >
-                                                    {t("medicaments.quantity")}
+                                                    {t("medicament.quantity")}
                                                 </FormLabel>
                                                 <FormControl>
                                                     <Input
@@ -300,7 +316,7 @@ export default function IssuePrescriptionForm({
                         className="mt-4"
                         onClick={addMedicament}
                     >
-                        <Plus className="h-4 w-4 mr-2" /> {t("medicaments.add")}
+                        <Plus className="h-4 w-4 mr-2" /> {t("medicament.add")}
                     </Button>
                 </div>
 

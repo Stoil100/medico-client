@@ -15,11 +15,11 @@ export function CitizenNavigation() {
             label: t("home"),
             active: pathname === "/citizen",
         },
-        {
-            href: "/citizen/settings",
-            label: t("settings"),
-            active: pathname === "/citizen/settings",
-        },
+        // {
+        //     href: "/citizen/settings",
+        //     label: t("settings"),
+        //     active: pathname === "/citizen/settings",
+        // },
         {
             href: "/citizen/prescriptions",
             label: t("prescriptions"),

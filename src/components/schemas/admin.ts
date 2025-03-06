@@ -1,15 +1,22 @@
 import { z } from "zod";
 
+export const adminLoginSchema = (t: (args: string) => string) =>
+    z.object({
+        email: z.string().email({ message: t("email") }),
+        password: z.string().min(8, { message: t("password") }),
+    });
+export type AdminLoginType = z.infer<ReturnType<typeof adminLoginSchema>>;
+
 export const addModeratorSchema = (t: (args: string) => string) =>
     z.object({
         firstName: z.string().min(2, {
             message: t("firstName"),
         }),
         secondName: z.string().optional(),
-        surname: z.string().min(2, {
-            message: t("surname"),
+        lastName: z.string().min(2, {
+            message: t("lastName"),
         }),
-        role: z.enum(["doctor", "pharmacy", "citizen", "medicaments"]),
+        type: z.enum(["doctor", "pharmacy", "citizen", "medicament"]),
         email: z.string().email({
             message: t("email"),
         }),

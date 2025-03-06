@@ -4,18 +4,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Prescription } from "@/components/models/Prescription";
 import { AlertCircleIcon, CheckCircle2, Clock } from "lucide-react";
 import { PrescriptionItem } from "./Item";
+import { CitizenPrescription } from "@/components/models/Citizen";
 
 interface PrescriptionTabsProps {
-    groupedPrescriptions: Record<string, Prescription[]>;
-    onSelectPrescription: (prescription: Prescription) => void;
+    groupedPrescriptions: Record<string, CitizenPrescription[]>;
+    onSelectPrescription: (prescription: CitizenPrescription) => void;
     t: (args: string, status?: string) => string;
 }
 
 export function PrescriptionTabs({
-    groupedPrescriptions,
-    onSelectPrescription,
-    t,
-}: PrescriptionTabsProps) {
+                                     groupedPrescriptions,
+                                     onSelectPrescription,
+                                     t
+                                 }: PrescriptionTabsProps) {
     return (
         <Tabs defaultValue="active" className="w-full">
             <TabsList className="grid w-full grid-cols-3">

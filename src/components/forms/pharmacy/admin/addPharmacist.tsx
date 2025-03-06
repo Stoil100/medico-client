@@ -31,6 +31,9 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useGetBranchesByCommonName } from "@/api/pharmacy/admin/useGetBranchesByCommonName";
+import { useState } from "react";
+import { useCreatePharmacist } from "@/api/pharmacy/admin/useCreatePharmacist";
 
 type PharmacyAddPharmacistFormProps = {
     t: (args: string) => string;
@@ -39,26 +42,29 @@ type PharmacyAddPharmacistFormProps = {
 export default function PharmacyAddPharmacistForm({
     t,
 }: PharmacyAddPharmacistFormProps) {
-    const pharmacies = [
-        { value: "pharmacy1", label: "Zdrave Pharmacy" },
-        { value: "pharmacy2", label: "Zhivot Pharmacy" },
-        { value: "pharmacy3", label: "Nadezhda Pharmacy" },
-        { value: "pharmacy4", label: "Badeshte Pharmacy" },
-        { value: "pharmacy5", label: "Grizha Pharmacy" },
-    ];
 
     const form = useForm<AddPharmacistType>({
         resolver: zodResolver(formSchema((key) => t(`errors.${key}`))),
         defaultValues: {
             firstName: "",
-            middleName: "",
+            secondName: "",
             lastName: "",
             pharmacy: "",
+            password: "",
+            email: "",
         },
     });
 
+    const [commonName, setCommonName] = useState<string>("");
+
+    const {data: pharmacies} = useGetBranchesByCommonName(commonName)
+
+    const {mutate: createPharmacist} = useCreatePharmacist();
+
     function onSubmit(data: AddPharmacistType) {
-        console.log(data);
+        createPharmacist(data, {onSuccess: () => {
+            form.reset()
+            }})
     }
 
     return (
@@ -85,13 +91,13 @@ export default function PharmacyAddPharmacistForm({
                 {/* Middle Name */}
                 <FormField
                     control={form.control}
-                    name="middleName"
+                    name="secondName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>{t("middleName.label")}</FormLabel>
+                            <FormLabel>{t("secondName.label")}</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder={t("middleName.placeholder")}
+                                    placeholder={t("secondName.placeholder")}
                                     {...field}
                                 />
                             </FormControl>
@@ -138,11 +144,11 @@ export default function PharmacyAddPharmacistForm({
                                             )}
                                         >
                                             {field.value
-                                                ? pharmacies.find(
+                                                ? pharmacies && pharmacies.find(
                                                       (pharmacy) =>
-                                                          pharmacy.value ===
+                                                          pharmacy.id ===
                                                           field.value
-                                                  )?.label
+                                                  )?.name
                                                 : t("pharmacy.placeholder")}
                                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                         </Button>
@@ -154,33 +160,34 @@ export default function PharmacyAddPharmacistForm({
                                             placeholder={t(
                                                 "pharmacy.searchPlaceholder"
                                             )}
+                                            onValueChange={setCommonName}
                                         />
                                         <CommandList>
                                             <CommandEmpty>
                                                 {t("pharmacy.empty")}
                                             </CommandEmpty>
                                             <CommandGroup>
-                                                {pharmacies.map((pharmacy) => (
+                                                {pharmacies && pharmacies.map((pharmacy) => (
                                                     <CommandItem
-                                                        value={pharmacy.label}
-                                                        key={pharmacy.value}
+                                                        value={pharmacy.name}
+                                                        key={pharmacy.id}
                                                         onSelect={() => {
                                                             form.setValue(
                                                                 "pharmacy",
-                                                                pharmacy.value
+                                                                pharmacy.id
                                                             );
                                                         }}
                                                     >
                                                         <Check
                                                             className={cn(
                                                                 "mr-2 h-4 w-4",
-                                                                pharmacy.value ===
+                                                                pharmacy.id ===
                                                                     field.value
                                                                     ? "opacity-100"
                                                                     : "opacity-0"
                                                             )}
                                                         />
-                                                        {pharmacy.label}
+                                                        {pharmacy.name}
                                                     </CommandItem>
                                                 ))}
                                             </CommandGroup>
@@ -188,6 +195,43 @@ export default function PharmacyAddPharmacistForm({
                                     </Command>
                                 </PopoverContent>
                             </Popover>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                {/* Email */}
+
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>{t("email.label")}</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder={t("email.placeholder")}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                {/* Password */}
+
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>{t("password.label")}</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder={t("password.placeholder")}
+                                    {...field}
+                                />
+                            </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
