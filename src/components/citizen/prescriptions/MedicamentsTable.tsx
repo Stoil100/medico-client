@@ -36,7 +36,7 @@ export function MedicamentsTable({ medicaments, t }: MedicamentsTableProps) {
                                 <TableCell className="font-medium">
                                     <div className="flex items-center">
                                         <Pill className="w-4 h-4 mr-2 text-primary" />
-                                        {med.name}
+                                        {med.officialName}
                                     </div>
                                 </TableCell>
                                 <TableCell>{med.quantity}</TableCell>

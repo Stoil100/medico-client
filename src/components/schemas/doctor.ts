@@ -23,7 +23,7 @@ export const issuePrescriptionSchema = (t: (args: string) => string) =>
             .array(
                 z.object({
                     quantity: z.number().min(1, { message: t("number") }),
-                    officialName: z.string().min(1, { message: t("value") }),
+                    id: z.string().uuid({ message: t("value") }),
                 })
             )
             .min(1, { message: t("required") }),

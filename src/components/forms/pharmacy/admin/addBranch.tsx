@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import L, { LatLngTuple } from "leaflet";
 import { useState } from "react";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
+import { useCreateBranch } from "@/api/pharmacy/admin/useCreateBranch";
 
 type LocationMapProps = {
     form: UseFormReturn<
@@ -84,10 +85,15 @@ export default function PharmacyAddBranchForm({
         },
     });
 
+    const { mutate: createBranch } = useCreateBranch();
+
     // Define the submit handler
     function onSubmit(values: AddBranchType) {
-        console.log(values);
-        form.reset();
+        createBranch(values, {
+            onSuccess: () => {
+                form.reset();
+            }
+        });
     }
 
     return (

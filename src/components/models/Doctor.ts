@@ -22,6 +22,7 @@ export interface DoctorPrescription {
 }
 
 export interface DoctorMedicament {
+    id: string;
     officialName: string;
     quantity: number;
 }

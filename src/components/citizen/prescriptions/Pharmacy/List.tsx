@@ -46,12 +46,12 @@ export function PharmacyList({
                                 <div className="font-medium">
                                     {pharmacy.name}
                                 </div>
-                                <div className="text-sm text-muted-foreground flex items-center">
-                                    <MapPin className="h-3 w-3 mr-1" />
-                                    {pharmacy.address}
-                                </div>
+                                {/*<div className="text-sm text-muted-foreground flex items-center">*/}
+                                {/*    <MapPin className="h-3 w-3 mr-1" />*/}
+                                {/*    {pharmacy.address}*/}
+                                {/*</div>*/}
                             </div>
-                            <Badge variant="outline">{pharmacy.distance}</Badge>
+                            {/*<Badge variant="outline">{pharmacy.distance}</Badge>*/}
                         </div>
                     ))}
                 </ScrollArea>
