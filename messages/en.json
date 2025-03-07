@@ -16,6 +16,7 @@
                 "title": "Login:",
                 "email": "Email...",
                 "password": "Password...",
+                "submit": "Submit",
                 "errors": {
                     "email": "Please enter a valid email address",
                     "password": "Password must be at least 8 characters"
@@ -124,6 +125,10 @@
             }
         },
         "Doctor": {
+            "navigation":{
+                "home":"Home",
+                "prescriptions":"Prescriptions"
+            },
             "Info": {
                 "title": "Citizen Information",
                 "firstName": "First Name",

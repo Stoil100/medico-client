@@ -84,7 +84,7 @@ export const AdminLoginForm = () => {
                     </Button>
                 </div>
                 <Button type={"submit"}>
-                    Submit
+                    {t("submit")}
                 </Button>
             </form>
         </Form>

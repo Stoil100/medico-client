@@ -91,7 +91,7 @@ export const PharmacistLoginForm = () => {
                     </Button>
                 </div>
                 <Button type={"submit"}>
-                    Изпрати
+                    {t("submit")}
                 </Button>
             </form>
         </Form>
