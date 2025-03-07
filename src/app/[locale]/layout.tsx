@@ -15,7 +15,7 @@ export default async function LocaleLayout({
     const { locale } = await Promise.resolve(params);
 
     // Cast locale to "en" | "bg" for the includes check.
-    if (!routing.locales.includes(locale as "en" | "bg")) {
+    if (!routing.locales.includes(locale as "bg")) {
         notFound();
     }
     const messages = await getMessages({ locale });

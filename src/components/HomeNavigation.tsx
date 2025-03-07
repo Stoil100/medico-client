@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 const roles = [
-    { name: "Admin", path: "/admin/login" },
-    { name: "Moderator", path: "/moderators/login" },
-    { name: "Pharmacy Owner", path: "/pharmacy/admin/login" },
-    { name: "Pharmacist", path: "/pharmacy/pharmacist/login" },
-    { name: "Doctor", path: "/doctor/login" },
-    { name: "Citizen", path: "/citizen/login" },
+    { name: "Админ", path: "/admin/login" },
+    { name: "Модератор", path: "/moderators/login" },
+    { name: "Собственик на аптека", path: "/pharmacy/admin/login" },
+    { name: "Фармацевт", path: "/pharmacy/pharmacist/login" },
+    { name: "Доктор", path: "/doctor/login" },
+    { name: "Гражданин", path: "/citizen/login" },
 ];
 
 export default function HomeNavigation() {
