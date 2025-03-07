@@ -3,7 +3,7 @@ import { z } from "zod";
 export const adminLoginSchema = (t: (args: string) => string) =>
     z.object({
         email: z.string().email({ message: t("email") }),
-        password: z.string().min(8, { message: t("password") }),
+        password: z.string().min(3, { message: t("password") }),
     });
 export type AdminLoginType = z.infer<ReturnType<typeof adminLoginSchema>>;
 
@@ -20,7 +20,7 @@ export const addModeratorSchema = (t: (args: string) => string) =>
         email: z.string().email({
             message: t("email"),
         }),
-        password: z.string().min(8, {
+        password: z.string().min(3, {
             message: t("password"),
         }),
     });

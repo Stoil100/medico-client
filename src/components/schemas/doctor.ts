@@ -3,7 +3,7 @@ import { z } from "zod";
 export const doctorLoginSchema = (t: (args: string) => string) =>
     z.object({
         email: z.string().email({ message: t("email") }),
-        password: z.string().min(8, { message: t("password") }),
+        password: z.string().min(3, { message: t("password") }),
     });
 export type DoctorLoginType = z.infer<ReturnType<typeof doctorLoginSchema>>;
 
