@@ -4,17 +4,21 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 export default async function LocaleLayout({
-    children,
-    params,
-}: {
+                                               children,
+                                               params,
+                                           }: {
     children: React.ReactNode;
-    params: { locale: string };
+    // Specify that params is a Promise, satisfying the LayoutProps constraint.
+    params: Promise<{ locale: string }>;
 }) {
-    const { locale } = await params;
-    if (!routing.locales.includes(locale as any)) {
+    // Wrap params in Promise.resolve to handle both promise and plain object cases.
+    const { locale } = await Promise.resolve(params);
+
+    // Cast locale to "en" | "bg" for the includes check.
+    if (!routing.locales.includes(locale as "en" | "bg")) {
         notFound();
     }
-    const messages = await getMessages();
+    const messages = await getMessages({ locale });
 
     return (
         <NextIntlClientProvider messages={messages}>
