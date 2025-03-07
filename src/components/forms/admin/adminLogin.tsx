@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { adminLoginSchema, AdminLoginType } from "@/components/schemas/admin";
 import { useAdminLogin } from "@/api/admin";
+import { useRouter } from "@/i18n/routing";
 
 export const AdminLoginForm = () => {
     const t = useTranslations("Pages.Auth.Login");
@@ -32,8 +33,12 @@ export const AdminLoginForm = () => {
 
     const { mutate: login } = useAdminLogin();
 
+    const router = useRouter();
+
     const onSubmit = async (values: AdminLoginType) => {
-        login(values);
+        login(values, {onSuccess: () => {
+                router.push({pathname: "/admin"}, {locale: "bg"})
+            }});
     };
 
     return (
