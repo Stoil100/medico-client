@@ -56,7 +56,10 @@ export default function AddModeratorForm({ t }: AddModeratorFormProps) {
                         <FormItem>
                             <FormLabel>{t("firstName.label")}</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder={t("firstName.placeholder")}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
