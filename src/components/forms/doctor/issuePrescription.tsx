@@ -34,7 +34,7 @@ import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { useCreateCitizenPrescriptions } from "@/api/doctor";
-import { useGetMedicamentsByCommonName } from "@/api/doctor/useGetMedicamentsByCommonName";
+import { useGetMedicamentsByCommonName } from "@/api/pharmacy/pharmacist/useGetMedicamentsByCommonName";
 
 // Sample medicament data - in a real app, this would likely come from an API
 // const MEDICAMENTS = [
