@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useEffect, useState } from "react";
-import { useGetMedicamentsByCommonName } from "@/api/doctor/useGetMedicamentsByCommonName";
+import { useGetMedicamentsByCommonName } from "@/api/pharmacy/pharmacist/useGetMedicamentsByCommonName";
 import { useAddMedicamentsToBranch } from "@/api/pharmacy/pharmacist/useAddMedicamentsToBranch";
 
 type AddMedicamentsFormProps = {
