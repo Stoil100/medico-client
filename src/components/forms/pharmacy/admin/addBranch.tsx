@@ -125,6 +125,7 @@ export default function PharmacyAddBranchForm({
                                     <FormLabel>{t("lat.label")}</FormLabel>
                                     <FormControl>
                                         <Input
+                                            disabled
                                             type="number"
                                             step="any"
                                             {...field}
@@ -143,6 +144,7 @@ export default function PharmacyAddBranchForm({
                                     <FormLabel>{t("lng.label")}</FormLabel>
                                     <FormControl>
                                         <Input
+                                            disabled
                                             type="number"
                                             step="any"
                                             {...field}
