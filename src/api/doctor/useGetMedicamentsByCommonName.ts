@@ -4,7 +4,7 @@ import { DoctorMedicament } from "@/components/models/Doctor";
 
 export function useGetMedicamentsByCommonName(name: string) {
     const getCitizenInfo = async () => {
-        const response = await apiClient.get<DoctorMedicament[]>(`/pharmacy/pharmacist/medicaments/commonName`, {
+        const response = await apiClient.get<DoctorMedicament[]>(`/doctor/medicaments/commonName`, {
             params: {
                 name
             }
