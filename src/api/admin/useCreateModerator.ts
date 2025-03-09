@@ -1,20 +1,15 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AddModeratorType } from "@/schemas/admin";
+import { getModeratorsQueryKeys as queryKey } from "@/api/admin/useGetModeratros";
 
 export function useCreateModerators() {
-    const createModerator = async (newModerator: AddModeratorType) => {
-        const response = await apiClient.post("/admin/moderator/create", newModerator);
-        return response.data;
-    };
-
-    const queryClient = useQueryClient();
-
     return useMutation({
         mutationKey: ["admin", "moderator", "create"],
-        mutationFn: createModerator,
+        mutationFn: (newModerator: AddModeratorType) =>
+            medicoApiClient.post("/admin/moderator/create", newModerator).then(response => response.data),
         retry: 1,
-        onSuccess: async () =>
-            queryClient.invalidateQueries({ queryKey: ["admin", "moderators", "get"], exact: true })
+        onSuccess: () =>
+            useQueryClient().invalidateQueries({ queryKey })
     });
 }
