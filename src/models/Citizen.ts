@@ -1,5 +1,5 @@
-import { Medicament } from "@/components/models/Medicament";
-import { Doctor } from "@/components/models/Doctor";
+import { Medicament } from "@/models/Medicament";
+import { Doctor } from "@/models/Doctor";
 
 export interface Citizen {
     firstName: string;

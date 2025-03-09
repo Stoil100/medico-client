@@ -9,7 +9,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { PharmacyMap } from "./Map";
-import { CitizenPharmacy } from "@/components/models/Citizen";
+import { CitizenPharmacy } from "@/models/Citizen";
 
 interface ExpandPharmacyMapDialogProps {
     availablePharmacies: CitizenPharmacy[];

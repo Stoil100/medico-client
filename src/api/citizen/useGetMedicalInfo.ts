@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import { Citizen } from "@/components/models/Citizen";
+import { Citizen } from "@/models/Citizen";
 
 export function useMedicalInfo() {
     const postLogin = async () => {

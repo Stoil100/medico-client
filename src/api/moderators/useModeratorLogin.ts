@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { ModeratorLoginType } from "@/components/schemas/moderators";
+import { ModeratorLoginType } from "@/schemas/moderators";
 
 export function useModeratorLogin() {
     const postLogin = async (loginData: ModeratorLoginType) => {

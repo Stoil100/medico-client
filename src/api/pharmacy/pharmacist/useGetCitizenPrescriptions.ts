@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import { PharmacistPrescriptions } from "@/components/models/Pharmacy";
+import { PharmacistPrescriptions } from "@/models/Pharmacy";
 
 export function useGetCitizenPrescriptions(ucn: string | undefined) {
     const getCitizenPrescriptions = async () => {

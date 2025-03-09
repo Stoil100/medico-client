@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ModeratorDoctorType } from "@/components/schemas/moderators";
+import { ModeratorDoctorType } from "@/schemas/moderators";
 
 export function useCreateDoctor() {
     const createDoctor = async (newDoctor: ModeratorDoctorType) => {

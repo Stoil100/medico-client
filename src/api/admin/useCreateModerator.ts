@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AddModeratorType } from "@/components/schemas/admin";
+import { AddModeratorType } from "@/schemas/admin";
 
 export function useCreateModerators() {
     const createModerator = async (newModerator: AddModeratorType) => {

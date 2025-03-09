@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { IssuePrescriptionType } from "@/components/schemas/doctor";
+import type { IssuePrescriptionType } from "@/schemas/doctor";
 
 export function useCreateCitizenPrescriptions() {
     const createCitizenPrescriptions = async (newPrescription: IssuePrescriptionType) => {

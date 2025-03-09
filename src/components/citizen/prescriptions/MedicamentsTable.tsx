@@ -7,7 +7,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Medicament } from "@/components/models/Medicament";
+import { Medicament } from "@/models/Medicament";
 import { Pill } from "lucide-react";
 
 interface MedicamentsTableProps {

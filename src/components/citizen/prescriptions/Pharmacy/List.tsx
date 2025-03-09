@@ -9,7 +9,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { MapPin } from "lucide-react";
-import { CitizenPharmacy } from "@/components/models/Citizen";
+import { CitizenPharmacy } from "@/models/Citizen";
 
 interface PharmacyListProps {
     pharmacies: CitizenPharmacy[];

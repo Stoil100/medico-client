@@ -1,10 +1,10 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Prescription } from "@/components/models/Prescription";
+import { Prescription } from "@/models/Prescription";
 import { AlertCircleIcon, CheckCircle2, Clock } from "lucide-react";
 import { PrescriptionItem } from "./Item";
-import { CitizenPrescription } from "@/components/models/Citizen";
+import { CitizenPrescription } from "@/models/Citizen";
 
 interface PrescriptionTabsProps {
     groupedPrescriptions: Record<string, CitizenPrescription[]>;

@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { doctorLoginSchema, DoctorLoginType } from "@/components/schemas/doctor";
+import { doctorLoginSchema, DoctorLoginType } from "@/schemas/doctor";
 import { useDoctorLogin } from "@/api/doctor";
 import { useRouter } from "@/i18n/routing";
 

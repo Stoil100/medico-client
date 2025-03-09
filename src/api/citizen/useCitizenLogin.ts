@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { CitizenLoginType } from "@/components/schemas/citizen";
+import { CitizenLoginType } from "@/schemas/citizen";
 
 export function useCitizenLogin() {
     const postLogin = async (loginData: CitizenLoginType) => {

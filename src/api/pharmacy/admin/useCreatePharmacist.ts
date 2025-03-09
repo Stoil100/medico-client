@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { AddPharmacistType } from "@/components/schemas/pharmacy";
+import { AddPharmacistType } from "@/schemas/pharmacy";
 import { apiClient } from "@/api";
 
 export function useCreatePharmacist() {

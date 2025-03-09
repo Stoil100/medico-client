@@ -6,7 +6,7 @@ import { useForm, UseFormReturn } from "react-hook-form";
 import {
     AddBranchType,
     addBranchSchema as formSchema,
-} from "@/components/schemas/pharmacy";
+} from "@/schemas/pharmacy";
 import { Button } from "@/components/ui/button";
 import {
     Form,

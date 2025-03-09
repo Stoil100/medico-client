@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { AddMedicamentsType } from "@/components/schemas/pharmacy";
+import { AddMedicamentsType } from "@/schemas/pharmacy";
 
 export function useAddMedicamentsToBranch() {
     const post = async (data: AddMedicamentsType) => {

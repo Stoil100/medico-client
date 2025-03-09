@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { adminLoginSchema, AdminLoginType } from "@/components/schemas/admin";
+import { adminLoginSchema, AdminLoginType } from "@/schemas/admin";
 import { useAdminLogin } from "@/api/admin";
 import { useRouter } from "@/i18n/routing";
 

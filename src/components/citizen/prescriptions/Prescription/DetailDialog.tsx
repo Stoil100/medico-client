@@ -13,7 +13,7 @@ import { PharmacyList } from "../Pharmacy/List";
 import { PharmacyMap } from "../Pharmacy/Map";
 import { StatusBadge } from "../StatusBadge";
 import { PrescriptionInfo } from "./Info";
-import { CitizenPharmacy, CitizenPrescription } from "@/components/models/Citizen";
+import { CitizenPharmacy, CitizenPrescription } from "@/models/Citizen";
 import { useGetAvailablePharmacies } from "@/api/citizen";
 import { useState } from "react";
 

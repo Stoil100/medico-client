@@ -4,7 +4,7 @@ import { usePrescriptions } from "@/components/citizen/prescriptions/hooks/usePr
 import { PrescriptionDetailDialog } from "@/components/citizen/prescriptions/Prescription/DetailDialog";
 import { PrescriptionTabs } from "@/components/citizen/prescriptions/Prescription/Tabs";
 import Loader from "@/components/Loader";
-import { Prescription } from "@/components/models/Prescription";
+import { Prescription } from "@/models/Prescription";
 import {
     Card,
     CardContent,
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { CitizenPrescription } from "@/components/models/Citizen";
+import { CitizenPrescription } from "@/models/Citizen";
 
 export default function CitizenPrescriptionsPage() {
     const t = useTranslations("Pages.Citizen.Prescriptions");

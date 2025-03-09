@@ -1,7 +1,7 @@
 
 import { apiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ModeratorCitizenType } from "@/components/schemas/moderators";
+import { ModeratorCitizenType } from "@/schemas/moderators";
 
 export function useCreateCitizen() {
     const createCitizen = async (newCitizen: ModeratorCitizenType) => {
