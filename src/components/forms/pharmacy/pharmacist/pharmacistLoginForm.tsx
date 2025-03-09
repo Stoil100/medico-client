@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { pharmacistLoginSchema, PharmacistLoginType } from "@/components/schemas/pharmacy";
+import { pharmacistLoginSchema, PharmacistLoginType } from "@/schemas/pharmacy";
 import { usePharmacistLogin } from "@/api/pharmacy/pharmacist/usePharmacistLogin";
 import { useRouter } from "@/i18n/routing";
 

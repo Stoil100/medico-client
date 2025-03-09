@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { citizenLoginSchema, CitizenLoginType } from "@/components/schemas/citizen";
+import { citizenLoginSchema, CitizenLoginType } from "@/schemas/citizen";
 import { useCitizenLogin } from "@/api/citizen";
 import { redirect } from "@/i18n/routing";
 

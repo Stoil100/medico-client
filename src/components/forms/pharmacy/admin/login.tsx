@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { pharmacyOwnerLoginSchema, PharmacyOwnerLoginType } from "@/components/schemas/pharmacy";
+import { pharmacyOwnerLoginSchema, PharmacyOwnerLoginType } from "@/schemas/pharmacy";
 import { usePharmacyOwnerLogin } from "@/api/pharmacy/admin/usePharmacyOwnerLogin";
 import { useRouter } from "@/i18n/routing";
 

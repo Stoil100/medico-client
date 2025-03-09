@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetPrescriptions } from "@/api/citizen";
-import { CitizenPrescription } from "@/components/models/Citizen";
+import { CitizenPrescription } from "@/models/Citizen";
 
 export function usePrescriptions() {
     const { data: prescriptions, isLoading, error } = useGetPrescriptions();

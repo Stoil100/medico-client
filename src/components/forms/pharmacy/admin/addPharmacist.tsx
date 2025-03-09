@@ -3,7 +3,7 @@
 import {
     AddPharmacistType,
     addPharmacistSchema as formSchema,
-} from "@/components/schemas/pharmacy";
+} from "@/schemas/pharmacy";
 import { Button } from "@/components/ui/button";
 import {
     Command,

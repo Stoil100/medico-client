@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import { PharmacyOwnerBranch } from "@/components/models/Pharmacy";
+import { PharmacyOwnerBranch } from "@/models/Pharmacy";
 
 export function useGetBranchesByCommonName(name: string) {
     const getAvailablePharmacies = async () => {

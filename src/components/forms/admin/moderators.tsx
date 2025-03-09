@@ -21,7 +21,7 @@ import {
 import {
     AddModeratorType,
     addModeratorSchema as formSchema,
-} from "@/components/schemas/admin";
+} from "@/schemas/admin";
 import { useCreateModerators } from "@/api/admin";
 
 type AddModeratorFormProps = {

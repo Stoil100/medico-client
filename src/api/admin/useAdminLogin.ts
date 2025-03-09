@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { AdminLoginType } from "@/components/schemas/admin";
+import { AdminLoginType } from "@/schemas/admin";
 
 export function useAdminLogin() {
     const postLogin = async (loginData: AdminLoginType) => {

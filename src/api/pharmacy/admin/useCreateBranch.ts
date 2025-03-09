@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AddBranchType } from "@/components/schemas/pharmacy";
+import { AddBranchType } from "@/schemas/pharmacy";
 import { apiClient } from "@/api";
 
 export function useCreateBranch() {

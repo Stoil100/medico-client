@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { DoctorLoginType } from "@/components/schemas/doctor";
+import { DoctorLoginType } from "@/schemas/doctor";
 
 export function useDoctorLogin() {
     const postLogin = async (loginData: DoctorLoginType) => {

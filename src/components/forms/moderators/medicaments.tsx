@@ -16,7 +16,7 @@ import { PlusCircle, Trash2 } from "lucide-react";
 import {
     moderatorMedicamentSchema as formSchema,
     ModeratorMedicamentType,
-} from "@/components/schemas/moderators";
+} from "@/schemas/moderators";
 import { useCreateMedicament } from "@/api/moderators/medicament";
 
 type ModeratorMedicamentFormProps = {

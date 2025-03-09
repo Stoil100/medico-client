@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { loginSchema as formSchema, LoginType } from "../schemas/login";
+import { loginSchema as formSchema, LoginType } from "@/schemas/login";
 
 export const LoginForm = () => {
     const t = useTranslations("Pages.Auth.Login");

@@ -14,7 +14,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { moderatorLoginSchema, ModeratorLoginType } from "@/components/schemas/moderators";
+import { moderatorLoginSchema, ModeratorLoginType } from "@/schemas/moderators";
 import { useModeratorLogin } from "@/api/moderators/useModeratorLogin";
 import { useRouter } from "@/i18n/routing";
 

@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { PharmacyOwnerLoginType } from "@/components/schemas/pharmacy";
+import { PharmacyOwnerLoginType } from "@/schemas/pharmacy";
 
 export function usePharmacyOwnerLogin() {
     const postLogin = async (loginData: PharmacyOwnerLoginType) => {

@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { ListPrescriptionsType } from "@/components/schemas/pharmacy";
+import { ListPrescriptionsType } from "@/schemas/pharmacy";
 
 export function useFulfillMedicamentFromPrescription() {
     const post = async (data: ListPrescriptionsType) => {

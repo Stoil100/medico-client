@@ -8,7 +8,7 @@ import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 // Import Leaflet CSS in a client component
 import "leaflet/dist/leaflet.css";
-import { CitizenPharmacy } from "@/components/models/Citizen";
+import { CitizenPharmacy } from "@/models/Citizen";
 
 interface PharmacyMapProps {
     availablePharmacies: CitizenPharmacy[];

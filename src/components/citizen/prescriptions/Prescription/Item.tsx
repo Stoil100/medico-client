@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Prescription } from "@/components/models/Prescription";
+import { Prescription } from "@/models/Prescription";
 import { Calendar, User } from "lucide-react";
 import { StatusBadge } from "../StatusBadge";
-import { CitizenPrescription } from "@/components/models/Citizen";
+import { CitizenPrescription } from "@/models/Citizen";
 
 interface PrescriptionItemProps {
     prescription: CitizenPrescription;

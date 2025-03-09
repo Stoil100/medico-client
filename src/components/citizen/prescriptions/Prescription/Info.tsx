@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Prescription } from "@/components/models/Prescription";
+import { Prescription } from "@/models/Prescription";
 import { Calendar, Clock } from "lucide-react";
-import { CitizenPrescription } from "@/components/models/Citizen";
+import { CitizenPrescription } from "@/models/Citizen";
 
 interface PrescriptionInfoProps {
     prescription: CitizenPrescription;

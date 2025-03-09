@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import { ModeratorDoctor } from "@/components/models/Moderator";
+import { ModeratorDoctor } from "@/models/Moderator";
 
 export function useGetDoctors() {
     const getDoctors = async () => {

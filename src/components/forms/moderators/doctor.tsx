@@ -12,7 +12,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { moderatorDoctorSchema as formSchema, ModeratorDoctorType } from "@/components/schemas/moderators";
+import { moderatorDoctorSchema as formSchema, ModeratorDoctorType } from "@/schemas/moderators";
 import { useCreateDoctor } from "@/api/moderators/doctor";
 
 type ModeratorDoctorFormProps = {

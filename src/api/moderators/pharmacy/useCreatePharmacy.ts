@@ -1,6 +1,6 @@
 import { apiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ModeratorPharmacyType } from "@/components/schemas/moderators";
+import { ModeratorPharmacyType } from "@/schemas/moderators";
 
 export function useCreatePharmacy() {
     const createPharmacy = async (newPharmacy: ModeratorPharmacyType) => {

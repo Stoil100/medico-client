@@ -14,7 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { moderatorPharmacySchema as formSchema, ModeratorPharmacyType } from "@/components/schemas/moderators";
+import { moderatorPharmacySchema as formSchema, ModeratorPharmacyType } from "@/schemas/moderators";
 import { useCreatePharmacy } from "@/api/moderators/pharmacy";
 
 type ModeratorPharmacyFormProps = {

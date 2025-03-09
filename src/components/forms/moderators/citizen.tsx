@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import {
     moderatorCitizenSchema as formSchema,
     ModeratorCitizenType,
-} from "@/components/schemas/moderators";
+} from "@/schemas/moderators";
 import { useCreateCitizen } from "@/api/moderators/citizen";
 
 type ModeratorCitizenFormProps = {

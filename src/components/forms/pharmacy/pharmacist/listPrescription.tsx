@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import {
     listPrescriptionsSchema as formSchema,
     ListPrescriptionsType
-} from "@/components/schemas/pharmacy";
+} from "@/schemas/pharmacy";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {

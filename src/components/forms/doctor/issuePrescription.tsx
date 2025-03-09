@@ -3,7 +3,7 @@
 import {
     type IssuePrescriptionType,
     issuePrescriptionSchema as formSchema,
-} from "@/components/schemas/doctor";
+} from "@/schemas/doctor";
 import { Button } from "@/components/ui/button";
 import {
     Command,
