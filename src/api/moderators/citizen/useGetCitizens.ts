@@ -1,10 +1,10 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 import { ModeratorCitizen } from "@/models/Moderator";
 
 export function useGetCitizens() {
     const getCitizens = async () => {
-        const response = await apiClient.get<ModeratorCitizen[]>("/moderator/citizen/get");
+        const response = await medicoApiClient.get<ModeratorCitizen[]>("/moderator/citizen/get");
         return response.data;
     };
 

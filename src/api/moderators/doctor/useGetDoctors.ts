@@ -1,10 +1,10 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 import { ModeratorDoctor } from "@/models/Moderator";
 
 export function useGetDoctors() {
     const getDoctors = async () => {
-        const response = await apiClient.get<ModeratorDoctor[]>("/moderator/doctor/get");
+        const response = await medicoApiClient.get<ModeratorDoctor[]>("/moderator/doctor/get");
         return response.data;
     };
 

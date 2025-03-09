@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { AddPharmacistType } from "@/schemas/pharmacy";
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 
 export function useCreatePharmacist() {
     const postNewPharmacist = async (newPharmacist: AddPharmacistType) => {
-        const response = await apiClient.post("/pharmacy/owner/pharmacist/new", newPharmacist);
+        const response = await medicoApiClient.post("/pharmacy/owner/pharmacist/new", newPharmacist);
         return response.data;
     };
 

@@ -1,10 +1,10 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 import { CitizenPrescription } from "@/models/Citizen";
 
 export function useGetPrescriptions() {
     const getPrescriptions = async () => {
-        const response = await apiClient.get<CitizenPrescription[]>("/citizen/prescriptions");
+        const response = await medicoApiClient.get<CitizenPrescription[]>("/citizen/prescriptions");
         return response.data;
     };
 

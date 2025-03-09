@@ -1,9 +1,9 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 
 export function useCsrfToken() {
     const getModerators = async () => {
-        const response = await apiClient.get("/csrf/get");
+        const response = await medicoApiClient.get("/csrf/get");
         return response.data;
     };
 

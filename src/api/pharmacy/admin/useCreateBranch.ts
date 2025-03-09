@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AddBranchType } from "@/schemas/pharmacy";
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 
 export function useCreateBranch() {
     const postNewBranch = async (newBranch: AddBranchType) => {
-        const response = await apiClient.post("/pharmacy/owner/branch/new", newBranch);
+        const response = await medicoApiClient.post("/pharmacy/owner/branch/new", newBranch);
         return response.data;
     };
 

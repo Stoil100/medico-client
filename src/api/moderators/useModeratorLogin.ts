@@ -1,10 +1,10 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import { ModeratorLoginType } from "@/schemas/moderators";
 
 export function useModeratorLogin() {
     const postLogin = async (loginData: ModeratorLoginType) => {
-        const response = await apiClient.post<string>("/moderator/login", loginData);
+        const response = await medicoApiClient.post<string>("/moderator/login", loginData);
         return response.data;
     };
 

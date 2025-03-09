@@ -1,10 +1,10 @@
 
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useDeleteCitizen() {
     const deleteCitizen = async (id: string) => {
-        const response = await apiClient.delete(`/moderator/citizen/delete`, {
+        const response = await medicoApiClient.delete(`/moderator/citizen/delete`, {
             params: {
                 citizenId: id
             }

@@ -1,11 +1,11 @@
 
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ModeratorCitizenType } from "@/schemas/moderators";
 
 export function useCreateCitizen() {
     const createCitizen = async (newCitizen: ModeratorCitizenType) => {
-        const response = await apiClient.post("/moderator/citizen/create", newCitizen);
+        const response = await medicoApiClient.post("/moderator/citizen/create", newCitizen);
         return response.data;
     };
 

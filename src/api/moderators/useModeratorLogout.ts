@@ -1,9 +1,9 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useMutation } from "@tanstack/react-query";
 
 export function useModeratorLogout() {
     const postLogout = async () => {
-        const response = await apiClient.post("/moderator/logout");
+        const response = await medicoApiClient.post("/moderator/logout");
         return response.data;
     };
 

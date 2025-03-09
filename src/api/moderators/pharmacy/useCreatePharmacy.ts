@@ -1,10 +1,10 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ModeratorPharmacyType } from "@/schemas/moderators";
 
 export function useCreatePharmacy() {
     const createPharmacy = async (newPharmacy: ModeratorPharmacyType) => {
-        const response = await apiClient.post("/moderator/pharma/create", newPharmacy);
+        const response = await medicoApiClient.post("/moderator/pharma/create", newPharmacy);
         return response.data;
     };
 

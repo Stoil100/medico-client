@@ -1,9 +1,9 @@
-import { apiClient } from "@/api";
+import { medicoApiClient } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetAvailablePharmacies(prescriptionId: string | undefined) {
     const getAvailablePharmacies = async () => {
-        const response = await apiClient.get("/citizen/availablePharmacies",
+        const response = await medicoApiClient.get("/citizen/availablePharmacies",
             {
                 params: {
                     prescriptionId
