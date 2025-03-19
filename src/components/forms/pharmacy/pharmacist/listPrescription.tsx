@@ -46,7 +46,7 @@ const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
 
     const [ucn, setUcn] = useState<string>("");
 
-    const { data: prescriptions } = useGetCitizenPrescriptions(ucn);
+    const { data: prescriptions, isFetched } = useGetCitizenPrescriptions(ucn);
 
     // Update the form type and default values
     const form = useForm<ListPrescriptionsType>({
@@ -56,6 +56,15 @@ const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
             prescriptions: []
         }
     });
+
+    const [temp, setTemp] = useState(false);
+
+    useEffect(() => {
+        if(prescriptions && !temp) {
+            let temp = prescriptions.map(() => ({id: ""}))
+            form.setValue("prescriptions", temp)
+        }
+    }, [isFetched])
 
     const {mutate: fulfillMedicament} = useFulfillMedicamentFromPrescription();
 
