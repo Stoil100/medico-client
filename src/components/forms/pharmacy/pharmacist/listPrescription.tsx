@@ -42,67 +42,9 @@ type ListPrescriptionFormProps = {
     t: (args: string) => string;
 };
 
-// Mock data (unchanged)
-// const mockCitizens = [
-//     { ucn: "1234567890", name: "Петър Димитров" },
-//     { ucn: "2345678901", name: "Jane Smith" },
-//     { ucn: "3456789012", name: "Alice Johnson" }
-// ];
-
-// Update the mockPrescriptions structure
-// const mockPrescriptions = {
-//     "1234567890": [
-//         {
-//             id: 1,
-//             medicaments: [
-//                 { id: 1, name: "Aspirin", quantity: 30, fulfilled: false },
-//                 { id: 2, name: "Ibuprofen", quantity: 20, fulfilled: false }
-//             ]
-//         },
-//         {
-//             id: 2,
-//             medicaments: [
-//                 { id: 3, name: "Paracetamol", quantity: 40, fulfilled: false }
-//             ]
-//         }
-//     ],
-//     "2345678901": [
-//         {
-//             id: 3,
-//             medicaments: [
-//                 { id: 4, name: "Amoxicillin", quantity: 14, fulfilled: false },
-//                 { id: 5, name: "Omeprazole", quantity: 28, fulfilled: false }
-//             ]
-//         }
-//     ],
-//     "3456789012": [
-//         {
-//             id: 4,
-//             medicaments: [
-//                 { id: 6, name: "Metformin", quantity: 60, fulfilled: false },
-//                 { id: 7, name: "Lisinopril", quantity: 30, fulfilled: false }
-//             ]
-//         }
-//     ]
-// };
-
-// Update the prescriptions state type
 const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
-    // const [prescriptions, setPrescriptions] = useState<
-    //     {
-    //         id: number;
-    //         medicaments: {
-    //             id: number;
-    //             name: string;
-    //             quantity: number;
-    //             fulfilled: boolean;
-    //         }[];
-    //     }[]
-    // >([]);
 
     const [ucn, setUcn] = useState<string>("");
-
-    // const [openAutocomplete, setOpenAutocomplete] = useState(false);
 
     const { data: prescriptions } = useGetCitizenPrescriptions(ucn);
 
@@ -115,30 +57,17 @@ const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
         }
     });
 
-    // Update the updatePrescriptions function
-    // const updatePrescriptions = (ucn: string) => {
-    //     if (mockPrescriptions.hasOwnProperty(ucn)) {
-    //         const newPrescriptions =
-    //             mockPrescriptions[ucn as keyof typeof mockPrescriptions];
-    //         setPrescriptions(newPrescriptions);
-    //         form.setValue("prescriptions", newPrescriptions, {
-    //             shouldValidate: true
-    //         });
-    //     } else {
-    //         setPrescriptions([]);
-    //         form.setValue("prescriptions", [], { shouldValidate: true });
-    //     }
-    // };
-
-    // const handleUcnSelect = (selectedUcn: string) => {
-    //     form.setValue("ucn", selectedUcn);
-    //     setOpenAutocomplete(false);
-    // };
-
     const {mutate: fulfillMedicament} = useFulfillMedicamentFromPrescription();
 
     const onSubmit = (values: ListPrescriptionsType) => {
-        fulfillMedicament(values);
+        let temp: ListPrescriptionsType = {ucn: "", prescriptions: []};
+        temp.ucn = values.ucn;
+        for (let i = 0; i < temp.prescriptions.length; i++) {
+            if (!values.prescriptions[i].id && values.prescriptions[i].id!=""){
+                temp.prescriptions.push(values.prescriptions[i]);
+            }
+        }
+        fulfillMedicament(temp);
         console.log(values);
     };
 
