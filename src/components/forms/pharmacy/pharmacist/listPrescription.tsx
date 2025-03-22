@@ -36,7 +36,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { useGetCitizenPrescriptions } from "@/api/pharmacy/pharmacist/useGetCitizenPrescriptions";
-import { useFulfillMedicamentFromPrescription } from "@/api/pharmacy/pharmacist/useFulfillMedicamentFromPrescription";
+import { useFulfillFromPrescription } from "@/api/pharmacy/pharmacist/useFulfillFromPrescription";
 
 type ListPrescriptionFormProps = {
     t: (args: string) => string;
@@ -66,13 +66,13 @@ const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
         }
     }, [isFetched])
 
-    const {mutate: fulfillMedicament} = useFulfillMedicamentFromPrescription();
+    const {mutate: fulfillMedicament} = useFulfillFromPrescription();
 
     const onSubmit = (values: ListPrescriptionsType) => {
         let temp: ListPrescriptionsType = {ucn: "", prescriptions: []};
         temp.ucn = values.ucn;
         for (let i = 0; i < values.prescriptions.length; i++) {
-            if (!values.prescriptions[i].id && values.prescriptions[i].id!=""){
+            if (values.prescriptions[i].id && values.prescriptions[i].id!=""){
                 temp.prescriptions.push(values.prescriptions[i]);
             }
         }
@@ -127,7 +127,7 @@ const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
                                                         value={field.value}
                                                         onCheckedChange={(checked) => {
                                                             if (checked) field.onChange(prescription.id);
-                                                            else field.onChange(undefined);
+                                                            else field.onChange("");
                                                         }
                                                         }
                                                         className="mt-1"
