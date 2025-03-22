@@ -71,7 +71,7 @@ const ListPrescriptionForm: React.FC<ListPrescriptionFormProps> = ({ t }) => {
     const onSubmit = (values: ListPrescriptionsType) => {
         let temp: ListPrescriptionsType = {ucn: "", prescriptions: []};
         temp.ucn = values.ucn;
-        for (let i = 0; i < temp.prescriptions.length; i++) {
+        for (let i = 0; i < values.prescriptions.length; i++) {
             if (!values.prescriptions[i].id && values.prescriptions[i].id!=""){
                 temp.prescriptions.push(values.prescriptions[i]);
             }
